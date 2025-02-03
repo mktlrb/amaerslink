@@ -23,7 +23,7 @@
             <form id="loginForm" class="formlogin">
                 <div class="inputfield">
                     <label for="USN">USN</label>
-                    <input type="text" id="USN" class="input2" placeholder="Enter your USN" required>
+                    <input type="text" id="USN" class="input2" placeholder="Enter your USN" required oninput="validateUSN('USN', 'USN-error')" />
                     <span id="USN-error" class="error-message"></span>
                 </div>
                 
@@ -43,5 +43,70 @@
         </div>
     </div>
 
-    <script src="index.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const USNInput = document.getElementById('USN');
+            const passwordInput = document.getElementById('password');
+            const USNError = document.getElementById('USN-error');
+            const passwordError = document.getElementById('password-error');
+            
+            let valid = true;
+
+            // Validate USN
+            const USNValue = USNInput.value.trim();
+            if (USNValue.length < 11 || USNValue.length > 12 || !/^\d+$/.test(USNValue)) {
+                USNError.textContent = 'USN should be 11 to 12 numeric characters';
+                USNError.style.display = 'block';
+                valid = false;
+            } else {
+                USNError.textContent = '';
+                USNError.style.display = 'none';
+            }
+
+            // Validate password
+            if (!passwordInput.value) {
+                passwordError.textContent = 'Please enter your password';
+                passwordError.style.display = 'block';
+                valid = false;
+            } else {
+                passwordError.textContent = '';
+                passwordError.style.display = 'none';
+            }
+
+            if (valid) {
+                alert('Login Successful!');
+                // Replace this with actual authentication logic
+            }
+        });
+
+       // Real-time validation for USN input
+       function validateUSN(inputId, messageId) {
+            const USNValue = document.getElementById(inputId).value.trim();
+            const USNError = document.getElementById(messageId);
+
+            // Check if the input is numeric and within length limits
+            if (USNValue.length < 11 || USNValue.length > 12 || !/^\d+$/.test(USNValue)) {
+                USNError.textContent = 'USN should be 11 to 12 numeric characters';
+                USNError.style.display = 'block';
+            } else {
+                USNError.textContent = ''; // Clear error message
+                USNError.style.display = 'none'; // Hide error if valid
+            }
+        }
+
+        // Add an event listener to clear the error message when the input is empty
+        document.getElementById('USN').addEventListener('input', function() {
+            const USNValue = this.value.trim();
+            const USNError = document.getElementById('USN-error');
+
+            // If the input is empty, clear the error message
+            if (USNValue === '') {
+                USNError.textContent = ''; // Clear error message
+                USNError.style.display = 'none'; // Hide error
+            }
+        });
+    </script>
 </body>
+</html>
