@@ -1,0 +1,122 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Main Container */
+.forgotpassword {
+    background-color: #ffffff;
+    height: 100vh; /* Full viewport height */
+    width: 100%; /* Full width */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    text-align: center; /* Center text */
+    font-family: 'Raleway', sans-serif; /* Set font family for the entire container */
+}
+
+/* Form Styles */
+.formforgotpassword {
+    background-color: #ffffff;
+    width: 90%; /* Responsive width */
+    max-width: 478px; /* Max width for larger screens */
+    border-radius: 8px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+}
+
+.forgot{
+    font-size: 25px;
+    font-weight: bold;
+    padding: 10px;
+    margin: 0;
+}
+
+/* Input Field Styles */
+.inputfield {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.label {
+    color: #1e1e1e;
+    text-align: left;
+    font-size: 16px;
+    font-family: 'Raleway', sans-serif; /* Set font family for label */
+}
+
+.input2 {
+    background-color: #ffffff;
+    height: 40px;
+    border-radius: 8px;
+    padding: 12px 16px;
+    border: 1px solid #ccc; /* Add border for better visibility */
+}
+
+/* Button Group Styles */
+.buttongroup {
+    display: flex;
+    justify-content: center; /* Space buttons evenly */
+    gap: 24px;
+}
+
+.button2, .button4 {
+    height: 40px;
+    border-radius: 8px;
+    padding: 12px;
+    border: none;
+    cursor: pointer; /* Change cursor to pointer */
+    font-family: 'Raleway', sans-serif; /* Set font family for buttons */
+}
+
+.button2 {
+    background-color: #f0f0f0; /* Light background for cancel */
+}
+
+/* Hover Effect */
+.button2:hover {
+    background-color:  gray; /* Change background color on hover */
+    color: white;
+}
+
+.button2:active{
+    opacity: 0.7;
+}
+
+
+.button4 {
+    background-color: #84041d; /* Dark background for reset */
+    color: #f5f5f5; /* Light text color */
+}
+
+/* Hover Effect */
+.button4:hover {
+    background-color:  #a50f2d; /* Change background color on hover */
+    color: white;
+}
+
+.button4:active{
+    opacity: 0.9;
+}
+
+
+/* Additional Text Styles */
+.enter {
+    color: #000000;
+    font-size: 16px;
+    font-family: 'Raleway', sans-serif; /* Set font family for additional text */
+    padding-bottom: 30px;
+}
+
+/* Key Icon Styles */
+.key {
+    height: 136px;
+    width: 136px;
+}

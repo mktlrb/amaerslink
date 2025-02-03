@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMAERS Login</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body> 
+    <div class="loginform">
+        <div class="container">
+            <p class="welcomeamaers">WELCOME AMAERS!</p>
+            <p class="logintoaccesstheplatform">LOG IN TO ACCESS THE PLATFORM</p>
+            <p class="thisisamaers">THIS IS AMAER’S LINK. <br> TO AMA COMPUTER COLLEGE LIPA CAMPUS ONLY.</p>
+        </div>
+        
+        <div class="login-container">
+            <div class="group3">
+                <img class="logo" src="logo.png" alt="AMA Logo">
+            </div>
+            
+            <form id="loginForm" class="formlogin">
+                <div class="inputfield">
+                    <label for="USN">USN</label>
+                    <input type="text" id="USN" class="input2" placeholder="Enter your USN" required>
+                    <span id="USN-error" class="error-message"></span>
+                </div>
+                
+                <div class="inputfield">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="input4" placeholder="Enter your password" required>
+                    <span id="password-error" class="error-message"></span>
+                </div>
+                
+                <div class="buttongroup">
+                    <button type="submit" id="button3" class="button3">Sign In</button>
+                    <div class="textlink">
+                        <a href="forgot-password.html">Forgot password?</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const USNInput = document.getElementById('USN');
+            const passwordInput = document.getElementById('password');
+            const USNError = document.getElementById('USN-error');
+            const passwordError = document.getElementById('password-error');
+            
+            let valid = true;
+
+            // Validate USN
+            const USNValue = USNInput.value.trim();
+            if (USNValue.length < 11 || USNValue.length > 12 || !/^\d+$/.test(USNValue)) {
+                USNError.textContent = 'USN should be 11 to 12 numeric characters';
+                USNError.style.display = 'block';
+                valid = false;
+            } else {
+                USNError.textContent = '';
+                USNError.style.display = 'none';
+            }
+
+            // Validate password
+            if (!passwordInput.value) {
+                passwordError.textContent = 'Please enter your password';
+                passwordError.style.display = 'block';
+                valid = false;
+            } else {
+                passwordError.textContent = '';
+                passwordError.style.display = 'none';
+            }
+
+            if (valid) {
+                alert('Login Successful!');
+                // Replace this with actual authentication logic
+            }
+        });
+    </script>
+</body>
+</html>

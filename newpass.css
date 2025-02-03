@@ -1,0 +1,118 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: #f0f0f0; /* Light background for contrast */
+}
+
+/* New Password Container */
+.newpassword {
+    background-color: #ffffff;
+    width: 90%; /* Responsive width */
+    max-width: 400px; /* Max width for larger screens */
+    padding: 20px; /* Padding around the container */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between elements */
+}
+
+
+/* Button Group Styles */
+.buttongroup {
+    display: flex; /* Use Flexbox */
+    justify-content: flex-end; /* Align buttons to the right */
+    align-items: center; /* Center buttons vertically */
+}
+
+/* Button Styles */
+.button {
+    background-color: #84041d;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    cursor: pointer;
+    width: 100px; /* Fixed width for buttons */
+    transition: background-color 0.3s;
+    font-size: 13px;
+    margin: 0; /* Ensure no left margin */
+    left: 200px;
+}
+
+.button:hover {
+    background-color: #a50f2d; /* Change background color on hover */
+}
+
+.button4 {
+    background-color: #f0f0f0;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    width: 100px; /* Fixed width for buttons */
+    transition: background-color 0.3s;
+    margin: 0; /* Ensure no right margin */
+}
+.button4:hover {
+    background-color: gray; /* Change background color on hover */
+    color: white;
+}
+
+.button4:active {
+    opacity: 0.5;
+}
+
+/* Input Field Styles */
+.inputfield, .inputfield2 {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Space between label and input */
+}
+
+.label, .label2 {
+    color: #1e1e1e;
+    font-size: 16px;
+}
+
+/* Input Styles */
+.input2, .input4 {
+    background-color: #ffffff;
+    height: 40px;
+    border-radius: 8px;
+    padding: 12px;
+    border: 1px solid #ccc; /* Optional border */
+}
+
+/* Placeholder Styles */
+.value, .value2 {
+    color: #9d9f9e;
+    font-size: 16px;
+}
+
+/* Button Group Styles */
+.buttongroup {
+    display: flex;
+    justify-content: center; /* Space buttons evenly */
+    gap: 24px;
+}
+
+
+/* Media Queries for Responsiveness */
+@media (max-width: 600px) {
+    .newpassword {
+        width: 100% }
+
+}

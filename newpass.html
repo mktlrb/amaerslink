@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="newpass.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <div id='newpassword' class='newpassword'>
+        
+        <div id='inputfield' class='inputfield'>
+            <div id='label' class='label'>
+                Enter new password
+            </div>
+            <input type="password" id='input2' class='input2' placeholder="Enter password" oninput="validatePassword('input2', 'passwordMessage')" />
+            <label>
+                <input type="checkbox" id="showPassword1" onclick="togglePasswordVisibility('input2', 'showPassword1')"> Show Password
+            </label>
+            <div id="passwordMessage" class="password-message"></div> <!-- Message for password validation -->
+        </div>
+        
+        <div id='inputfield2' class='inputfield2'>
+            <div id='label2' class='label2'>
+                Re-type new password
+            </div>
+            <input type="password" id='input4' class='input4' placeholder="Re-type password" oninput="validateReTypePassword('input2', 'input4', 'retypePasswordMessage')" />
+            <label>
+                <input type="checkbox" id="showPassword2" onclick="togglePasswordVisibility('input4', 'showPassword2')"> Show Password
+            </label>
+            <div id="retypePasswordMessage" class="password-message"></div> <!-- Message for re-typed password validation -->
+            
+            <div class='buttongroup'> <!-- Button group for side-by-side buttons -->
+                <div class="cancel">
+                    <a href="index.html">
+                        <button id='button4' class='button4'>
+                            Cancel
+                        </button>
+                    </a>
+                </div>
+                <div class="done">
+                    <button id='button' class='button'>
+                        Done
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function validatePassword(inputId, messageId) {
+            const password = document.getElementById(inputId).value;
+            const messageElement = document.getElementById(messageId);
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; // At least 8 characters, 1 uppercase, 1 lowercase, 1 number, 1 special character
+
+            // Clear message if input is empty
+            if (password === "") {
+                messageElement.textContent = "";
+            } else if (regex.test(password)) {
+                messageElement.textContent = "Password is valid.";
+                messageElement.style.color = "green";
+            } else {
+                messageElement.textContent = "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character.";
+                messageElement.style.color = "red";
+            }
+        }
+
+        function validateReTypePassword(originalInputId, retypeInputId, messageId) {
+            const originalPassword = document.getElementById(originalInputId).value;
+            const retypePassword = document.getElementById(retypeInputId).value;
+            const messageElement = document.getElementById(messageId);
+
+            // Clear message if input is empty
+            if (retypePassword === "") {
+                messageElement.textContent = ""; // Clear message if retype input is empty
+            } else if (retypePassword === originalPassword) {
+                messageElement.textContent = ""; // Clear message if passwords match
+            } else {
+                messageElement.textContent = "Password did not match. Please try again.";
+                messageElement.style.color = "red";
+            }
+        }
+
+        function togglePasswordVisibility(inputId, checkboxId) {
+            const inputField = document.getElementById(inputId);
+            const checkbox = document.getElementById(checkboxId);
+            
+            if (checkbox.checked) {
+                inputField.type = "text"; // Show password
+            } else {
+                inputField.type = "password"; // Hide password
+            }
+        }
+    </script>
+</body>
+</html>
