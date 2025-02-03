@@ -17,7 +17,7 @@
         
         <div class="login-container">
             <div class="group3">
-                <img class="logo" src="logo.png" alt="AMA Logo">
+                <img src="/images/logo.png" alt="AMA Logo" class="logo">
             </div>
             
             <form id="loginForm" class="formlogin">
@@ -43,43 +43,5 @@
         </div>
     </div>
 
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const USNInput = document.getElementById('USN');
-            const passwordInput = document.getElementById('password');
-            const USNError = document.getElementById('USN-error');
-            const passwordError = document.getElementById('password-error');
-            
-            let valid = true;
-
-            // Validate USN
-            const USNValue = USNInput.value.trim();
-            if (USNValue.length < 11 || USNValue.length > 12 || !/^\d+$/.test(USNValue)) {
-                USNError.textContent = 'USN should be 11 to 12 numeric characters';
-                USNError.style.display = 'block';
-                valid = false;
-            } else {
-                USNError.textContent = '';
-                USNError.style.display = 'none';
-            }
-
-            // Validate password
-            if (!passwordInput.value) {
-                passwordError.textContent = 'Please enter your password';
-                passwordError.style.display = 'block';
-                valid = false;
-            } else {
-                passwordError.textContent = '';
-                passwordError.style.display = 'none';
-            }
-
-            if (valid) {
-                alert('Login Successful!');
-                // Replace this with actual authentication logic
-            }
-        });
-    </script>
+    <script src="index.js"></script>
 </body>
-</html>
