@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forgot Password</title>
-    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
-    <link rel="stylesheet" href="forgot.css"> <!-- Link to your CSS file -->
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="forgot.css"> 
+    
     <script>
         function validateEmail() {
             const emailInput = document.getElementById('input2');
@@ -22,31 +27,42 @@
     </script>
 </head>
 <body>
-    <div id="forgotpassword" class="forgotpassword">
-        <img src="C:\Users\Mika Atilrab\Downloads\Key.png" alt="Key Icon" class="key"> <!-- Moved image to the top -->
+
+    <div class="forgotpassword">
         
-        <div id="forgot" class="forgot">
+        <!-- Key Icon -->
+        <img src="Key.png" alt="Key Icon" class="key"> <!-- Ensure the image is in the correct path -->
+
+        <!-- Forgot Password Heading -->
+        <div class="forgot">
             <p>FORGOT PASSWORD?</p>
         </div>
 
-        <div id="enter" class="enter">
+        <!-- Instructions -->
+        <div class="enter">
             ENTER YOUR REGISTERED EMAIL TO SEND VERIFICATION
         </div>
 
-        <div id="formforgotpassword" class="formforgotpassword">
-            <div id="inputfield" class="inputfield">
-                <div id="label" class="label">Email</div>
+        <!-- Form -->
+        <div class="formforgotpassword">
+            
+            <!-- Email Input -->
+            <div class="inputfield">
+                <label for="input2" class="label">Email</label>
                 <input type="email" id="input2" class="input2" placeholder="Enter your email" required>
             </div>
+
+            <!-- Button Group -->
             <div class="buttongroup">
-                <div>
-                    <a href="index.html">
-                        <button id="button2" class="button2">Cancel</button>
-                    </a>
-                </div>
-                <button id="button4" class="button4" onclick="return validateEmail();">Reset Password</button>
+                <a href="index.html">
+                    <button class="button2">Cancel</button>
+                </a>
+                <button class="button4" onclick="return validateEmail();">Reset Password</button>
             </div>
+
         </div>
+
     </div>
+
 </body>
 </html>
