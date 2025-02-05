@@ -1,215 +1,108 @@
-/* Global Styles */
 * {
-    font-family: 'Raleway', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
 }
 
-/* Center the entire page content */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Make sure it takes full height */
-    background-color: #f5f5f5; /* Light background for contrast */
-    padding: 20px; /* Padding for spacing on smaller screens */
+    height: 100vh;
+    background-color: #f4f4f4;
 }
 
-/* Login Form Styles */
-.loginform {
-    background-color: #EEEEEE;
-    width: 90%;
-    max-width: 600px;
+.container {
     display: flex;
-    flex-direction: column;
-    align-items: center; /* Center all elements inside */
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 10px 10px 20px #9E9E9E;
-    padding: 60px;
+    width: 800px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
-/* Header Styles */
-.welcomeamaers {
-    color: #616161;
-    text-align: center; /* Center the text */
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 10px; /* Space below */
-}
-
-.logintoaccesstheplatform {
-    color: #616161;
-    text-align: center;
-    font-size: 1rem;
-    margin-bottom: 20px; /* Space below */
-}
-
-.thisisamaers {
-    color: #9E9E9E;
-    text-align: center;
-    font-size: 0.7rem;
-    margin-top: 20px;
-}
-
-/* Center Logo */
-.logo {
-    height: auto;
-    width: 50%;
-    max-width: 225px;
-    display: block;
-    margin: 20px auto;
-}
-
-/* Form Styles */
-.formlogin {
-    background-color: #ffffff;
-    width: 100%;
-    max-width: 410px; /* Increased width by 10px */
-    border-radius: 8px;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-    margin: 0 auto; /* Ensures it stays centered */
-}
-
-
-/* Input Fields */
-.inputfield {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-label {
-    color: #1e1e1e;
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-input {
-    background-color: #ffffff;
-    height: 40px;
-    width: 100%;
-    max-width: 100%;
-    border-radius: 8px;
-    padding: 12px 16px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-}
-
-/* Button Group */
-.buttongroup {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.button3 {
-    background-color: #84041d;
-    height: 45px;
-    width: 100%;
-    max-width: 150px;
-    border-radius: 8px;
+.left-panel {
+    flex: 1;
+    background-color: maroon;
     color: white;
-    text-align: center;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.button3:hover {
-    background-color: #b83d55;
-    transition: background-color 0.3s;
-}
-
-.textlink {
-    text-decoration: none; /* Remove underline */
-    font-size: 0.8rem;
-    color: #000000;
+    padding: 20px;
     text-align: center;
-    margin-top: 10px;
 }
 
-/* Remove underline and blue highlight */
-.textlink a {
-    text-decoration: none; /* Ensure no underline */
-    color: inherit; /* Keeps the text color consistent */
-    outline: none; /* Remove default outline */
+.left-panel p {
+    font-size: 15px;
+    font-weight: bold;
+    margin: 10px 0;
 }
 
-/* Additional focus styling to remove blue highlight */
-.textlink a:focus, 
-.textlink a:active, 
-.textlink a:hover {
-    outline: none; /* Remove focus outline */
-    text-decoration: none; /* Ensure no underline */
-    color: #333; /* Optional: Slightly darker color for better UX */
+.right-panel {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+.logo {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 
 .error-message {
     color: red;
-    font-size: 0.8rem;
+    font-size: 12px;
+    margin-top: 5px;
     display: none;
 }
 
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-    .loginform {
-        width: 95%;
-        padding: 20px;
-    }
-
-    .welcomeamaers {
-        font-size: 2rem;
-    }
-
-    .logintoaccesstheplatform,
-    .thisisamaers {
-        font-size: 0.9rem;
-    }
-
-    .button3 {
-        width: 100%;
-    }
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: maroon;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
 }
 
-@media (max-width: 480px) {
-    .loginform {
-        padding: 15px;
-    }
+.login-button:hover {
+    background-color: darkred;
+}
 
-    .welcomeamaers {
-        font-size: 1.8rem;
-    }
+.textlink {
+    margin-top: 10px;
+}
 
-    .logintoaccesstheplatform,
-    .thisisamaers {
-        font-size: 0.8rem;
-    }
+.textlink a {
+    color: maroon;
+    text-decoration: none;
+    font-size: 14px;
+}
 
-    .inputfield {
-        gap: 5px;
-    }
-
-    .button3 {
-        height: 40px;
-    }
-
-    .textlink {
-        font-size: 0.7rem;
-    }
-
-    .error-message {
-        font-size: 0.7rem;
-    }
+.textlink a:hover {
+    text-decoration: underline;
 }
