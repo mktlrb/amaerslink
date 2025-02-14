@@ -20,7 +20,7 @@ body {
 
 /* Sidebar */
 .sidebar {
-    width: 200px;
+    width: 220px;
     height: 100vh;
     position: fixed;
     top: 60px;
@@ -29,85 +29,67 @@ body {
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
     padding-top: 20px;
-    padding-right: 40px;
+    padding-right: 20px;
     z-index: 1020;
 }
 
 #main-container {
-    margin: 0 auto; /* Center the container */
-    padding: 10px; /* Equal padding on all sides */
-    max-width: 600px; /* Set a max width for larger screens */
-    width: 60%; /* Keep width dynamic for different screen sizes */
-    min-width: 200px; /* Prevent it from becoming too narrow */
+    margin: 0 auto;
+    padding: 15px;
+    max-width: 700px;
+    width: 65%;
+    min-width: 250px;
 }
 
-/* Adjustments for medium screens */
+/* Responsive Adjustments */
 @media (max-width: 992px) {
     #main-container {
-        width: 75%; /* Increase width slightly for medium screens */
+        width: 80%;
     }
 }
 
-/* Adjustments for smaller screens */
 @media (max-width: 768px) {
     #main-container {
-        width: 90%; /* Take up more space but keep margins */
+        width: 95%;
+    }
+    .sidebar {
+        transform: translateX(-100%);
+    }
+    .sidebar.show {
+        transform: translateX(0);
     }
 }
 
-/* Adjustments for extra small screens */
 @media (max-width: 480px) {
     #main-container {
-        width: 80%; /* Almost full width while maintaining slight margins */
-        padding: 10px; /* Reduce padding for small screens */
+        width: 90%;
+        padding: 10px;
     }
 }
 
-
-/* Sidebar Navigation Links */
+/* Sidebar Navigation */
 .sidebar .nav-link {
     font-size: 18px;
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding: 12px;
 }
 
 .sidebar .nav-link img {
-    margin-right: 10px;
-}
-
-/* Sidebar button hover effect */
-.nav-link {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    transition: background 0.3s ease, color 0.3s ease;
-    border-radius: 5px;
-}
-
-.nav-link img {
-    margin-right: 10px;
-    transition: transform 0.3s ease;
+    margin-right: 12px;
 }
 
 .nav-link:hover {
-    background-color: #f8f9fa;
+    background-color: #f1f1f1;
     color: #007bff;
 }
 
-.nav-link:hover img {
-    transform: scale(1.1);
-}
-
-/* Navbar Icons */
 .navbar-icons button {
     background: none;
     border: none;
     padding: 0;
     margin-right: 15px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
     transition: transform 0.2s ease-in-out;
 }
 
@@ -119,24 +101,22 @@ body {
     transform: scale(1.1);
 }
 
-/* Default button styles */
+/* Toggle Button */
 #menuToggle {
     font-size: 24px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
     background-color: transparent;
     border: 1px solid #333;
-    padding: 5px 10px;
+    padding: 5px 12px;
     border-radius: 5px;
 }
 
-/* Hover effect */
 #menuToggle:hover {
     background-color: #ddd;
     color: #000;
 }
 
-/* Active/clicked state */
 #menuToggle.active {
     background-color: #333;
     color: #fff;
@@ -151,20 +131,30 @@ body {
     margin-bottom: 1rem;
 }
 
+.card .dropdown {
+    top: 10px;
+    right: 10px;
+    left: auto;
+}
+
+.card textarea {
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+}
+
 #postInput {
     overflow-y: hidden;
     resize: none;
     min-height: 40px;
-    max-height: 200px; /* Optional: Limits max expansion */
+    max-height: 200px;
     transition: height 0.2s ease-in-out;
 }
-
 
 /* Post Header */
 .post-header {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .post-header img {
@@ -208,26 +198,98 @@ body {
     border-color: #4CAF50;
 }
 
-/* Adjustments for Mobile Screens */
-@media (max-width: 768px) {
-    .sidebar {
-        transform: translateX(-250px);
+    /* Change dropdown item background color on hover */
+    .dropdown-menu .dropdown-item:hover {
+        background-color: #8E0404; /* Change this to your desired hover color */
+        color: white; /* Change text color */
     }
-    .sidebar.show {
-        transform: translateX(0);
+
+    /* Change dropdown item background color on click (active state) */
+    .dropdown-menu .dropdown-item:active {
+        background-color: #be8080; /* Change this to your desired active color */
+        color: white; /* Change text color */
     }
-    #main-container {
-        width: 100%;
-        margin-left: 0;
+
+    /* Optional: Change the dropdown toggle button appearance */
+    .dropdown-toggle {
+        background-color: #f8f9fa; /* Change this to your desired default color */
+        color: #000; /* Text color */
+        border: 1px solid #ccc; /* Border color */
     }
+
+    .dropdown-toggle:hover {
+        background-color: #e2e6ea; /* Change on hover */
+    }
+
+    /* Photo/Video Button */
+.btn-photo {
+    background-color: #e3f2fd; /* Light blue background */
+    color: #0d6efd; /* Bootstrap primary blue */
+    border: 1px solid #0d6efd;
 }
 
-@media (max-width: 480px) {
-    .navbar-icons button img {
-        height: 20px;
-        margin-right: 10px;
-    }
-    .post-actions {
-        gap: 10px;
-    }
+.btn-photo:hover {
+    background-color: #bbdefb; /* Darker blue on hover */
+    color: #0a58ca;
 }
+
+.btn-photo:active {
+    background-color: #90caf9; /* Even darker on click */
+    color: white;
+}
+
+/* Feeling/Activity Button */
+.btn-feeling {
+    background-color: #fff3cd; /* Light yellow background */
+    color: #ffc107; /* Bootstrap warning yellow */
+    border: 1px solid #ffc107;
+}
+
+.btn-feeling:hover {
+    background-color: #ffecb5; /* Darker yellow on hover */
+    color: #d39e00;
+}
+
+.btn-feeling:active {
+    background-color: #ffdb58; /* Even darker on click */
+    color: white;
+}
+
+/* Cancel Button */
+.btn-cancel {
+    background-color: #f8f9fa; /* Light gray */
+    color: #6c757d; /* Dark gray */
+    border: 1px solid #6c757d;
+}
+
+.btn-cancel:hover {
+    background-color: #e2e6ea;
+    color: #343a40;
+}
+
+.btn-cancel:active {
+    background-color: #ced4da;
+    color: white;
+}
+
+/* Post Button */
+.btn-post {
+    background-color: #8E0404; /* Bootstrap primary blue */
+    color: white;
+}
+
+.btn-post:hover {
+    background-color: #0a58ca;
+}
+
+.btn-post:active {
+    background-color: #084298;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Adjust the spacing between the buttons */
+}
+
+

@@ -1,0 +1,233 @@
+/* General Styles */
+body {
+    font-family: 'Raleway', sans-serif;
+    margin: auto;
+    padding: 0;
+    background-color: #f8f9fa;
+    gap: 2px;
+}
+
+/* Navbar */
+.navbar {
+    z-index: 1030;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background: white;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    background-color: white;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    padding-top: 20px;
+    padding-right: 40px;
+    z-index: 1020;
+}
+
+#main-container {
+    margin: 0 auto; /* Center the container */
+    padding: 10px; /* Equal padding on all sides */
+    max-width: 600px; /* Set a max width for larger screens */
+    width: 60%; /* Keep width dynamic for different screen sizes */
+    min-width: 200px; /* Prevent it from becoming too narrow */
+}
+
+/* Adjustments for medium screens */
+@media (max-width: 992px) {
+    #main-container {
+        width: 75%; /* Increase width slightly for medium screens */
+    }
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+    #main-container {
+        width: 90%; /* Take up more space but keep margins */
+    }
+}
+
+/* Adjustments for extra small screens */
+@media (max-width: 480px) {
+    #main-container {
+        width: 80%; /* Almost full width while maintaining slight margins */
+        padding: 10px; /* Reduce padding for small screens */
+    }
+}
+
+
+/* Sidebar Navigation Links */
+.sidebar .nav-link {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.sidebar .nav-link img {
+    margin-right: 10px;
+}
+
+/* Sidebar button hover effect */
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    transition: background 0.3s ease, color 0.3s ease;
+    border-radius: 5px;
+}
+
+.nav-link img {
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: #f8f9fa;
+    color: #007bff;
+}
+
+.nav-link:hover img {
+    transform: scale(1.1);
+}
+
+/* Navbar Icons */
+.navbar-icons button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-right: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.navbar-icons button img {
+    height: 30px;
+}
+
+.navbar-icons button:hover {
+    transform: scale(1.1);
+}
+
+/* Default button styles */
+#menuToggle {
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    background-color: transparent;
+    border: 1px solid #333;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Hover effect */
+#menuToggle:hover {
+    background-color: #ddd;
+    color: #000;
+}
+
+/* Active/clicked state */
+#menuToggle.active {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Card Styling */
+.card {
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+#postInput {
+    overflow-y: hidden;
+    resize: none;
+    min-height: 40px;
+    max-height: 200px; /* Optional: Limits max expansion */
+    transition: height 0.2s ease-in-out;
+}
+
+
+/* Post Header */
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.post-header img {
+    border-radius: 50%;
+}
+
+/* Post Actions */
+.post-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.post-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.post-actions button:hover {
+    transform: scale(1.1);
+}
+
+.post-actions button img {
+    height: 25px;
+}
+
+/* Search Bar */
+.search input {
+    width: 250px;
+    border-radius: 30px;
+    border: 1px solid #ccc;
+    padding: 0.5rem 1rem;
+    transition: border-color 0.3s;
+}
+
+.search input:focus {
+    border-color: #4CAF50;
+}
+
+/* Adjustments for Mobile Screens */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-250px);
+    }
+    .sidebar.show {
+        transform: translateX(0);
+    }
+    #main-container {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-icons button img {
+        height: 20px;
+        margin-right: 10px;
+    }
+    .post-actions {
+        gap: 10px;
+    }
+}
