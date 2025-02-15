@@ -26,6 +26,9 @@
    <!-- Add Bootstrap Icons in the <head> -->
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
 </head>
 <body class="bg-light">
 
@@ -138,8 +141,27 @@
     </div>
     <p class="mt-2">Anunsyo: Tamang Kasuotan para sa Pagdidiriwang ng Buwan ng Wika na Gaganapin sa ika-30 ng Agosto Taong 2024.</p>
     <div class="d-flex">
-        <i class="bi bi-heart heart-icon me-3" style="font-size: 1.5rem; cursor: pointer;"></i>
-        <i class="bi bi-chat-dots" style="font-size: 1.5rem; cursor: pointer;"></i>
+        <label class="ui-bookmark">
+            <input type="checkbox" />
+            <div class="bookmark" style="top: 5px; left: 5px;">
+              <svg
+                viewBox="0 0 16 16"
+                style="margin-top:4px"
+                class="bi bi-heart-fill"
+                height="25"
+                width="25"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
+                  fill-rule="evenodd"
+                ></path>
+              </svg>
+            </div>
+          </label>
+          <button class="chatbox">     
+                <i class="bi bi-chat-dots" style="font-size: 1.5rem; cursor: pointer; left: 10px;"></i>
+        </button>
     </div>
 </div>
 
@@ -153,10 +175,48 @@
         </div>
     </div>
     <p class="mt-2">Good Luck AMAers Lipa for your First Quarter Examination!</p>
-    <img src="images/sample.jpg" class="img-fluid rounded" alt="Exam Reminder">
+    
+    <!-- Clickable Smaller Image -->
+    <img src="images/sample.jpg" class="img-fluid rounded post-image" alt="Exam Reminder" data-bs-toggle="modal" data-bs-target="#imageModal">
+
     <div class="d-flex mt-2">
-        <i class="bi bi-heart heart-icon me-3" style="font-size: 1.5rem; cursor: pointer;"></i>
-        <i class="bi bi-chat-dots" style="font-size: 1.5rem; cursor: pointer;"></i>
+        <label class="ui-bookmark">
+            <input type="checkbox" />
+            <div class="bookmark" style="top: 5px; left: 5px;">
+              <svg viewBox="0 0 16 16" style="margin-top:4px" class="bi bi-heart-fill" height="25" width="25" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" fill-rule="evenodd"></path>
+              </svg>
+            </div>
+        </label>
+
+        <!-- Comment Button -->
+        <button class="chatbox" data-bs-toggle="modal" data-bs-target="#imageModal">     
+            <i class="bi bi-chat-dots" style="font-size: 1.5rem; cursor: pointer;"></i>
+        </button>
+    </div>
+</div>
+
+<!-- Modal for Full-Size Image and Comments -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Exam Reminder</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex">
+                <!-- Full-Sized Image -->
+                <img src="images/sample.jpg" class="modal-img rounded" alt="Exam Reminder">
+
+                <!-- Comment Section -->
+                <div class="comment-section flex-grow-1">
+                    <h5>Comments</h5>
+                    <input type="text" id="commentInput" class="comment-box" placeholder="Add a comment...">
+                    <button class="btn btn-primary btn-sm mt-2" onclick="addComment()">Post</button>
+                    <div class="comment-list mt-2" id="commentList"></div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
         </main>
@@ -217,8 +277,22 @@
                 this.style.color = this.classList.contains("bi-heart-fill") ? "red" : "";
             });
         });
+
+        function addComment() {
+        let input = document.getElementById('commentInput');
+        let commentText = input.value.trim();
+        if (commentText) {
+            let commentList = document.getElementById('commentList');
+            let div = document.createElement('div');
+            div.className = 'comment-item';
+            div.innerHTML = `<span>${commentText}</span> 
+                            <button class="delete-comment" onclick="this.parentElement.remove()">X</button>`;
+            commentList.appendChild(div);
+            input.value = '';
+        }
     });
     });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
