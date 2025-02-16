@@ -93,10 +93,9 @@
                 </div>
                 <hr>
                 <div class="d-flex justify-content-around">
-                    <button class="btn btn-white text-success"><img src="images/Image.png" height="20" class="me-1">
+                    <button class="btn btn-white text-success">
+                        <img src="images/gallery.png" height="20" class="me-1">
                         Photo/Video</button>
-                    <button class="btn btn-white text-warning"><img src="images/Feeling.png" height="20" class="me-1">
-                        Event </button>
                 </div>
             </div>
 
@@ -119,22 +118,21 @@
                             <div class="dropdown" style="left: 45px; top: -15px">
                                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false"
-                                    style="width: 80px; font-size: 12px; padding: 4px; color: #8E0404; border-color: #8E0404;"> Audience
+                                    style="width: 80px; font-size: 12px; padding: 4px; color: #8E0404; border-color: #8E0404;">
+                                    Audience
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">All</a></li>
+                                    <li><a class="dropdown-item" href="#">ALL</a></li>
                                     <li><a class="dropdown-item" href="#">SHS</a></li>
-                                    <li><a class="dropdown-item" href="#">College</a></li>
+                                    <li><a class="dropdown-item" href="#">COLLEGE</a></li>
                                 </ul>
                             </div>
 
                             <textarea class="form-control mb-2" rows="3" placeholder="Hello, what's up?"
                                 style="height: 150px;"></textarea>
                             <div class="d-flex justify-content-around">
-                                <button class="btn btn-light text-success"><img src="images/Image.png" height="20"
+                                <button class="btn btn-light text-success"><img src="images/gallery.png" height="20"
                                         class="me-1"> Photo/Video</button>
-                                <button class="btn btn-light text-warning"><img src="images/Feeling.png" height="20"
-                                        class="me-1"> Feeling/Activity</button>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -144,7 +142,6 @@
                     </div>
                 </div>
             </div>
-
 
             <!-- Announcements -->
             <div class="card p-3 mb-2">
@@ -168,9 +165,43 @@
                             </svg>
                         </div>
                     </label>
-                    <button class="chatbox">
+                    <button class="chatbox" data-bs-toggle="modal" data-bs-target="#commentModal">
                         <i class="bi bi-chat-dots" style="font-size: 1.5rem; cursor: pointer; left: 10px;"></i>
                     </button>
+                </div>
+            </div>
+
+            <!-- Comment Modal -->
+            <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="commentModalLabel">Add a Comment</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="d-flex align-items-center">
+                                <img src="images/Generic avatar.png" class="rounded-circle me-2" height="40"
+                                    alt="Avatar">
+                                <div>
+                                    <p class="mb-0"><strong>SSG</strong> <span class="text-muted">/Facilitator</span>
+                                    </p>
+                                    <small class="text-muted">Aug 01, 2024 at 11:59pm</small>
+                                </div>
+                            </div>
+                            <p class="mt-2">Anunsyo: Tamang Kasuotan para sa Pagdidiriwang ng Buwan ng Wika na Gaganapin
+                                sa ika-30 ng Agosto Taong 2024.</p>
+                            <hr>
+                            <textarea class="form-control" id="commentText" rows="3"
+                                placeholder="Write your comment here..."></textarea>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="submitComment">Submit Comment</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -213,13 +244,24 @@
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Exam Reminder</h5>
+                            <h5 class="modal-title">Post</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body d-flex">
+                        <div class="modal-body">
+                            <div class="d-flex align-items-center">
+                                <img src="images/Generic avatar.png" class="rounded-circle me-2" height="40" alt="Avatar">
+                                <div>
+                                    <p class="mb-0" style="top: 1px;"><strong>Maki</strong> <span class="text-muted">/Facilitator</span></p>
+                                    <small class="text-muted">Jan 01, 2024 at 11:59pm</small>
+                                </div>
+                            </div>
+                            <p class="mt-2">Good Luck AMAers Lipa for your First Quarter Examination!</p>
+                            <hr>
+                        </div>
+                        <div class="modal-body d-flex justify-content-center align-items-center">
                             <!-- Full-Sized Image -->
-                            <img src="images/sample.jpg" class="modal-img rounded" alt="Exam Reminder">
-
+                            <img src="images/sample.jpg" class="modal-img rounded" style="width: 50%;" alt="Exam Reminder">
+                        </div>                        
                             <!-- Comment Section -->
                             <div class="comment-section flex-grow-1">
                                 <h5>Comments</h5>
@@ -227,10 +269,72 @@
                                 <button class="btn btn-primary btn-sm mt-2" onclick="addComment()">Post</button>
                                 <div class="comment-list mt-2" id="commentList"></div>
                             </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Announcements -->
+            <div class="card p-3 mb-2">
+                <div class="d-flex align-items-center">
+                    <img src="images/Generic avatar.png" class="rounded-circle me-2" height="40" alt="Avatar">
+                    <div>
+                        <strong>SSG</strong> <span class="text-muted">/Facilitator</span><br>
+                        <small class="text-muted">Aug 01, 2024 at 11:59pm</small>
+                    </div>
+                </div>
+                <p class="mt-2">Anunsyo: Tamang Kasuotan para sa Pagdidiriwang ng Buwan ng Wika na Gaganapin sa ika-30
+                    ng Agosto Taong 2024.</p>
+                <div class="d-flex">
+                    <label class="ui-bookmark">
+                        <input type="checkbox" />
+                        <div class="bookmark" style="top: 5px; left: 5px;">
+                            <svg viewBox="0 0 16 16" style="margin-top:4px" class="bi bi-heart-fill" height="25"
+                                width="25" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
+                                    fill-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                    </label>
+                    <button class="chatbox" data-bs-toggle="modal" data-bs-target="#commentModal">
+                        <i class="bi bi-chat-dots" style="font-size: 1.5rem; cursor: pointer; left: 10px;"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Comment Modal -->
+            <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="commentModalLabel">Add a Comment</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="d-flex align-items-center">
+                                <img src="images/Generic avatar.png" class="rounded-circle me-2" height="40"
+                                    alt="Avatar">
+                                <div>
+                                    <p class="mb-0"><strong>Boss Gerald</strong> <span class="text-muted">/ka-barangay</span>
+                                    </p>
+                                    <small class="text-muted">Aug 01, 2024 at 11:59pm</small>
+                                </div>
+                            </div>
+                            <p class="mt-2"> <strong>Wanted</strong> Cassandra Mandy <br> <strong>Case:</strong> Nagnakaw ng patuka</p>
+                            <hr>
+                            <textarea class="form-control" id="commentText" rows="3"
+                                placeholder="Write your comment here..."></textarea>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="submitComment">Submit Comment</button>
                         </div>
                     </div>
                 </div>
             </div>
+          
         </main>
     </div>
 
@@ -241,7 +345,7 @@
             const menuToggle = document.getElementById("menuToggle");
 
             function handleSidebar() {
-                if (window.innerWidth < 1400) {
+                if (window.innerWidth < 1900) {
                     sidebar.classList.add("collapsed");
                     menuToggle.style.display = "block";
                 } else {

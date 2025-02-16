@@ -224,8 +224,7 @@ body {
     /* Photo/Video Button */
 .btn-photo {
     background-color: #e3f2fd; /* Light blue background */
-    color: #0d6efd; /* Bootstrap primary blue */
-    border: 1px solid #0d6efd;
+    color: #8E0404; /* Bootstrap primary blue */
 }
 
 .btn-photo:hover {
@@ -238,22 +237,6 @@ body {
     color: white;
 }
 
-/* Feeling/Activity Button */
-.btn-feeling {
-    background-color: #fff3cd; /* Light yellow background */
-    color: #ffc107; /* Bootstrap warning yellow */
-    border: 1px solid #ffc107;
-}
-
-.btn-feeling:hover {
-    background-color: #ffecb5; /* Darker yellow on hover */
-    color: #d39e00;
-}
-
-.btn-feeling:active {
-    background-color: #ffdb58; /* Even darker on click */
-    color: white;
-}
 
 /* Cancel Button */
 .btn-cancel {
@@ -622,4 +605,3 @@ body {
     cursor: pointer;
     border-radius: 3px;
 }
-
