@@ -1,29 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Homepage</title>
+    <title>User Profile</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="homepage.css"> 
+    <link rel="stylesheet" href="homepage.css">
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
+
 <body class="bg-light">
 
     <!-- Top Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
         <div class="container-fluid">
             <!-- Sidebar & Navbar Toggle Button -->
-            <button class="btn btn-outline-dark d-lg-none" id="menuToggle">☰</button>
+            <button class="btn btn-outline-dark d-lg-none" id="menuToggle" aria-expanded="false">☰</button>
 
             <a class="navbar-brand ms-3" href="#">
                 <img src="images/logo  1.png" alt="Logo" height="40">
@@ -37,7 +39,9 @@
             <!-- Navbar Icons as Buttons -->
             <div class="d-flex align-items-center navbar-icons d-none d-md-flex">
                 <button><img src="images/Bell.png" height="30" alt="Bell"></button>
-                <button><img src="images/Home.png" height="30" alt="Home"></button>
+                <a href="homepage.html" class="btn">
+                    <img src="images/Home.png" height="30" alt="Home">
+                </a>
                 <button><img src="images/Generic avatar.png" class="rounded-circle" height="40" alt="Avatar"></button>
             </div>
         </div>
@@ -47,14 +51,17 @@
         <!-- Sidebar -->
         <nav class="sidebar bg-white shadow-sm p-3 position-fixed" id="sidebar">
             <ul class="nav flex-column">
-                <li class="nav-item mb-2">
-                    <button class="nav-link text-dark"><img src="images/Generic avatar.png" height="30"> Profile</button>
+                <li class="nav-item">
+                    <button class="nav-link text-dark"><img src="images/Generic avatar.png" height="30">
+                        Profile</button>
                 </li>
                 <li class="nav-item mb-2">
+                    <a href="homepage.html" class="nav-link text-dark"></a>
                     <button class="nav-link text-dark"><img src="images/Home.png" height="30"> Home</button>
                 </li>
                 <li class="nav-item mb-2">
-                    <button class="nav-link text-dark"><img src="images/gmail_groups.png" height="30"> Organization</button>
+                    <button class="nav-link text-dark"><img src="images/gmail_groups.png" height="30">
+                        Organization</button>
                 </li>
                 <li class="nav-item mb-2">
                     <button class="nav-link text-dark"><img src="images/Calendar.png" height="30"> Schedules</button>
@@ -68,26 +75,39 @@
         <main id="main-container" class="container mt-5 pt-4">
             <!-- User Profile Section -->
             <div class="card p-3 mb-4 bg-white text-dark profile-section">
-                <div class="d-flex align-items-center p-4 text-black profile-header">
-                    <img src="images/Generic avatar.png" class="rounded-circle me-3 profile-avatar" height="80" alt="Avatar">
-                    <div>
+                <div class="d-flex align-items-center p-4 ptext-black profile-header">
+                    <img src="images/Generic avatar.png" class="rounded-circle me-3 profile-avatar" height="80"
+                        alt="Avatar">
+                    <div class="header-name">
                         <h4 class="profile-name">John Doe</h4>
                         <p class="mb-1 profile-year">Senior High</p>
-                        <p class="mb-0 profile-id">Student ID: 123456</p>
+                        <p class="mb-0 profile-id">Student ID: 21123456712</p>
                     </div>
-                    <button class="btn btn-dark ms-auto profile-edit-btn">Edit Profile</button>
                 </div>
             </div>
-            
+
             <!-- User Information -->
             <h4 class="fw-bold section-title">User Information</h4>
             <div class="row mb-4">
                 <div class="col-md-6">
+
+                    <!-- Email Edit Section -->
+                    <div class="col-md-6">
+                        <div class="card p-3 user-info-card" style="width: 320px;">
+                            <h6 class="info-title">Email</h6>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
                     <div class="card p-3 user-info-card">
-                        <h6 class="info-title">Email</h6>
-                        <p class="info-text">johndoe@example.com</p>
+                        <h6 class="info-title">Birth date</h6>
+                        <p class="info-text">Year/ Month/ Day</p>
                     </div>
                 </div>
+
                 <div class="col-md-6">
                     <div class="card p-3 user-info-card">
                         <h6 class="info-title">Educational Level</h6>
@@ -98,87 +118,34 @@
                 <div class="col-md-6">
                     <div class="card p-3 user-info-card">
                         <h6 class="info-title">Student ID</h6>
-                        <p class="info-text">123456789012</p>
+                        <p class="info-text">21123456712</p>
                     </div>
                 </div>
+            </div>
+            <div class="row mb-4">
+                <button class="btn btn-outline mb-2 cancel-btn"">Cancel</button>
+                <button class=" btn btn-dark save-btn">Save Changes</button>
+            </div>
 
-            </div>
-            
-            <!-- Update User Information -->
-            <h4 class="fw-bold section-title">Update User Information</h4>
-            <div class="card p-3 update-info-card">
-                <div class="row mb-2">
-                    <div class="col-md-5">
-                        <label for="name" class="form-label input-label">Name</label>
-                        <input type="text" id="name" class="form-control input-field" placeholder="Enter your name">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="email" class="form-label input-label">Email</label>
-                        <input type="email" id="email" class="form-control input-field" placeholder="Enter your email">
-                    </div>
-                </div>
-                <label class="form-label input-label">Year Level</label>
-                <div class="d-flex">
-                    <button class="btn btn-light me-2 year-btn">Senior High</button>
-                    <button class="btn btn-light year-btn">College</button>
-                </div>
-                <div class="d-flex mt-3">
-                    <button class="btn btn-outline-dark me-2 cancel-btn">Cancel</button>
-                    <button class="btn btn-dark save-btn">Save Changes</button>
-                </div>
-            </div>
-        </main>
-        
-        
-        
+    </div>
+    </main>
     </div>
 
-    <!-- Custom Script for Sidebar and Navbar Toggle -->
+    <!-- Link to External CSS -->
+    <link rel="stylesheet" href="homepage.css">
+
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const sidebar = document.getElementById("sidebar");
-        const menuToggle = document.getElementById("menuToggle");
+        function toggleSelection(button) {
+            // Deselect both buttons first
+            const buttons = document.querySelectorAll('.year-btn');
+            buttons.forEach(b => b.classList.remove('btn-dark'));
 
-        function handleSidebar() {
-            if (window.innerWidth < 1400) {
-                sidebar.classList.add("collapsed"); // Collapse sidebar
-                menuToggle.style.display = "block"; // Show toggle button
-            } else {
-                sidebar.classList.remove("collapsed"); // Expand sidebar
-                menuToggle.style.display = "none"; // Hide toggle button
-            }
+            // Select the clicked button
+            button.classList.add('btn-dark');
         }
+    </script>
 
-        // Initial check on page load
-        handleSidebar();
-
-        // Listen for window resize events
-        window.addEventListener("resize", handleSidebar);
-
-        // Toggle sidebar when clicking the menu button
-        menuToggle.addEventListener("click", function (event) {
-            event.stopPropagation();
-            sidebar.classList.toggle("collapsed");
-            sidebar.classList.toggle("show");
-        });
-
-        // Close sidebar when clicking outside of it
-        document.addEventListener("click", function (event) {
-            if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
-                sidebar.classList.remove("show");
-
-                document.addEventListener("DOMContentLoaded", function () {
-        const postInput = document.getElementById("postInput");
-
-        postInput.addEventListener("input", function () {
-            this.style.height = "auto";  // Reset height to recalculate
-            this.style.height = (this.scrollHeight) + "px"; // Expand based on content
-        });
-    });
-            }
-        });
-    });
-</script>
 
 </body>
+
 </html>

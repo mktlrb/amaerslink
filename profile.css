@@ -138,18 +138,53 @@ body {
     border: 1px solid #ccc;
 }
 
+/* Base styles for buttons */
 .year-btn {
-    border-radius: 5px;
-    padding: 10px 20px;
+    padding: 0.5rem 1rem; /* Padding for better touch targets */
+    font-size: 1rem; /* Consistent font size */
+    border: 1px solid #007bff; /* Border color */
+    border-radius: 0.25rem; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
 }
 
-.cancel-btn, .save-btn {
-    border-radius: 5px;
-    padding: 10px 20px;
-    align-items: center;
+/* Hover effect */
+.year-btn:hover {
+    background-color: #007bff; /* Blue background on hover */
+    color: white; /* White text on hover */
 }
 
-.save-btn{
-    background-color: #007bff;
-    color: white;
+/* homepage.css */
+
+/* Custom styles for the year buttons */
+.year-btn {
+    background-color: #f8f9fa; /* Light background color for unselected buttons */
+    color: #000; /* Text color for unselected buttons */
+}
+
+/* Selected button */
+.year-btn.btn-dark {
+    background-color: #8E0404; /* Your custom color */
+    color: #fff; /* White text when selected */
+}
+
+
+
+/* Center buttons horizontally and vertically within the row */
+.row {
+    display: flex;
+    justify-content: center;  /* Center horizontally */
+    align-items: center;      /* Center vertically */
+    gap: 15px;                /* Add spacing between buttons */
+}
+
+/* Custom styles for cancel and save buttons */
+.cancel-btn {
+    background-color: #f8f9fa;
+    color: #000;
+}
+
+.save-btn {
+    background-color: #8E0404; /* Your custom color */
+    color: #fff;
 }
