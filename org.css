@@ -231,3 +231,29 @@ body {
         gap: 10px;
     }
 }
+
+
+    /* Change dropdown item background color on hover */
+    .dropdown-menu .dropdown-item:hover {
+        background-color: #8E0404; /* Change this to your desired hover color */
+        color: white; /* Change text color */
+    }
+
+    /* Change dropdown item background color on click (active state) */
+    .dropdown-menu .dropdown-item:active {
+        background-color: #be8080; /* Change this to your desired active color */
+        color: white; /* Change text color */
+    }
+
+    /* Optional: Change the dropdown toggle button appearance */
+    .dropdown-toggle {
+        background-color: #f8f9fa; /* Change this to your desired default color */
+        color: #000; /* Text color */
+        border: 1px solid #ccc; /* Border color */
+        margin-top: 50px;
+    }
+
+    .dropdown-toggle:hover {
+        background-color: #e2e6ea; /* Change on hover */
+    }
+
