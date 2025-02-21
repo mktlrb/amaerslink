@@ -1,0 +1,213 @@
+/* ============================= */
+/* 🌍 GENERAL STYLES */
+/* ============================= */
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* ============================= */
+/* 📌 SIDEBAR STYLES */
+/* ============================= */
+.sidebar {
+    transition: transform 0.3s ease;
+    width: 250px; /* Sidebar width */
+    height: 100vh; /* Full height */
+    position: fixed; /* Fixed position */
+    left: 0;
+    top: 0;
+    z-index: 1000; /* Ensure above other content */
+    background: white;
+    padding: 10px;
+}
+
+/* Sidebar hidden for small screens */
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+}
+
+/* ============================= */
+/* 📌 MAIN CONTENT AREA */
+/* ============================= */
+#main-container {
+    margin-left: 250px; /* Space for sidebar */
+    transition: margin-left 0.3s ease; /* Smooth transition */
+    max-width: 1500px;
+    width: 100%;
+    margin: 50px auto 20px auto;
+    padding: 20px;
+}
+
+/* Adjust main content margin when sidebar is collapsed */
+@media (max-width: 768px) {
+    #main-container {
+        margin-left: 0; /* Full width on mobile */
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+/* ============================= */
+/* 📅 CALENDAR STYLES */
+/* ============================= */
+#calendar-container {
+    flex: 1;
+    min-width: 100%; /* Full width on mobile */
+    max-width: 100%;
+    height: 100%;
+}
+
+#calendar {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* FullCalendar Customization */
+.fc {
+    height: 100% !important;
+}
+
+.fc-toolbar {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+}
+
+.fc-day {
+    background-color: #ffffff;
+}
+
+.fc-event {
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 0.9em;
+}
+
+/* ============================= */
+/* 🎛 CALENDAR BUTTON STYLES */
+/* ============================= */
+.fc-button {
+    padding: 5px 8px;
+    min-height: 10px;
+    min-width: 10px;
+    font-size: 5px;
+}
+
+/* Adjust calendar buttons for mobile */
+@media (max-width: 768px) {
+    .fc-toolbar {
+        flex-direction: column;
+        align-items: center;
+    }
+    .fc-button {
+        padding: 3px 5px;
+        min-height: 30px;
+        min-width: 30px;
+        font-size: 12px;
+    }
+    .fc-toolbar-title {
+        font-size: 1em;
+    }
+}
+
+/* ============================= */
+/* 🗂 SCHEDULE & APPOINTMENTS */
+/* ============================= */
+.card {
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    background-color: #ffffff;
+    width: 100%;
+}
+
+.list-group-item {
+    border: none;
+    padding: 10px;
+}
+
+/* ============================= */
+/* 🔘 BUTTON STYLES */
+/* ============================= */
+.btn-outline-dark {
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+.btn-outline-dark:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+/* ============================= */
+/* ✅ RESPONSIVE FIXES */
+/* ============================= */
+@media (max-width: 992px) {
+    #main-container {
+        width: 95%;
+    }
+    .container-fluid {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+    #calendar-container {
+        min-width: 100%;
+        height: 400px;
+    }
+    .fc-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 5px;
+    }
+    .fc-toolbar-title {
+        font-size: 1.2em;
+        margin: 5px 0;
+    }
+    .fc-button {
+        padding: 5px;
+        margin: 2px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 768px) {
+    .container-fluid {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+    #calendar-container {
+        min-width: 100%;
+        max-width: 100%;
+        height: 350px;
+    }
+    .fc-header-toolbar {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    .fc-toolbar-title {
+        font-size: 1em;
+    }
+    .fc-button {
+        padding: 3px;
+        margin: 1px;
+        font-size: 0.8em;
+    }
+    .fc-event {
+        font-size: 0.8em;
+        padding: 2px;
+    }
+}
