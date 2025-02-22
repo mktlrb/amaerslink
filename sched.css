@@ -10,7 +10,7 @@ body {
 /* 📌 SIDEBAR STYLES */
 /* ============================= */
 .sidebar {
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition for opening/closing */
     width: 250px; /* Sidebar width */
     height: 100vh; /* Full height */
     position: fixed; /* Fixed position */
@@ -19,7 +19,35 @@ body {
     z-index: 1000; /* Ensure above other content */
     background: white;
     padding: 10px;
+    opacity: 1; /* Fully visible */
 }
+
+.sidebar.collapsed {
+    transform: translateX(-100%); /* Move sidebar out of view */
+    opacity: 0; /* Fade out */
+}
+
+/* Hover effect for sidebar links */
+.sidebar .nav-link {
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.sidebar .nav-link:hover {
+    background-color: #f1f1f1; /* Change background on hover */
+}
+
+/* ============================= */
+/* 📌 TOGGLE BUTTON STYLES */
+/* ============================= */
+#menuToggle {
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+#menuToggle:hover {
+    background-color: #e0e0e0; /* Change background on hover */
+}
+
+
 
 /* Sidebar hidden for small screens */
 @media (max-width: 768px) {
@@ -57,6 +85,7 @@ body {
     min-width: 100%; /* Full width on mobile */
     max-width: 100%;
     height: 100%;
+    margin-bottom: 10px;
 }
 
 #calendar {
@@ -132,6 +161,7 @@ body {
     padding: 15px;
     background-color: #ffffff;
     width: 100%;
+    margin-top: 10px; /* Adjust this value to lessen the gap */
 }
 
 .list-group-item {
@@ -165,8 +195,14 @@ body {
     }
     #calendar-container {
         min-width: 100%;
-        height: 400px;
+        max-width: 100%;
+        height: 350px;
+        margin-bottom: 5px; /* Less gap on mobile */
     }
+    .card {
+        margin-top: 5px; /* Less gap on mobile */
+    }
+    
     .fc-toolbar {
         flex-direction: column;
         align-items: stretch;

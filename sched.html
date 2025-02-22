@@ -26,7 +26,12 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales-all.min.js"></script>
 
-
+    <style>
+        /* Ensure the calendar has a height */
+        #calendar {
+            height: 100%;
+        }
+    </style>
 </head>
 
 <body class="bg-light">
@@ -85,38 +90,103 @@
                     <!-- =========================== -->
                     <!-- Calendar Section -->
                     <!-- =========================== -->
-                    <div class="col-12 col-lg-8" style="height: 550px; font-size: 10px;">
-                        <div class="card p-3 h-100">
-                            <h5 class="text-center mt-5">Planner Calendar</h5>
+                    <div class="col-12 col-lg-8" style="height: 550px; font-size: 10px; margin: auto;">
+                        <div class="card p-3 h-95= mb-3">
+                            <h5 class="text-center mt-3">Planner Calendar</h5>
                             <div id="calendar-container">
-                                <div id="calendar" class="flex-grow-1"></div>
+                                < <div id="calendar"></div>
                             </div>
                         </div>
                     </div>
-
                     <!-- =========================== -->
-                    <!-- Upcoming Schedules & Appointments -->
+                    <!-- Upcoming Schedules -->
                     <!-- =========================== -->
                     <div class="col-12 col-lg-4 d-flex flex-column" style="height: auto;">
                         <!-- Upcoming Schedules -->
                         <div class="card p-3 mb-3">
                             <h5>Upcoming Schedules and Events</h5>
-                            <div class="list-group">
-                                <a href="#" class="list-group-item list-group-item-action">Event 1 - 9:00 AM</a>
-                                <a href="#" class="list-group-item list-group-item-action">Event 2 - 10:30 AM</a>
-                                <a href="#" class="list-group-item list-group-item-action">Event 3 - 2:00 PM</a>
-                            </div>
+                            <div class="list-group"></div>
+                            <button class="btn btn-outline-dark mt-3 w-100" data-bs-toggle="modal"
+                                data-bs-target="#setPublicAppointmentModal">
+                                Set Public Event Appointment
+                            </button>
                         </div>
 
                         <!-- Appointments -->
                         <div class="card p-3">
                             <h5>Appointments</h5>
-                            <div class="list-group">
-                                <a href="#" class="list-group-item list-group-item-action">Meeting - 3:00 PM</a>
-                                <a href="#" class="list-group-item list-group-item-action">Doctor's Appointment - 5:00
-                                    PM</a>
+                            <div class="list-group" id="appointmentsList"></div>
+                            <button class="btn btn-outline-dark mt-3 w-100" data-bs-toggle="modal"
+                                data-bs-target="#setPersonalAppointmentModal">
+                                Set Personal Consultation
+                            </button>
+
+                            <!-- Modal for Setting Public Appointment -->
+                            <div class="modal fade" id="setPublicAppointmentModal" tabindex="-1"
+                                aria-labelledby="setPublicAppointmentModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content p-3">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="setPublicAppointmentModalLabel">Set Public Event</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id="publicAppointmentForm">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Event Title</label>
+                                                    <input type="text" class="form-control" id="publicTitle" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Date</label>
+                                                    <input type="date" class="form-control" id="publicDate" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Description</label>
+                                                    <textarea class="form-control" id="publicDescription" rows="3"></textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn-dark">Submit</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <button class="btn btn-outline-dark mt-3 w-100">Set Appointment</button>
+
+                            <!-- Modal for Setting Personal Appointment -->
+                            <div class="modal fade" id="setPersonalAppointmentModal" tabindex="-1"
+                                aria-labelledby="setPersonalAppointmentModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content p-3">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="setPersonalAppointmentModalLabel">Set Personal Consultation</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id="personalAppointmentForm">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Full Name</label>
+                                                    <input type="text" class="form-control" id="personalName" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Date</label>
+                                                    <input type="date" class="form-control" id="personalDate" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Email</label>
+                                                    <input type="email" class="form-control" id="personalEmail" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Reason for Consultation</label>
+                                                    <textarea class="form-control" id="personalReason" rows="3"></textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn-dark">Submit</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div> <!-- End of Right Column -->
                 </div> <!-- End of Row -->
@@ -132,53 +202,21 @@
         document.addEventListener("DOMContentLoaded", function () {
             const sidebar = document.getElementById("sidebar");
             const menuToggle = document.getElementById("menuToggle");
-            const mainContainer = document.getElementById("main-container");
+            const upcomingSchedulesList = document.querySelector('.list-group');
+            const appointmentsList = document.getElementById ('appointmentsList');
+            const calendarEl = document.getElementById('calendar');
 
-            function handleSidebar() {
-                if (window.innerWidth < 768) { // Adjust the breakpoint as needed
-                    sidebar.classList.add("collapsed");
-                    mainContainer.classList.add("collapsed");
-                    menuToggle.style.display = "block"; // Show the toggle button
-                } else {
-                    sidebar.classList.remove("collapsed");
-                    mainContainer.classList.remove("collapsed");
-                    menuToggle.style.display = "none"; // Hide the toggle button
-                }
-            }
-
-            handleSidebar();
-            window.addEventListener("resize", handleSidebar);
-
-            menuToggle.addEventListener("click", function (event) {
-                event.stopPropagation();
-                sidebar.classList.toggle("collapsed");
-                mainContainer.classList.toggle("collapsed");
-            });
-
-            document.addEventListener("click", function (event) {
-                if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
-                    sidebar.classList.add("collapsed");
-                    mainContainer.classList.add("collapsed");
-                }
-            });
-
-            // FullCalendar initialization
-            var calendarEl = document.getElementById('calendar');
+            // Initialize FullCalendar
             var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: window.innerWidth < 768 ? 'timeGridDay' : 'dayGridMonth', // Mobile shows day view, desktop shows month view
+                initialView: window.innerWidth < 768 ? 'timeGridDay' : 'dayGridMonth',
                 headerToolbar: {
                     left: 'prev,next today',
                     center: 'title',
                     right: window.innerWidth < 768 ? 'timeGridDay,timeGridWeek,dayGridMonth' : 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
-                selectable: true, // Allow users to select dates
-                editable: true, // Allow dragging & dropping events
-                events: [
-                    {
-                        title: 'Sample Event',
-                        start: '2025-02-21' // Example event date
-                    }
-                ],
+                selectable: true,
+                editable: true,
+                events: [],
                 dateClick: function (info) {
                     let eventTitle = prompt('Enter event title:');
                     if (eventTitle) {
@@ -189,14 +227,105 @@
                     }
                 },
                 eventClick: function (info) {
-                    if (confirm('Delete this event?')) {
-                        info.event.remove();
-                    }
+                    const modalEl = document.getElementById('eventDetailsModal');
+                    const eventDetailsModal = new bootstrap.Modal(modalEl);
+                    document.getElementById('eventTitle').textContent = info.event.title;
+                    document.getElementById('eventDate').textContent = info.event.start.toLocaleString();
+                    document.getElementById('eventDescription').textContent = info.event.extendedProps.description || 'No description available';
+                    document.getElementById('eventName').textContent = info.event.extendedProps.name || 'No name provided';
+                    document.getElementById('eventCategory').textContent = info.event.extendedProps.category || 'Uncategorized';
+                    eventDetailsModal.show();
+
+                    // Delete event functionality
+                    document.getElementById('deleteEventButton').onclick = function () {
+                        if (confirm('Delete this event?')) {
+                            info.event.remove();
+                            eventDetailsModal.hide();
+                        }
+                    };
                 }
             });
             calendar.render();
+
+            // Handle appointment form submission for public events
+            document.getElementById("publicAppointmentForm").addEventListener("submit", function (event) {
+                event.preventDefault();
+                const title = document.getElementById("publicTitle").value;
+                const date = document.getElementById("publicDate").value;
+                const description = document.getElementById("publicDescription").value;
+
+                calendar.addEvent({
+                    title: title,
+                    start: date + 'T09:00:00',
+                    extendedProps: {
+                        description: description,
+                        category: 'public'
+                    }
+                });
+
+                const newEventItem = document.createElement('a');
+                newEventItem.className = 'list-group-item list-group-item-action';
+                newEventItem.textContent = `${title} - ${date}`;
+                upcomingSchedulesList.appendChild(newEventItem);
+
+                const modal = bootstrap.Modal.getInstance(document.getElementById('setPublicAppointmentModal'));
+                modal.hide();
+                document.getElementById("publicAppointmentForm").reset();
+            });
+
+            // Handle appointment form submission for personal consultations
+            document.getElementById("personalAppointmentForm").addEventListener("submit", function (event) {
+                event.preventDefault();
+                const fullName = document.getElementById("personalName").value;
+                const date = document.getElementById("personalDate").value;
+                const email = document.getElementById("personalEmail").value;
+                const reason = document.getElementById("personalReason").value;
+
+                calendar.addEvent({
+                    title: fullName + ' - Consultation',
+                    start: date + 'T09:00:00',
+                    extendedProps: {
+                        description: reason,
+                        category: 'personal'
+                    }
+                });
+
+                const newAppointmentItem = document.createElement('a');
+                newAppointmentItem.className = 'list-group-item list-group-item-action';
+                newAppointmentItem.textContent = `${fullName} - ${date} - ${reason}`;
+                appointmentsList.appendChild(newAppointmentItem);
+
+                const modal = bootstrap.Modal.getInstance(document.getElementById('setPersonalAppointmentModal'));
+                modal.hide();
+                document.getElementById("personalAppointmentForm").reset();
+            });
         });
     </script>
+
+    <!-- Event Details Modal -->
+    <div class="modal fade" id="eventDetailsModal" tabindex="-1" aria-labelledby="eventDetailsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content p-3">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eventDetailsModalLabel">Event Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Name:</strong> <span id="eventName"></span></p>
+                    <p><strong>Title:</strong> <span id="eventTitle"></span></p>
+                    <p><strong>Date:</ ```html
+                    <span id="eventDate"></span></p>
+                    <p><strong>Description:</strong> <span id="eventDescription"></span></p>
+                    <p><strong>Category:</strong> <span id="eventCategory"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="deleteEventButton">Delete Event</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
