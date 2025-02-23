@@ -35,9 +35,7 @@
 </head>
 
 <body class="bg-light">
-    <!-- =========================== -->
     <!-- Top Navigation Bar -->
-    <!-- =========================== -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
         <div class="container-fluid">
             <button class="btn btn-outline-dark d-lg-none" id="menuToggle">☰</button>
@@ -56,9 +54,7 @@
     </nav>
 
     <div class="d-flex">
-        <!-- =========================== -->
         <!-- Sidebar Navigation -->
-        <!-- =========================== -->
         <nav class="sidebar bg-white shadow-sm p-3" id="sidebar">
             <ul class="nav flex-column">
                 <li class="nav-item mb-2">
@@ -81,34 +77,28 @@
             </ul>
         </nav>
 
-        <!-- =========================== -->
         <!-- Main Content Area -->
-        <!-- =========================== -->
         <main id="main-container" class="container mt-5 pt-14">
             <div class="container-fluid" style="margin-top: 50px;">
                 <div class="row">
-                    <!-- =========================== -->
                     <!-- Calendar Section -->
-                    <!-- =========================== -->
                     <div class="col-12 col-lg-8" style="height: 550px; font-size: 10px; margin: auto;">
                         <div class="card p-3 h-95= mb-3">
                             <h5 class="text-center mt-3">Planner Calendar</h5>
                             <div id="calendar-container">
-                                < <div id="calendar"></div>
+                                <div id="calendar"></div>
                             </div>
                         </div>
                     </div>
-                    <!-- =========================== -->
                     <!-- Upcoming Schedules -->
-                    <!-- =========================== -->
                     <div class="col-12 col-lg-4 d-flex flex-column" style="height: auto;">
                         <!-- Upcoming Schedules -->
                         <div class="card p-3 mb-3">
                             <h5>Upcoming Schedules and Events</h5>
                             <div class="list-group"></div>
                             <button class="btn btn-outline-dark mt-3 w-100" data-bs-toggle="modal"
-                                data-bs-target="#setPublicAppointmentModal">
-                                Set Public Event Appointment
+                                data-bs-target="#setPublicAppointmentModal" style="font-size: 13px;">
+                                Create Public Event
                             </button>
                         </div>
 
@@ -118,7 +108,7 @@
                             <div class="list-group" id="appointmentsList"></div>
                             <button class="btn btn-outline-dark mt-3 w-100" data-bs-toggle="modal"
                                 data-bs-target="#setPersonalAppointmentModal">
-                                Set Personal Consultation
+                                Set Personal Appointment
                             </button>
 
                             <!-- Modal for Setting Public Appointment -->
@@ -127,7 +117,8 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content p-3">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="setPublicAppointmentModalLabel">Set Public Event</h5>
+                                            <h5 class="modal-title" id="setPublicAppointmentModalLabel">Set Public Event
+                                            </h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
@@ -143,7 +134,17 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Description</label>
-                                                    <textarea class="form-control" id="publicDescription" rows="3"></textarea>
+                                                    <textarea class="form-control" id="publicDescription"
+                                                        rows="3"></textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Category</label>
+                                                    <select class="form-select" id="publicCategory" required>
+                                                        <option value="" disabled selected>Select a category</option>
+                                                        <option value="general">General</option>
+                                                        <option value="college">College</option>
+                                                        <option value="shs">SHS</option>
+                                                    </select>
                                                 </div>
                                                 <button type="submit" class="btn btn-dark">Submit</button>
                                             </form>
@@ -158,7 +159,8 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content p-3">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="setPersonalAppointmentModalLabel">Set Personal Consultation</h5>
+                                            <h5 class="modal-title" id="setPersonalAppointmentModalLabel">Set Personal
+                                                Consultation</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
@@ -173,12 +175,23 @@
                                                     <input type="date" class="form-control" id="personalDate" required>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label class="form-label">Email</label>
-                                                    <input type="email" class="form-control" id="personalEmail" required>
+                                                    <label class="form-label">Time</label>
+                                                    <input type="time" class="form-control" id="personalTime" required>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label class="form-label">Reason for Consultation</label>
-                                                    <textarea class="form-control" id="personalReason" rows="3"></textarea>
+                                                    <label class="form-label">Email</label>
+                                                    <input type="email" class="form-control" id="personalEmail"
+                                                        required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Subject</label>
+                                                    <textarea class="form-control" id="personalSubject"
+                                                        required></textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Reason for Appointment</label>
+                                                    <textarea class="form-control" id="personalReason"
+                                                        rows="3"></textarea>
                                                 </div>
                                                 <button type="submit" class="btn btn-dark">Submit</button>
                                             </form>
@@ -195,15 +208,11 @@
 
     </div> <!-- End of Main Layout -->
 
-    <!-- =========================== -->
     <!-- FullCalendar Initialization -->
-    <!-- =========================== -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const sidebar = document.getElementById("sidebar");
-            const menuToggle = document.getElementById("menuToggle");
             const upcomingSchedulesList = document.querySelector('.list-group');
-            const appointmentsList = document.getElementById ('appointmentsList');
+            const appointmentsList = document.getElementById('appointmentsList');
             const calendarEl = document.getElementById('calendar');
 
             // Initialize FullCalendar
@@ -227,22 +236,51 @@
                     }
                 },
                 eventClick: function (info) {
-                    const modalEl = document.getElementById('eventDetailsModal');
-                    const eventDetailsModal = new bootstrap.Modal(modalEl);
-                    document.getElementById('eventTitle').textContent = info.event.title;
-                    document.getElementById('eventDate').textContent = info.event.start.toLocaleString();
-                    document.getElementById('eventDescription').textContent = info.event.extendedProps.description || 'No description available';
-                    document.getElementById('eventName').textContent = info.event.extendedProps.name || 'No name provided';
-                    document.getElementById('eventCategory').textContent = info.event.extendedProps.category || 'Uncategorized';
-                    eventDetailsModal.show();
+                    const eventProps = info.event.extendedProps || {};
+                    const eventStart = info.event.start ? info.event.start.toLocaleString() : 'No date provided';
 
-                    // Delete event functionality
-                    document.getElementById('deleteEventButton').onclick = function () {
-                        if (confirm('Delete this event?')) {
-                            info.event.remove();
-                            eventDetailsModal.hide();
-                        }
-                    };
+                    if (eventProps.category === 'public') {
+                        const publicEventModalEl = document.getElementById('publicEventDetailsModal');
+                        const publicEventModal = new bootstrap.Modal(publicEventModalEl);
+                        document.getElementById('publicEventTitle').textContent = info.event.title;
+                        document.getElementById('publicEventDate').textContent = eventStart;
+                        document.getElementById('publicEventDescription').textContent = eventProps.description || 'No description available';
+                        publicEventModal.show();
+
+                        document.getElementById('deletePublicEventButton').onclick = function () {
+                            if (confirm('Delete this public event?')) {
+                                // Remove from Upcoming Schedules
+                                const eventItem = Array.from(upcomingSchedulesList.children).find(item => item.textContent.includes(info.event.title));
+                                if (eventItem) {
+                                    upcomingSchedulesList.removeChild(eventItem);
+                                }
+                                info.event.remove();
+                                publicEventModal.hide();
+                            }
+                        };
+
+                    } else if (eventProps.category === 'personal') {
+                        const personalEventModalEl = document.getElementById('personalEventDetailsModal');
+                        const personalEventModal = new bootstrap.Modal(personalEventModalEl);
+                        document.getElementById('personalEventName').textContent = eventProps.name || 'No name provided';
+                        document.getElementById('personalEventTitle').textContent = eventProps.subject || 'No subject provided';
+                        document.getElementById('personalEventDate').textContent = eventStart;
+                        document.getElementById('personalEventReason').textContent = eventProps.description || 'No reason provided';
+                        document.getElementById('personalEventEmail').textContent = eventProps.email || 'No email provided';
+                        personalEventModal.show();
+
+                        document.getElementById('deletePersonalEventButton').onclick = function () {
+                            if (confirm('Delete this personal consultation?')) {
+                                // Remove from Appointments
+                                const appointmentItem = Array.from(appointmentsList.children).find(item => item.textContent.includes(eventProps.name));
+                                if (appointmentItem) {
+                                    appointmentsList.removeChild(appointmentItem);
+                                }
+                                info.event.remove();
+                                personalEventModal.hide();
+                            }
+                        };
+                    }
                 }
             });
             calendar.render();
@@ -253,6 +291,23 @@
                 const title = document.getElementById("publicTitle").value;
                 const date = document.getElementById("publicDate").value;
                 const description = document.getElementById("publicDescription").value;
+                const category = document.getElementById("publicCategory").value;
+
+                // Set color based on category
+                let color;
+                switch (category) {
+                    case 'general':
+                        color = 'green';
+                        break;
+                    case 'college':
+                        color = 'red';
+                        break;
+                    case 'shs':
+                        color = 'blue';
+                        break;
+                    default:
+                        color = 'black'; // Default color
+                }
 
                 calendar.addEvent({
                     title: title,
@@ -260,7 +315,8 @@
                     extendedProps: {
                         description: description,
                         category: 'public'
-                    }
+                    },
+                    color: color // Set the color for the event
                 });
 
                 const newEventItem = document.createElement('a');
@@ -279,15 +335,20 @@
                 const fullName = document.getElementById("personalName").value;
                 const date = document.getElementById("personalDate").value;
                 const email = document.getElementById("personalEmail").value;
+                const subject = document.getElementById("personalSubject").value;
                 const reason = document.getElementById("personalReason").value;
 
                 calendar.addEvent({
-                    title: fullName + ' - Consultation',
+                    title: fullName,
                     start: date + 'T09:00:00',
                     extendedProps: {
                         description: reason,
-                        category: 'personal'
-                    }
+                        category: 'personal',
+                        name: fullName,
+                        email: email,
+                        subject: subject
+                    },
+                    color: 'black' // Set the color for personal consultation events
                 });
 
                 const newAppointmentItem = document.createElement('a');
@@ -302,30 +363,53 @@
         });
     </script>
 
-    <!-- Event Details Modal -->
-    <div class="modal fade" id="eventDetailsModal" tabindex="-1" aria-labelledby="eventDetailsModalLabel"
+    <!-- Public Event Details Modal -->
+    <div class="modal fade" id="publicEventDetailsModal" tabindex="-1" aria-labelledby="publicEventDetailsModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content p-3">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="eventDetailsModalLabel">Event Details</h5>
+                    <h5 class="modal-title" id="publicEventDetailsModalLabel">Public Event Details</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p><strong>Name:</strong> <span id="eventName"></span></p>
-                    <p><strong>Title:</strong> <span id="eventTitle"></span></p>
-                    <p><strong>Date:</ ```html
-                    <span id="eventDate"></span></p>
-                    <p><strong>Description:</strong> <span id="eventDescription"></span></p>
-                    <p><strong>Category:</strong> <span id="eventCategory"></span></p>
+                    <p><strong>Title:</strong> <span id="publicEventTitle"></span></p>
+                    <p><strong>Date:</strong> <span id="publicEventDate"></span></p>
+                    <p><strong>Description:</strong> <span id="publicEventDescription"></span></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" id="deleteEventButton">Delete Event</button>
+                    <button type="button" class="btn btn-danger" id="deletePublicEventButton">Delete Event</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Personal Appointment Details Modal -->
+    <div class="modal fade" id="personalEventDetailsModal" tabindex="-1"
+        aria-labelledby="personalEventDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content p-3">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="personalEventDetailsModalLabel">Personal Consultation Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Name:</strong> <span id="personalEventName"></span></p>
+                    <p><strong>Title:</strong> <span id="personalEventTitle"></span></p>
+                    <p><strong>Date:</strong> <span id="personalEventDate"></span></p>
+                    <p><strong>Email:</strong> <span id="personalEventEmail"></span></p>
+                    <p><strong>Reason:</strong> <span id="personalEventReason"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="deletePersonalEventButton">Delete
+                        Appointment</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
