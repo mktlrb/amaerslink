@@ -83,10 +83,11 @@
             <div class="container-fluid" style="margin-top: 50px;">
                 <div class="row">
                     <!-- Calendar Section -->
-                    <div class="col-12 col-lg-8" style="height: 550px; margin: auto;">
+                    <div class="col-12 col-lg-8" style="height: 500px; margin: auto;">
                         <div class="card p-1 mb-3" style="height: 100%; border: none;">
                             <!-- Reduced padding and removed border -->
-                            <h5 class="text-center mt-5" style="top: 40px;">Planner Calendar</h5> <!-- Reduced margin-top -->
+                            <h5 class="text-center mt-5" style="top: 35px;">Planner Calendar</h5>
+                            <!-- Reduced margin-top -->
                             <div id="calendar-container" style="overflow: hidden; padding: 10px; font-size: 12px;">
                                 <!-- Added overflow hidden to prevent overflow -->
                                 <div id="calendar" style="height: 100%;"></div>
@@ -97,8 +98,8 @@
                     <!-- Upcoming Schedules -->
                     <div class="col-12 col-lg-4 d-flex flex-column" style="height: auto;">
                         <!-- Upcoming Schedules -->
-                        <div class="card p-3 mb-3">
-                            <h5>Upcoming Schedules and Events</h5>
+                        <div class="card p-3 mb-3 mt-3">
+                            <h6>Upcoming Schedules and Events</h6>
                             <div class="list-group"></div>
                             <button class="btn btn-outline-dark mt-3 w-100" data-bs-toggle="modal"
                                 data-bs-target="#setPublicAppointmentModal" style="font-size: 13px;">
@@ -108,11 +109,11 @@
 
                         <!-- Appointments -->
                         <div class="card p-3">
-                            <h5>Appointments</h5>
+                            <h6>Appointments</h6>
                             <div class="list-group" id="appointmentsList"></div>
                             <button class="btn btn-outline-dark mt-3 w-100" data-bs-toggle="modal"
-                                data-bs-target="#setPersonalAppointmentModal">
-                                Set Personal Appointment
+                                data-bs-target="#setPersonalAppointmentModal" style="font-size: 13px;">
+                                Set Appointment
                             </button>
 
                             <!-- Modal for Setting Public Appointment -->
@@ -242,6 +243,7 @@
 
             // Initial call to handleSidebar to set the correct state on page load
             handleSidebar();
+
             // Add event listener to handle window resizing
             window.addEventListener("resize", handleSidebar);
 
@@ -258,6 +260,21 @@
                     sidebar.classList.remove("show"); // Remove the show class to hide the sidebar
                 }
             });
+
+            // Event listener for navigation links
+            const navLinks = document.querySelectorAll('.sidebar .nav-link');
+
+            // Add click event listener to each nav-link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    // Remove 'active-link' from all nav-links
+                    navLinks.forEach(item => item.classList.remove('active-link'));
+
+                    // Add 'active-link' to the clicked nav-link
+                    this.classList.add('active-link');
+                });
+            });
+
 
             // Initialize FullCalendar
             var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -311,10 +328,20 @@
                     else if (eventProps.category === 'personal') {
                         const personalEventModalEl = document.getElementById('personalEventDetailsModal');
                         const personalEventModal = new bootstrap.Modal(personalEventModalEl);
+
+                        // Log eventProps to ensure 'reason' is available
+                        console.log("Event properties:",eventProps); // Check the contents of eventProps to verify if 'reason' exists
+
+                        // Set event details in the modal
                         document.getElementById('personalEventName').textContent = eventProps.name || 'No name provided';
                         document.getElementById('personalEventTitle').textContent = eventProps.subject || 'No subject provided';
                         document.getElementById('personalEventDate').textContent = eventStart;
                         document.getElementById('personalEventEmail').textContent = eventProps.email || 'No email provided';
+
+                        // Check and set the reason
+                        document.getElementById('personalEventReason').textContent = eventProps.description || 'No reason provided'; // Set reason
+
+                        // Show the modal
                         personalEventModal.show();
 
                         // Delete personal event button functionality
@@ -329,6 +356,8 @@
                             }
                         };
                     }
+
+
                 }
             });
 
@@ -410,7 +439,7 @@
                 // Create a new list item for the appointments
                 const newAppointmentItem = document.createElement('a');
                 newAppointmentItem.className = 'list-group-item list-group-item-action';
-                newAppointmentItem.textContent = `${fullName} - ${date} - ${reason}`;
+                newAppointmentItem.textContent = `${fullName} - ${date} - ${subject}`;
                 appointmentsList.appendChild(newAppointmentItem);
 
                 // Hide the modal and reset the form
@@ -437,7 +466,7 @@
                     <p><strong>Description:</strong> <span id="publicEventDescription"></span></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" id="deletePublicEventButton">Delete Event</button>
+                    <button type="button" class="btn btn-danger" id="deletePublicEventButton">Delete</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -458,9 +487,8 @@
                     <p><strong>Title:</strong> <span id="personalEventTitle"></span></p>
                     <p><strong>Date:</strong> <span id="personalEventDate"></span></p>
                     <p><strong>Email:</strong> <span id="personalEventEmail"></span></p>
-                    <p><strong>Reason:</strong> <span id="personalEventReason"></ ⬤ <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" id="deletePersonalEventButton">Delete
-                                Appointment</button>
+                    <p><strong>Reason:</strong> <span id="personalEventReason"> <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" id="deletePersonalEventButton">Delete</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>

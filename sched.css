@@ -80,6 +80,7 @@ body {
     min-height: 10px;
     min-width: 10px;
     font-size: 5px;
+    margin: auto;
 }
 
 /* Adjust calendar buttons for mobile */
@@ -210,7 +211,7 @@ body {
     left: 0;
     background-color: white;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease; /* Transition for opening/closing and box-shadow */
     padding-top: 20px;
     padding-right: 20px;
     z-index: 1020;
@@ -219,8 +220,8 @@ body {
 
 .sidebar.active {
     transform: translateX(0); /* Show when active */
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.15); /* A little more shadow when active */
 }
-
 
 /* Sidebar Navigation */
 .sidebar .nav-link {
@@ -228,6 +229,18 @@ body {
     display: flex;
     align-items: center;
     padding: 12px;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transition for hover and click effect */
+}
+
+.sidebar .nav-link:hover {
+    background-color: #f0f0f0; /* Change background on hover */
+    transform: translateX(5px); /* A slight shift when hovered */
+}
+
+/* Active (clicked) state */
+.sidebar .nav-link.active-link {
+    background-color: #d0d0d0; /* Change background color after click */
+    transform: translateX(0); /* Reset transform after click */
 }
 
 .sidebar .nav-link img {
