@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
+    <title>Notifications</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
@@ -24,22 +24,25 @@
     <!-- Top Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
         <div class="container-fluid">
-            <button class="btn btn-outline-dark d-lg-none" id="menuToggle">☰</button>
+            <!-- Sidebar & Navbar Toggle Button -->
+            <button class="btn btn-outline-dark d-lg-none" id="menuToggle" aria-expanded="false">☰</button>
 
             <a class="navbar-brand ms-3" href="#">
                 <img src="images/logo  1.png" alt="Logo" height="40">
             </a>
 
+            <!-- Search Bar (Hidden on Small Screens) -->
             <form class="d-none d-md-flex me-auto">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             </form>
 
+            <!-- Navbar Icons -->
             <div class="d-flex align-items-center navbar-icons d-none d-md-flex">
-                <a href="notif.html"><img src="images/Bell.png" height="30" alt="Bell"></a>
+                <a href="notif.html"><img src="images/Bell.png" height="30" alt="Notifications"></a>
                 <a href="homepage.html" class="btn">
                     <img src="images/Home.png" height="30" alt="Home">
                 </a>
-                <a href="profile.html"><img src="images/Generic avatar.png" class="rounded-circle" height="40" alt="Avatar"></a>
+                <a href="profile.css"><img src="images/Generic avatar.png" class="rounded-circle" height="40" alt="Avatar"></a>
             </div>
         </div>
     </nav>
@@ -49,8 +52,8 @@
         <nav class="sidebar bg-white shadow-sm p-3 position-fixed" id="sidebar">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <button class="nav-link text-dark"><img src="images/Generic avatar.png" height="30">
-                        Profile</button>
+                    <a href="profile.html" class="nav-link text-dark"><img src="images/Generic avatar.png" height="30">
+                        Profile</a>
                 </li>
                 <li class="nav-item mb-2">
                     <a href="homepage.html" class="nav-link text-dark">
@@ -58,7 +61,7 @@
                     </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a href="notif.html" class="nav-link text-dark"><img src="images/Bell.png" height="30"> Notification</a>
+                    <button class="nav-link text-dark"><img src="images/Bell.png" height="30"> Notifications</button>
                 </li>
                 <li class="nav-item mb-2">
                     <a href="sched.html" class="nav-link text-dark"><img src="images/Calendar.png" height="30">
@@ -70,58 +73,43 @@
             </ul>
         </nav>
 
+        <!-- Main Content - Notifications -->
         <main id="main-container" class="container mt-5 pt-4">
-            <!-- User Profile Section -->
-            <div class="card p-3 mb-4 bg-white text-dark profile-section">
-                <div class="d-flex align-items-center p-4 profile-header">
-                    <img src="images/Generic avatar.png" class="rounded-circle me-3 profile-avatar" height="80"
-                        alt="Avatar">
-                    <div class="header-name">
-                        <h4 class="profile-name">John Doe</h4>
-                        <p class="mb-1 profile-year">Senior High</p>
-                        <p class="mb-0 profile-id">Student ID: 21123456712</p>
+            <h4 class="fw-bold mb-4">Notifications</h4>
+
+            <!-- Notification 1 -->
+            <div class="card mb-2" style="min-height: 40px;">
+                <div class="card-body d-flex align-items-center p-1">
+                    <img src="images/Generic avatar.png" class="rounded-circle me-2" height="30" alt="User">
+                    <div>
+                        <p class="mb-1 small"><strong>John Doe</strong> liked your post.</p>
+                        <small class="text-muted">5 minutes ago</small>
                     </div>
                 </div>
             </div>
 
-            <!-- User Information -->
-            <h4 class="fw-bold section-title">User Information</h4>
-            <div class="row mb-4 g-2">
-                <div class="col-md-6">
-                    <div class="card p-3 user-info-card h-100">
-                        <h6 class="info-title">Email</h6>
-                        <input type="email" id="email" class="form-control" placeholder="Enter your email" />
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="card p-3 user-info-card h-100">
-                        <h6 class="info-title">Birth date</h6>
-                        <p class="info-text">Year/ Month/ Day</p>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="card p-3 user-info-card h-100">
-                        <h6 class="info-title">Educational Level</h6>
-                        <p class="info-text">Senior High</p>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="card p-3 user-info-card h-100">
-                        <h6 class="info-title">Student ID</h6>
-                        <p class="info-text">21123456712</p>
+            <!-- Notification 2 -->
+            <div class="card mb-2" style="min-height: 40px;">
+                <div class="card-body d-flex align-items-center p-1">
+                    <img src="images/Generic avatar.png" class="rounded-circle me-2" height="30" alt="User">
+                    <div>
+                        <p class="mb-1 small"><strong>Mary Jane</strong> commented on your photo.</p>
+                        <small class="text-muted">20 minutes ago</small>
                     </div>
                 </div>
             </div>
-            <div class="row mb-4">
-                <button class="btn btn-outline mb-2 cancel-btn">Cancel</button>
-                <button class="btn btn-dark save-btn">Save Changes</button>
+
+            <!-- Notification 3 -->
+            <div class="card mb-2" style="min-height: 40px;">
+                <div class="card-body d-flex align-items-center p-1">
+                    <img src="images/Generic avatar.png" class="rounded-circle me-2" height="30" alt="User">
+                    <div>
+                        <p class="mb-1 small"><strong>Michael Smith</strong> sent you a friend request.</p>
+                        <small class="text-muted">1 hour ago</small>
+                    </div>
+                </div>
             </div>
         </main>
-
-
     </div>
 
     <!-- Custom Script for Sidebar and Navbar Toggle -->
@@ -130,32 +118,37 @@
             const sidebar = document.getElementById("sidebar");
             const menuToggle = document.getElementById("menuToggle");
 
+            // Function to handle sidebar behavior based on screen width
             function handleSidebar() {
                 if (window.innerWidth < 1900) {
                     sidebar.classList.add("collapsed");
-                    menuToggle.style.display = "block";
+                    menuToggle.style.display = "block"; // Show the toggle button
                 } else {
                     sidebar.classList.remove("collapsed");
-                    menuToggle.style.display = "none";
+                    menuToggle.style.display = "none"; // Hide the toggle button
                 }
             }
 
+            // Initialize sidebar state
             handleSidebar();
             window.addEventListener("resize", handleSidebar);
 
+            // Toggle sidebar visibility when menu button is clicked
             menuToggle.addEventListener("click", function (event) {
-                event.stopPropagation();
+                event.stopPropagation(); // Prevent event from bubbling up
                 sidebar.classList.toggle("collapsed");
                 sidebar.classList.toggle("show");
             });
 
+            // Hide sidebar when clicking outside of it
             document.addEventListener("click", function (event) {
                 if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
                     sidebar.classList.remove("show");
                 }
             });
         });
+      
     </script>
-</body>
 
+</body>
 </html>

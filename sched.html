@@ -47,9 +47,9 @@
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             </form>
             <div class="d-flex align-items-center navbar-icons d-none d-md-flex">
-                <button><img src="images/Bell.png" height="30" alt="Bell"></button>
-                <button><img src="images/Home.png" height="30" alt="Home"></button>
-                <button><img src="images/Generic avatar.png" class="rounded-circle" height="40" alt="Avatar"></button>
+                <a href="notif.html"><img src="images/Bell.png" height="30" alt="Bell"></a>
+                <a href="homepage.html"><img src="images/Home.png" height="30" alt="Home"></a>
+                <a href="profile.html"><img src="images/Generic avatar.png" class="rounded-circle" height="40" alt="Avatar"></a>
             </div>
         </div>
     </nav>
@@ -58,28 +58,33 @@
         <!-- Sidebar Navigation -->
         <nav class="sidebar bg-white shadow-sm p-3" id="sidebar">
             <ul class="nav flex-column">
-                <li class="nav-item mb-2">
-                    <button class="nav-link text-dark"><img src="images/Generic avatar.png" height="30">
-                        Profile</button>
+                <li class="nav-item">
+                    <a href="profile.html" class="nav-link text-dark">
+                        <img src="images/Generic avatar.png" height="30" alt="Profile Icon"> Profile
+                    </a>
                 </li>
+
                 <li class="nav-item mb-2">
-                    <button class="nav-link text-dark"><img src="images/Home.png" height="30"> Home</button>
+                    <a href="homepage.html" class="nav-link text-dark">
+                        <img src="images/Home.png" height="30"> Home
+                    </a>
                 </li>
+
                 <li class="nav-item mb-2">
-                    <button class="nav-link text-dark"><img src="images/gmail_groups.png" height="30">
-                        Organization</button>
+                    <a href="notif.html" class="nav-link text-dark"><img src="images/Bell.png" height="30">
+                        Notification</a>
                 </li>
                 <li class="nav-item mb-2">
                     <button class="nav-link text-dark"><img src="images/Calendar.png" height="30"> Schedules</button>
                 </li>
                 <li class="nav-item">
-                    <button class="nav-link text-danger"><img src="images/Log out.png" height="30"> Log Out</button>
+                    <a href="index.html" class="nav-link text-danger"><img src="images/Log out.png" height="30"> Log Out</a>
                 </li>
             </ul>
         </nav>
 
         <!-- Main Content Area -->
-        <main id="main-container" class="container mt-5 pt-14">
+        <main id="main-container" class="container mt-5 pt-4">
             <div class="container-fluid" style="margin-top: 50px;">
                 <div class="row">
                     <!-- Calendar Section -->
