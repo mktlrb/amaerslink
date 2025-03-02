@@ -34,27 +34,31 @@
 
 <body class="bg-light">
 
-    <!-- Top Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
-        <div class="container-fluid">
-            <button class="btn btn-outline-dark d-lg-none" id="menuToggle">☰</button>
+  <!-- Top Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container-fluid">
+        <!-- Sidebar & Navbar Toggle Button -->
+        <button class="btn btn-outline-dark d-lg-none" id="menuToggle" aria-expanded="false">☰</button>
 
-            <a class="navbar-brand ms-3" href="#">
-                <img src="images/logo  1.png" alt="Logo" height="40">
+        <a class="navbar-brand ms-3" href="#">
+            <img src="images/logo  1.png" alt="Logo" height="40">
+        </a>
+
+        <!-- Search Bar (Hidden on Small Screens) -->
+        <form class="d-none d-md-flex me-auto">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        </form>
+
+        <!-- Navbar Icons -->
+        <div class="d-flex align-items-center navbar-icons d-none d-md-flex">
+            <a href="notif.html"><img src="images/Bell.png" height="30" alt="Notifications"></a>
+            <a href="homepage.html" class="btn">
+                <img src="images/Home.png" height="30" alt="Home">
             </a>
-
-            <form class="d-none d-md-flex me-auto">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            </form>
-
-            <div class="d-flex align-items-center navbar-icons d-none d-md-flex">
-                <a href="notif.html"><img src="images/Bell.png" height="30" alt="Bell"></a>
-                <button>
-                    <img src="images/Home.png" height="30" alt="Home"></button>
-                <a href="profile.html"><img src="images/Generic avatar.png" class="rounded-circle" height="40" alt="Avatar"></a>
-            </div>
+            <a href="profile.html"><img src="images/Generic avatar.png" class="rounded-circle" height="40" alt="Avatar"></a>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <div class="d-flex">
         <!-- Sidebar -->
