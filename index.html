@@ -1,108 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AMAERS Login</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body> 
-    <div class="loginform">
-        <div class="container">
-            <p class="welcomeamaers">WELCOME AMAERS!</p>
-            <p class="logintoaccesstheplatform">LOG IN TO ACCESS THE PLATFORM</p>
-            <p class="thisisamaers">THIS IS AMAER’S LINK. <br> EXCLUSIVELY FOR AMA COMPUTER <br> COLLEGE LIPA CAMPUS ONLY.</p>
-        </div>
-        
-        <div class="login-container">
-            <div class="group3">
-                <img class="logo" src="logo.png" alt="AMA Logo">
+
+<body>
+    <div class="login-container">
+        <img class="logo" src="logo.png" alt="AMA Logo">
+        <p class="welcomeamaers">WELCOME AMAERS!</p>
+        <p class="logintoaccesstheplatform">LOG IN TO ACCESS THE PLATFORM</p>
+        <p class="text-center small text-secondary" style="font-weight: bold; font-size: 12px;">THIS IS AMAER’S LINK.
+            EXCLUSIVELY FOR AMA COMPUTER COLLEGE LIPA CAMPUS ONLY.</p>
+
+        <form id="loginForm">
+            <div class="mb-3 inputfield">
+                <label for="USN" class="form-label">USN</label>
+                <input type="text" class="form-control" id="USN" placeholder="Enter your USN" required>
+                <div id="USN-error" class="error-message"></div>
             </div>
-            
-            <form id="loginForm" class="formlogin">
-                <div class="inputfield">
-                    <label for="USN">USN</label>
-                    <input type="text" id="USN" class="input2" placeholder="Enter your USN" required oninput="validateUSN('USN', 'USN-error')" />
-                    <span id="USN-error" class="error-message"></span>
+
+            <div class="mb-3 inputfield">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                <div id="password-error" class="error-message"></div>
+            </div>
+
+            <div class="buttongroup">
+                <button type="submit" class="btn btn-primary">Sign In</button>
+                <div class="textlink">
+                    <a href="forgot.html">Forgot password?</a>
                 </div>
-                
-                <div class="inputfield">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" class="input4" placeholder="Enter your password" required>
-                    <span id="password-error" class="error-message"></span>
-                </div>
-                
-                <div class="buttongroup">
-                    <button type="submit" id="button3" class="button3">Sign In</button>
-                    <div class="textlink">
-                        <a href="forgot-password.html"> Forgot password? </a>
-                    </div>
-                </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
             event.preventDefault();
-            
+
             const USNInput = document.getElementById('USN');
             const passwordInput = document.getElementById('password');
             const USNError = document.getElementById('USN-error');
             const passwordError = document.getElementById('password-error');
-            
+
             let valid = true;
-    
-            // Validate USN
             const USNValue = USNInput.value.trim();
-            
-            // Check if non-numeric is entered
-            if (!/^\d*$/.test(USNValue)) {
-                USNError.innerHTML = 'Numeric characters only.';
-                USNError.style.display = 'block';
+            const passwordValue = passwordInput.value.trim();
+
+            // USN Validation
+            if (!/^\d+$/.test(USNValue)) {
+                USNError.innerHTML = 'Only numeric characters allowed.';
+                valid = false;
+            } else if (USNValue.length > 12) {
+                USNError.innerHTML = 'USN should not exceed 12 characters.';
                 valid = false;
             } else {
-                USNError.textContent = ''; // Clear error message
-                USNError.style.display = 'none'; // Hide error if valid
+                USNError.innerHTML = '';
             }
-        
-            // Validate password
-            if (!passwordInput.value) {
-                passwordError.textContent = 'Please enter your password';
-                passwordError.style.display = 'block';
+
+            // Password Validation
+            if (passwordValue === '') {
+                passwordError.innerHTML = 'Please enter your password.';
                 valid = false;
             } else {
-                passwordError.textContent = '';
-                passwordError.style.display = 'none';
+                passwordError.innerHTML = '';
             }
-        
+
+            // If everything is valid, proceed with login
             if (valid) {
-                alert('Login Successful!');
-                // Replace this with actual authentication logic
+                window.location.href = 'homepage.html'; // Redirect to homepage
             }
         });
-        
-        // Real-time validation for USN input
-        document.getElementById('USN').addEventListener('input', function() {
+
+        // Real-time USN input validation
+        document.getElementById('USN').addEventListener('input', function () {
             const USNValue = this.value.trim();
             const USNError = document.getElementById('USN-error');
-    
-            // Check if non-numeric is entered
+
             if (!/^\d*$/.test(USNValue)) {
-                USNError.textContent = 'Numeric characters only.';
-                USNError.style.display = 'block';
-           
+                USNError.innerHTML = 'Only numeric characters allowed.';
             } else if (USNValue.length > 12) {
-                // Show error if more than 12 characters
-                USNError.textContent = 'should not exceed 12 characters';
-                USNError.style.display = 'block';
+                USNError.innerHTML = 'USN should not exceed 12 characters.';
             } else {
-                USNError.textContent = ''; // Hide error if valid
-                USNError.style.display = 'none';
+                USNError.innerHTML = '';
             }
         });
+
+
     </script>
-    
 </body>
+
 </html>

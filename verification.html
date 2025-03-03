@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,67 +9,63 @@
     <link rel="stylesheet" href="verification.css"> <!-- Link to your CSS file -->
     <style>
         .error-message {
-            color: red; /* Red color for error message */
-            margin-top: 10px; /* Space above the error message */
-            display: none; /* Initially hidden */
+            color: red;
+            margin-top: 10px;
+            display: none;
         }
     </style>
 </head>
+
 <body>
 
-    <img src="C:\Users\Mika Atilrab\OneDrive\Desktop\AMAERS\Check circle.png" alt="checkcircle" class="checkcircle"> <!-- Ensure the image path is correct -->
+    <img src="Check circle.png" alt="checkcircle" class="checkcircle"> <!-- Ensure the image path is correct -->
 
-    <div id="emailverification" class="emailverification">
-        <div id="sent" class="sent">
+    <div class="emailverification">
+        <div class="sent">
             THE VERIFICATION CODE HAS BEEN SENT.<br> KINDLY CHECK YOUR INBOX.
         </div>
 
-        <div id="inputfield" class="inputfield">
-            <div id="label" class="label">Verification Code</div>
+        <div class="inputfield">
+            <label for="input2" class="label">Verification Code</label>
             <input type="text" id="input2" class="input2" placeholder="Enter code" />
         </div>
 
-        <div id="buttongroup" class="buttongroup">
-            <div>
-                <a href="index.html">
-                <button id="button3" class="button3">Cancel</button>
+        <div class="buttongroup">
+            <a href="index.html">
+                <button class="button3">Cancel</button>
             </a>
-            </div>
-            <button id="button" class="button">Verify</button>
+            <button id="verifyButton" class="button">Verify</button>
         </div>
 
-        <div id="error-message" class="error-message">The verification code must be exactly 8 characters long.</div> <!-- Error message -->
+        <div id="error-message" class="error-message">The verification code must be exactly 8 characters long.</div>
     </div>
 
     <script>
-        const inputField = document.getElementById('input2');
-        const errorMessage = document.getElementById('error-message');
+        document.getElementById('verifyButton').addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default button behavior
 
-        // Add an event listener to the input field to check the length in real-time
-        inputField.addEventListener('input', function() {
-            const verificationCode = inputField.value;
+            const inputField = document.getElementById('input2');
+            const errorMessage = document.getElementById('error-message');
+            const verificationCode = inputField.value.trim();
 
-            // Check the length of the verification code
-            if (verificationCode.length > 8) {
-                errorMessage.style.display = 'block'; // Show error message
-            } else {
+            if (verificationCode.length === 8) {
                 errorMessage.style.display = 'none'; // Hide error message
+                window.location.href = "newpass.html"; // Redirect to new password page
+            } else {
+                errorMessage.style.display = 'block'; // Show error message
             }
         });
 
-        // Optional: You can still keep the verification button functionality
-        document.getElementById('button').addEventListener('click', function() {
-            const verificationCode = inputField.value;
-
-            // Check if the code is exactly 8 characters long
-            if (verificationCode.length === 8) {
-                errorMessage.style.display = 'none'; // Hide error message
-                // Proceed with verification (you can add your verification logic here)
-                alert('Verification code accepted!'); // Placeholder for successful verification
+        // Live validation while typing
+        document.getElementById('input2').addEventListener('input', function () {
+            const errorMessage = document.getElementById('error-message');
+            if (this.value.length > 8) {
+                errorMessage.style.display = 'block';
             } else {
-                errorMessage.style.display = 'block'; // Show error message if not exactly 8 characters
+                errorMessage.style.display = 'none';
             }
         });
     </script>
 </body>
+
 </html>

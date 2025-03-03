@@ -1,215 +1,88 @@
-/* Global Styles */
-* {
+body {
     font-family: 'Raleway', sans-serif;
+    background-color: #84041d;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0;
-    padding: 0;
+    padding: 20px; /* Helps on smaller screens */
     box-sizing: border-box;
 }
 
-/* Center the entire page content */
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; /* Make sure it takes full height */
-    background-color: #f5f5f5; /* Light background for contrast */
-    padding: 20px; /* Padding for spacing on smaller screens */
+.login-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
 }
 
-/* Login Form Styles */
-.loginform {
-    background-color: #EEEEEE;
-    width: 90%;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center all elements inside */
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 10px 10px 20px #9E9E9E;
-    padding: 60px;
+/* Mobile-friendly spacing */
+@media (max-width: 768px) {
+    .login-container {
+        padding: 25px;
+        margin: 20px;
+    }
 }
 
-/* Header Styles */
+.logo {
+    width: 80px;
+    display: block;
+    margin: 0 auto 15px;
+}
+
 .welcomeamaers {
-    color: #616161;
-    text-align: center; /* Center the text */
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 10px; /* Space below */
+    font-size: 24px;
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 5px;
 }
 
 .logintoaccesstheplatform {
-    color: #616161;
+    font-size: 10px;
     text-align: center;
-    font-size: 1rem;
-    margin-bottom: 20px; /* Space below */
+    color: #6c757d;
+    margin-bottom: 20px;
 }
 
-.thisisamaers {
-    color: #9E9E9E;
-    text-align: center;
-    font-size: 0.7rem;
-    margin-top: 20px;
+.inputfield label {
+    font-weight: 600;
 }
 
-/* Center Logo */
-.logo {
-    height: auto;
-    width: 50%;
-    max-width: 225px;
-    display: block;
-    margin: 20px auto;
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
 }
 
-/* Form Styles */
-.formlogin {
-    background-color: #ffffff;
+/* Sign In button - Updated color */
+.buttongroup button {
     width: 100%;
-    max-width: 410px; /* Increased width by 10px */
-    border-radius: 8px;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-    margin: 0 auto; /* Ensures it stays centered */
-}
-
-
-/* Input Fields */
-.inputfield {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-label {
-    color: #1e1e1e;
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-input {
-    background-color: #ffffff;
-    height: 40px;
-    width: 100%;
-    max-width: 100%;
-    border-radius: 8px;
-    padding: 12px 16px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-}
-
-/* Button Group */
-.buttongroup {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.button3 {
     background-color: #84041d;
-    height: 45px;
-    width: 100%;
-    max-width: 150px;
-    border-radius: 8px;
+    border-color: #84041d;
     color: white;
-    text-align: center;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.button3:hover {
-    background-color: #b83d55;
+    font-weight: bold;
     transition: background-color 0.3s;
 }
 
+.buttongroup button:hover {
+    background-color: #6a0317;
+    border-color: #6a0317;
+}
+
+/* Forgot password link - Updated color */
 .textlink {
-    text-decoration: none; /* Remove underline */
-    font-size: 0.8rem;
-    color: #000000;
     text-align: center;
     margin-top: 10px;
 }
 
-/* Remove underline and blue highlight */
 .textlink a {
-    text-decoration: none; /* Ensure no underline */
-    color: inherit; /* Keeps the text color consistent */
-    outline: none; /* Remove default outline */
+    text-decoration: none;
+    color: #84041d;
 }
 
-/* Additional focus styling to remove blue highlight */
-.textlink a:focus, 
-.textlink a:active, 
 .textlink a:hover {
-    outline: none; /* Remove focus outline */
-    text-decoration: none; /* Ensure no underline */
-    color: #333; /* Optional: Slightly darker color for better UX */
-}
-
-
-.error-message {
-    color: red;
-    font-size: 0.8rem;
-    display: none;
-}
-
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-    .loginform {
-        width: 95%;
-        padding: 20px;
-    }
-
-    .welcomeamaers {
-        font-size: 2rem;
-    }
-
-    .logintoaccesstheplatform,
-    .thisisamaers {
-        font-size: 0.9rem;
-    }
-
-    .button3 {
-        width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .loginform {
-        padding: 15px;
-    }
-
-    .welcomeamaers {
-        font-size: 1.8rem;
-    }
-
-    .logintoaccesstheplatform,
-    .thisisamaers {
-        font-size: 0.8rem;
-    }
-
-    .inputfield {
-        gap: 5px;
-    }
-
-    .button3 {
-        height: 40px;
-    }
-
-    .textlink {
-        font-size: 0.7rem;
-    }
-
-    .error-message {
-        font-size: 0.7rem;
-    }
+    text-decoration: underline;
 }
