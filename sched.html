@@ -51,7 +51,8 @@
                 <a href="homepage.html" class="btn">
                     <img src="images/Home.png" height="30" alt="Home">
                 </a>
-                <a href="profile.html"><img src="images/Generic avatar.png" class="rounded-circle" height="40" alt="Avatar"></a>
+                <a href="profile.html"><img src="images/Generic avatar.png" class="rounded-circle" height="40"
+                        alt="Avatar"></a>
             </div>
         </div>
     </nav>
@@ -80,13 +81,14 @@
                     <button class="nav-link text-dark"><img src="images/Calendar.png" height="30"> Schedules</button>
                 </li>
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link text-danger"><img src="images/Log out.png" height="30"> Log Out</a>
+                    <a href="index.html" class="nav-link text-danger"><img src="images/Log out.png" height="30"> Log
+                        Out</a>
                 </li>
             </ul>
         </nav>
 
         <!-- Main Content Area -->
-        <main id="main-container" class="container mt-5 pt-4">
+        <main id="main-container" class="container mt-3 pt-4">
             <div class="container-fluid" style="margin-top: 50px;">
                 <div class="row">
                     <!-- Calendar Section -->
@@ -211,8 +213,59 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
+                        <!-- Request for Equipment and Facility -->
+                        <div class="card p-3 mt-2">
+                            <h6>Request for Equipment and Facility</h6>
+                            <div class="list-group" id="equipmentRequestsList">
+                                <!-- Equipment and facility requests can be dynamically inserted here -->
+                            </div>
+                            <button class="btn btn-outline-dark mt-3 w-100" data-bs-toggle="modal"
+                                data-bs-target="#requestEquipmentModal" style="font-size: 13px;">
+                                Set Request
+                            </button>
+
+                            <!-- Modal for Requesting Equipment/Facility -->
+                            <div class="modal fade" id="requestEquipmentModal" tabindex="-1"
+                                aria-labelledby="requestEquipmentModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content p-3">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="requestEquipmentModalLabel">Request Equipment
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id="equipmentRequestForm">
+                                                <div class="mb-3">
+                                                    <label for="requestorName" class="form-label">Requestor Name</label>
+                                                    <input type="text" class="form-control" id="requestorName"
+                                                        name="requestorName" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="requestDate" class="form-label">Request Date</label>
+                                                    <input type="date" class="form-control" id="requestDate"
+                                                        name="requestDate" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="requestedItem" class="form-label">Requested Item</label>
+                                                    <input type="text" class="form-control" id="requestedItem"
+                                                        name="requestedItem" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="requestPurpose" class="form-label">Purpose</label>
+                                                    <textarea class="form-control" id="requestPurpose"
+                                                        name="requestPurpose" rows="3" required></textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn-dark">Submit Request</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div> <!-- End of Right Column -->
                 </div> <!-- End of Row -->
             </div> <!-- End of Container Fluid -->
@@ -222,69 +275,58 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            console.log("DOM fully loaded and parsed");
-
-            // Select DOM elements
+            // Cache DOM elements for reuse
             const upcomingSchedulesList = document.querySelector('.list-group');
             const appointmentsList = document.getElementById('appointmentsList');
+            const equipmentRequestsList = document.getElementById('equipmentRequestsList');
             const calendarEl = document.getElementById('calendar');
-            const sidebar = document.getElementById("sidebar"); // Sidebar element
-            const menuToggle = document.getElementById("toggleSidebar"); // Menu toggle button
+            const sidebar = document.getElementById("sidebar");
+            const menuToggle = document.getElementById("toggleSidebar");
 
-            // Check if elements are found
-            if (!upcomingSchedulesList || !appointmentsList || !calendarEl || !sidebar || !menuToggle) {
+            // Validate required elements exist
+            if (!upcomingSchedulesList || !appointmentsList || !equipmentRequestsList || !calendarEl || !sidebar || !menuToggle) {
                 console.error("One or more required elements are missing in the DOM.");
-                return; // Exit if elements are not found
+                return;
             }
 
-            // Function to handle sidebar visibility based on window width
+            // Sidebar responsive handling
             function handleSidebar() {
                 if (window.innerWidth < 1900) {
-                    sidebar.classList.add("collapsed"); // Add collapsed class for smaller screens
-                    menuToggle.style.display = "block"; // Show the toggle button
+                    sidebar.classList.add("collapsed");
+                    menuToggle.style.display = "block";
                 } else {
-                    sidebar.classList.remove("collapsed"); // Remove collapsed class for larger screens
-                    menuToggle.style.display = "none"; // Hide the toggle button
+                    sidebar.classList.remove("collapsed");
+                    menuToggle.style.display = "none";
                 }
             }
-
-            // Initial call to handleSidebar to set the correct state on page load
             handleSidebar();
-
-            // Add event listener to handle window resizing
             window.addEventListener("resize", handleSidebar);
 
-            // Event listener for the menu toggle button
+            // Sidebar toggle handling
             menuToggle.addEventListener("click", function (event) {
-                event.stopPropagation(); // Prevent the click event from bubbling up
-                sidebar.classList.toggle("collapsed"); // Toggle the collapsed class
-                sidebar.classList.toggle("show"); // Toggle the show class to display/hide the sidebar
+                event.stopPropagation();
+                sidebar.classList.toggle("collapsed");
+                sidebar.classList.toggle("show");
             });
 
-            // Event listener to close the sidebar when clicking outside of it
+            // Auto-close sidebar when clicking outside
             document.addEventListener("click", function (event) {
                 if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
-                    sidebar.classList.remove("show"); // Remove the show class to hide the sidebar
+                    sidebar.classList.remove("show");
                 }
             });
 
-            // Event listener for navigation links
+            // Sidebar link active state management
             const navLinks = document.querySelectorAll('.sidebar .nav-link');
-
-            // Add click event listener to each nav-link
             navLinks.forEach(link => {
                 link.addEventListener('click', function () {
-                    // Remove 'active-link' from all nav-links
                     navLinks.forEach(item => item.classList.remove('active-link'));
-
-                    // Add 'active-link' to the clicked nav-link
                     this.classList.add('active-link');
                 });
             });
 
-
             // Initialize FullCalendar
-            var calendar = new FullCalendar.Calendar(calendarEl, {
+            const calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: window.innerWidth < 768 ? 'timeGridDay' : 'dayGridMonth',
                 headerToolbar: {
                     left: 'prev,next today',
@@ -294,167 +336,147 @@
                 selectable: true,
                 editable: true,
                 events: [],
-                dateClick: function (info) {
-                    console.log("Date clicked:", info.dateStr);
-                    let eventTitle = prompt('Enter event title:');
-                    if (eventTitle) {
-                        calendar.addEvent({
-                            title: eventTitle,
-                            start: info.dateStr
-                        });
-                        console.log("Event added:", eventTitle);
-                    }
-                },
-                eventClick: function (info) {
-                    console.log("Event clicked:", info.event.title);
-                    const eventProps = info.event.extendedProps || {};
-                    const eventStart = info.event.start ? info.event.start.toLocaleString() : 'No date provided';
 
-                    // Handle public events
-                    if (eventProps.category === 'public') {
-                        const publicEventModalEl = document.getElementById('publicEventDetailsModal');
-                        const publicEventModal = new bootstrap.Modal(publicEventModalEl);
+                // Event click handler
+                eventClick: function (info) {
+                    const { extendedProps, start } = info.event;
+                    const eventStart = start ? start.toLocaleString() : 'No date provided';
+
+                    if (extendedProps.category === 'public') {
+                        const modal = new bootstrap.Modal(document.getElementById('publicEventDetailsModal'));
                         document.getElementById('publicEventTitle').textContent = info.event.title;
                         document.getElementById('publicEventDate').textContent = eventStart;
-                        document.getElementById('publicEventDescription').textContent = eventProps.description || 'No description available';
-                        publicEventModal.show();
+                        document.getElementById('publicEventDescription').textContent = extendedProps.description || 'No description';
 
-                        // Delete public event button functionality
-                        document.getElementById('deletePublicEventButton').onclick = function () {
+                        document.getElementById('deletePublicEventButton').onclick = () => {
                             if (confirm('Delete this public event?')) {
-                                const eventItem = Array.from(upcomingSchedulesList.children).find(item => item.textContent.includes(info.event.title));
-                                if (eventItem) {
-                                    upcomingSchedulesList.removeChild(eventItem);
-                                }
+                                removeListItem(upcomingSchedulesList, info.event.title);
                                 info.event.remove();
-                                publicEventModal.hide();
+                                modal.hide();
                             }
                         };
-                    }
-                    // Handle personal events
-                    else if (eventProps.category === 'personal') {
-                        const personalEventModalEl = document.getElementById('personalEventDetailsModal');
-                        const personalEventModal = new bootstrap.Modal(personalEventModalEl);
+                        modal.show();
 
-                        // Log eventProps to ensure 'reason' is available
-                        console.log("Event properties:",eventProps); // Check the contents of eventProps to verify if 'reason' exists
-
-                        // Set event details in the modal
-                        document.getElementById('personalEventName').textContent = eventProps.name || 'No name provided';
-                        document.getElementById('personalEventTitle').textContent = eventProps.subject || 'No subject provided';
+                    } else if (extendedProps.category === 'personal') {
+                        const modal = new bootstrap.Modal(document.getElementById('personalEventDetailsModal'));
+                        document.getElementById('personalEventName').textContent = extendedProps.name;
+                        document.getElementById('personalEventTitle').textContent = extendedProps.subject;
                         document.getElementById('personalEventDate').textContent = eventStart;
-                        document.getElementById('personalEventEmail').textContent = eventProps.email || 'No email provided';
+                        document.getElementById('personalEventEmail').textContent = extendedProps.email;
+                        document.getElementById('personalEventReason').textContent = extendedProps.description;
 
-                        // Check and set the reason
-                        document.getElementById('personalEventReason').textContent = eventProps.description || 'No reason provided'; // Set reason
-
-                        // Show the modal
-                        personalEventModal.show();
-
-                        // Delete personal event button functionality
-                        document.getElementById('deletePersonalEventButton').onclick = function () {
-                            if (confirm('Delete this personal consultation?')) {
-                                const appointmentItem = Array.from(appointmentsList.children).find(item => item.textContent.includes(eventProps.name));
-                                if (appointmentItem) {
-                                    appointmentsList.removeChild(appointmentItem);
-                                }
+                        document.getElementById('deletePersonalEventButton').onclick = () => {
+                            if (confirm('Delete this personal appointment?')) {
+                                removeListItem(appointmentsList, extendedProps.name);
                                 info.event.remove();
-                                personalEventModal.hide();
+                                modal.hide();
                             }
                         };
+                        modal.show();
+
+                    } else if (extendedProps.category === 'equipment') {
+                        const modalEl = document.getElementById('equipmentRequestDetailsModal');
+                        if (!modalEl) {
+                            console.error('Equipment Request Details Modal is missing from the DOM.');
+                            return;
+                        }
+
+                        try {
+                            const modal = new bootstrap.Modal(modalEl);
+
+                            document.getElementById('requestDetailsName').textContent = extendedProps.name;
+                            document.getElementById('requestDetailsItem').textContent = extendedProps.item;
+                            document.getElementById('requestDetailsPurpose').textContent = extendedProps.purpose;
+                            document.getElementById('requestDetailsDate').textContent = eventStart;
+
+                            document.getElementById('deleteEquipmentRequestButton').onclick = () => {
+                                if (confirm('Delete this equipment request?')) {
+                                    removeListItem(equipmentRequestsList, extendedProps.item);
+                                    info.event.remove();
+                                    modal.hide();
+                                }
+                            };
+                            modal.show();
+                        } catch (error) {
+                            console.error('Error showing equipment modal:', error);
+                        }
                     }
-
-
                 }
             });
 
-            // Render the calendar
             calendar.render();
-            console.log("Calendar rendered");
 
-            // Event listener for public appointment form submission
+            // Utility function to remove list item by content match
+            function removeListItem(list, content) {
+                const item = Array.from(list.children).find(i => i.textContent.includes(content));
+                if (item) list.removeChild(item);
+            }
+
+            // Public Appointment Form Handler
             document.getElementById("publicAppointmentForm").addEventListener("submit", function (event) {
                 event.preventDefault();
                 const title = document.getElementById("publicTitle").value;
                 const date = document.getElementById("publicDate").value;
                 const description = document.getElementById("publicDescription").value;
-                const category = document.getElementById("publicCategory").value;
 
-                // Determine color based on category
-                let color;
-                switch (category) {
-                    case 'general':
-                        color = 'green';
-                        break;
-                    case 'college':
-                        color = 'red';
-                        break;
-                    case 'shs':
-                        color = 'blue';
-                        break;
-                    default:
-                        color = 'black';
-                }
-
-                // Add the event to the calendar
                 calendar.addEvent({
-                    title: title,
-                    start: date + 'T09:00:00',
-                    extendedProps: {
-                        description: description,
-                        category: 'public'
-                    },
-                    color: color
+                    title, start: `${date}T09:00:00`,
+                    extendedProps: { description, category: 'public' },
+                    color: 'green'
                 });
 
-                // Create a new list item for the upcoming schedules
-                const newEventItem = document.createElement('a');
-                newEventItem.className = 'list-group-item list-group-item-action';
-                newEventItem.textContent = `${title} - ${date}`;
-                upcomingSchedulesList.appendChild(newEventItem);
-
-                // Hide the modal and reset the form
-                const modal = bootstrap.Modal.getInstance(document.getElementById('setPublicAppointmentModal'));
-                modal.hide();
-                document.getElementById("publicAppointmentForm").reset();
-                console.log("Public event submitted:", title);
+                addListItem(upcomingSchedulesList, `${title} - ${date}`);
+                bootstrap.Modal.getInstance(document.getElementById('setPublicAppointmentModal')).hide();
+                this.reset();
             });
 
-            // Event listener for personal appointment form submission
+            // Personal Appointment Form Handler
             document.getElementById("personalAppointmentForm").addEventListener("submit", function (event) {
                 event.preventDefault();
-                const fullName = document.getElementById("personalName").value;
+                const name = document.getElementById("personalName").value;
                 const date = document.getElementById("personalDate").value;
                 const email = document.getElementById("personalEmail").value;
                 const subject = document.getElementById("personalSubject").value;
                 const reason = document.getElementById("personalReason").value;
 
-                // Add the personal event to the calendar
                 calendar.addEvent({
-                    title: fullName,
-                    start: date + 'T09:00:00',
-                    extendedProps: {
-                        description: reason,
-                        category: 'personal',
-                        name: fullName,
-                        email: email,
-                        subject: subject
-                    },
+                    title: name, start: `${date}T09:00:00`,
+                    extendedProps: { name, email, subject, description: reason, category: 'personal' },
                     color: 'black'
                 });
 
-                // Create a new list item for the appointments
-                const newAppointmentItem = document.createElement('a');
-                newAppointmentItem.className = 'list-group-item list-group-item-action';
-                newAppointmentItem.textContent = `${fullName} - ${date} - ${subject}`;
-                appointmentsList.appendChild(newAppointmentItem);
-
-                // Hide the modal and reset the form
-                const modal = bootstrap.Modal.getInstance(document.getElementById('setPersonalAppointmentModal'));
-                modal.hide();
-                document.getElementById("personalAppointmentForm").reset();
-                console.log("Personal appointment submitted:", fullName);
+                addListItem(appointmentsList, `${name} - ${date} - ${subject}`);
+                bootstrap.Modal.getInstance(document.getElementById('setPersonalAppointmentModal')).hide();
+                this.reset();
             });
+
+            // Equipment Request Form Handler
+            document.getElementById("equipmentRequestForm").addEventListener("submit", function (event) {
+                event.preventDefault();
+                const name = document.getElementById("requestorName").value;
+                const date = document.getElementById("requestDate").value;
+                const item = document.getElementById("requestedItem").value;
+                const purpose = document.getElementById("requestPurpose").value;
+
+                calendar.addEvent({
+                    title: `Equipment Request: ${item}`,
+                    start: `${date}T09:00:00`,
+                    extendedProps: { name, item, purpose, category: 'equipment' },
+                    color: 'violet'
+                });
+
+                addListItem(equipmentRequestsList, `${item} - ${date} - ${name}`);
+                bootstrap.Modal.getInstance(document.getElementById('requestEquipmentModal')).hide();
+                this.reset();
+            });
+
+            // Utility function to add new list item
+            function addListItem(list, text) {
+                const item = document.createElement('a');
+                item.className = 'list-group-item list-group-item-action';
+                item.textContent = text;
+                list.appendChild(item);
+            }
         });
     </script>
 
@@ -494,13 +516,40 @@
                     <p><strong>Title:</strong> <span id="personalEventTitle"></span></p>
                     <p><strong>Date:</strong> <span id="personalEventDate"></span></p>
                     <p><strong>Email:</strong> <span id="personalEventEmail"></span></p>
-                    <p><strong>Reason:</strong> <span id="personalEventReason"> <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" id="deletePersonalEventButton">Delete</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <p><strong>Reason:</strong> <span id="personalEventReason">
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger"
+                                    id="deletePersonalEventButton">Delete</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
                 </div>
             </div>
         </div>
-    </div>
+
+
+        <!-- Equipment Request Details Modal -->
+        <div class="modal fade" id="equipmentRequestDetailsModal" tabindex="-1"
+            aria-labelledby="equipmentRequestDetailsModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="equipmentRequestDetailsModalLabel">Equipment Request Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Requestor:</strong> <span id="requestDetailsName"></span></p>
+                        <p><strong>Item:</strong> <span id="requestDetailsItem"></span></p>
+                        <p><strong>Purpose:</strong> <span id="requestDetailsPurpose"></span></p>
+                        <p><strong>Date:</strong> <span id="requestDetailsDate"></span></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" id="deleteEquipmentRequestButton">Delete</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
 </body>
 
