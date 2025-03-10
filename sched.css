@@ -1,208 +1,34 @@
-/* ============================= */
-/* 🌍 GENERAL STYLES */
-/* ============================= */
+/* General Styles */
 body {
     font-family: 'Raleway', sans-serif;
-    background-color: #f8f9fa;
-}
-
-
-/* ============================= */
-/* 📌 MAIN CONTENT AREA */
-/* ============================= */
-#main-container {
-    margin-left: 250px; /* Space for sidebar */
-    transition: margin-left 0.3s ease; /* Smooth transition */
-    max-width: 1500px;
-    width: 100%;
-    margin: 50px auto 20px auto;
-    padding: 20px;
-}
-
-/* Adjust main content when sidebar is collapsed */
-.sidebar.collapsed + #main-container {
-    margin-left: 0; /* Full width when sidebar is collapsed */
-}
-
-/* ============================= */
-/* 📅 CALENDAR STYLES */
-/* ============================= */
-#calendar-container {
-    flex: 1;
-    min-width: 100%; /* Full width on mobile */
-    max-width: 100%;
-    height: 100%;
-    margin-bottom: 10px;
-}
-
-#calendar {
-    width: 100%;
-    height: 100%;
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 20px;
-}
-
-/* FullCalendar Customization */
-.fc {
-    height: 100% !important;
-}
-
-.fc-toolbar {
-    background-color: black;
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 5px;
-}
-
-.fc-day {
-    background-color: #ffffff;
-}
-
-.fc-event {
-    background-color: #28a745;
-    color: white;
-    border-radius: 5px;
-    padding: 5px;
-    font-size: 0.9em;
-}
-
-/* ============================= */
-/* 🎛 CALENDAR BUTTON STYLES */
-/* ============================= */
-.fc-button {
-    padding: 5px 8px;
-    min-height: 10px;
-    min-width: 10px;
-    font-size: 5px;
     margin: auto;
+    padding: 0;
+    background-color: #f8f9fa;
+    gap: 2px;
+    overflow-x: hidden;
 }
 
-/* Adjust calendar buttons for mobile */
-@media (max-width: 768px) {
-    .fc-toolbar {
-        flex-direction: column;
-        align-items: center;
-    }
-    .fc-button {
-        padding: 3px 5px;
-        min-height: 30px;
-        min-width: 30px;
-        font-size: 12px;
-    }
-    .fc-toolbar-title {
-        font-size: 1em;
-    }
-}
-
-/* ============================= */
-/* 🗂 SCHEDULE & APPOINTMENTS */
-/* ============================= */
-.card {
-    border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
+/* Navbar */
+.navbar {
+    z-index: 1030;
+    position: fixed;
+    top: 0;
     width: 100%;
-    margin-top: 10px; /* Adjust this value to lessen the gap */
+    height: 60px;
+    background: white;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
 }
 
-.list-group-item {
-    border: none;
-    padding: 10px;
+.navbar .logo {
+    height: 40px;
+    margin-left: auto;
 }
 
-/* ============================= */
-/* 🔘 BUTTON STYLES */
-/* ============================= */
-.btn-outline-dark {
-    border-radius: 5px;
-    transition: all 0.3s ease-in-out;
-}
-
-.btn-outline-dark:hover {
-    background-color: #007bff;
-    color: white;
-}
-
-/* ============================= */
-/* ✅ RESPONSIVE FIXES */
-/* ============================= */
-@media (max-width: 992px) {
-    #main-container {
-        width: 95%;
-    }
-    .container-fluid {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 15px;
-    }
-    #calendar-container {
-        min-width: 100%;
-        max-width: 100%;
-        height: 350px;
-        margin-bottom: 5px; /* Less gap on mobile */
-        overflow: hidden; /* Prevent overflow */
-        padding: 10px;
-    }
-    .card {
-        margin-top: 5px; /* Less gap on mobile */
-        padding: 1rem; /* Reduced padding */
-        border: none; /* Remove border if not needed */
-    }
-    
-    .fc-toolbar {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 5px;
-    }
-    .fc-toolbar-title {
-        font-size: 1.2em;
-        margin: 5px 0;
-    }
-    .fc-button {
-        padding: 5px;
-        margin: 2px;
-        font-size: 0.9em;
-    }
-}
-
-@media (max-width: 768px) {
-    .container-fluid {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 10px;
-    }
-    #calendar-container {
-        min-width: 100%;
-        max-width: 100%;
-        height: 350px;
-    }
-    .fc-header-toolbar {
-        flex-wrap: wrap;
-        gap: 5px;
-    }
-    .fc-toolbar-title {
-        font-size: 1em;
-    }
-    .fc-button {
-        padding: 3px;
-        margin: 1px;
-        font-size: 0.8em;
-    }
-    .fc-event {
-        font-size: 0.8em;
-        padding: 2px;
-    }
-}
-
-/* ============================= */
-/* 📌 SIDEBAR STYLES */
-/* ============================= */
+/* Sidebar */
 .sidebar {
     width: 220px;
     height: 100vh;
@@ -211,16 +37,108 @@ body {
     left: 0;
     background-color: white;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease; /* Transition for opening/closing and box-shadow */
-    padding-top: 20px;
-    padding-right: 20px;
+    transition: transform 0.3s ease-in-out;
+    padding: 20px;
     z-index: 1020;
-    transform: translateX(-100%); /* Hidden by default */
+    overflow-y: auto;
 }
 
-.sidebar.active {
-    transform: translateX(0); /* Show when active */
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.15); /* A little more shadow when active */
+/* Main Container */
+#main-container {
+    margin: 0 auto;
+    padding: 15px;
+    max-width: 1000px;
+    width: 90%;
+    min-width: 250px;
+    transition: margin-left 0.3s ease;
+}
+
+/* Toggle Button */
+#menuToggle {
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    background-color: transparent;
+    border: 1px solid #333;
+    padding: 8px 14px;
+    border-radius: 5px;
+    margin-right: auto;
+    touch-action: manipulation;
+}
+
+#menuToggle:hover {
+    background-color: #ddd;
+    color: #000;
+}
+
+#menuToggle.active {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    #main-container {
+        width: 95%;
+        margin-left: 220px;
+    }
+}
+
+@media (max-width: 768px) {
+    #main-container {
+        margin-left: 0;
+    }
+
+    .sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    .navbar {
+        justify-content: flex-start;
+        padding-left: 10px;
+    }
+
+    #menuToggle {
+        margin-right: 10px;
+    }
+
+    .navbar .logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    #main-container {
+        width: 100%;
+        padding: 10px;
+    }
+    
+    .navbar {
+        padding: 0 10px;
+        height: 55px;
+    }
+    
+    .navbar .logo {
+        height: 35px;
+    }
+    
+    #menuToggle {
+        font-size: 22px;
+        padding: 6px 12px;
+    }
+    
+    .sidebar {
+        width: 100%;
+        max-width: 280px;
+    }
 }
 
 /* Sidebar Navigation */
@@ -228,38 +146,34 @@ body {
     font-size: 18px;
     display: flex;
     align-items: center;
-    padding: 12px;
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Transition for hover and click effect */
-}
-
-.sidebar .nav-link:hover {
-    background-color: #f0f0f0; /* Change background on hover */
-    transform: translateX(5px); /* A slight shift when hovered */
-}
-
-/* Active (clicked) state */
-.sidebar .nav-link.active-link {
-    background-color: #d0d0d0; /* Change background color after click */
-    transform: translateX(0); /* Reset transform after click */
+    padding: 14px;
+    transition: background 0.3s ease-in-out;
 }
 
 .sidebar .nav-link img {
     margin-right: 12px;
+    width: 24px;
+    height: 24px;
 }
 
-/* ============================= */
-/* 📌 SIDEBAR RESPONSIVE STYLES */
-/* ============================= */
-@media (max-width: 768px) {
-    .sidebar {
-        transform: translateX(-100%); /* Hidden by default */
-    }
-    .sidebar.active {
-        transform: translateX(0); /* Show when active */
-    }
-    #main-container {
-        margin-left: 0; /* Full width on mobile */
-        width: 100%;
-        padding: 10px;
-    }
+.nav-link:hover {
+    background-color: #f1f1f1;
+    color: #007bff;
+}
+
+.navbar-icons button {
+    background: none;
+    border: none;
+    padding: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.navbar-icons button img {
+    height: 28px;
+}
+
+.navbar-icons button:hover {
+    transform: scale(1.1);
 }
