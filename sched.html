@@ -61,7 +61,7 @@
                     </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <button class="nav-link text-dark"><img src="images/Home.png" height="30"> Home</button>
+                    <a href="homepage.html" class="nav-link text-dark"><img src="images/Home.png" height="30"> Home</a>
                 </li>
                 <li class="nav-item mb-2">
                     <a href="notif.html" class="nav-link text-dark"><img src="images/Bell.png" height="30">
@@ -309,13 +309,13 @@
             const calendarEl = document.getElementById('calendar');
             const sidebar = document.getElementById("sidebar");
             const menuToggle = document.getElementById("toggleSidebar");
-    
+
             // Validate required elements exist
             if (!sidebar || !menuToggle || !calendarEl) {
                 console.error("One or more required elements are missing in the DOM.");
                 return;
             }
-    
+
             // Sidebar responsive handling
             function handleSidebar() {
                 sidebar.classList.toggle("collapsed", window.innerWidth < 1900);
@@ -323,26 +323,26 @@
             }
             handleSidebar();
             window.addEventListener("resize", handleSidebar);
-    
+
             // Sidebar toggle handling
             menuToggle.addEventListener("click", function (event) {
                 event.stopPropagation();
                 sidebar.classList.toggle("collapsed");
                 sidebar.classList.toggle("show");
             });
-    
+
             // Auto-close sidebar when clicking outside
             document.addEventListener("click", function (event) {
                 if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
                     sidebar.classList.remove("show");
                 }
             });
-    
+
             // Calendar setup
             const calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: window.innerWidth < 768 ? 'timeGridDay' : 'dayGridMonth',
                 headerToolbar: {
-                    left: 'prev,next today',
+                    left: 'prev next today',
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
@@ -356,9 +356,9 @@
                     removeListItemByEvent(info.event);
                 }
             });
-    
+
             calendar.render();
-    
+
             // Function to add list items to the respective lists
             function addListItem(list, text, eventId, eventDate) {
                 const li = document.createElement('li');
@@ -366,19 +366,25 @@
                 li.textContent = text;
                 li.dataset.eventId = eventId; // Store event ID
                 li.dataset.eventDate = eventDate;
-    
+
                 list.appendChild(li);
                 sortListByDate(list);
             }
-    
-            // Function to sort list items by event date
+
             function sortListByDate(list) {
                 const items = Array.from(list.children);
-                items.sort((a, b) => new Date(a.dataset.eventDate) - new Date(b.dataset.eventDate));
-                list.innerHTML = ""; // Clear the list
-                items.forEach(item => list.appendChild(item)); // Append sorted items
+
+                // Ensure items have a valid date before sorting
+                items.sort((a, b) => {
+                    const dateA = new Date(a.dataset.eventDate);
+                    const dateB = new Date(b.dataset.eventDate);
+                    return dateA - dateB;
+                });
+
+                // Instead of clearing the whole list, re-append in sorted order
+                items.forEach(item => list.appendChild(item));
             }
-    
+
             // Function to remove a specific list item using event ID
             function removeListItem(list, eventId) {
                 const itemToRemove = list.querySelector(`li[data-event-id="${eventId}"]`);
@@ -386,18 +392,18 @@
                     itemToRemove.remove(); // Remove the specific item
                 }
             }
-    
+
             // Function to remove list items based on event ID
             function removeListItemByEvent(event) {
                 const category = event.extendedProps.category;
                 const eventId = event.id;
-    
+
                 const listMap = {
                     public: upcomingSchedulesList,
                     personal: appointmentsList,
                     equipment: equipmentRequestsList
                 };
-    
+
                 const targetList = listMap[category];
                 if (targetList) {
                     removeListItem(targetList, eventId); // Remove the matched event
@@ -405,7 +411,7 @@
                     console.warn(`No list found for category: ${category}`);
                 }
             }
-    
+
             // Open the appropriate modal based on event category
             function openEventModal(event) {
                 const category = event.extendedProps.category;
@@ -423,62 +429,62 @@
                         console.warn(`No modal found for category: ${category}`);
                 }
             }
-    
+
             // Populate Public Event Modal
             function populatePublicEventModal(event) {
                 document.getElementById('publicEventTitle').textContent = event.title;
                 document.getElementById('publicEventCategory').textContent = event.extendedProps.subCategory || "Uncategorized";
                 document.getElementById('publicEventDate').textContent = event.start.toISOString().split('T')[0];
                 document.getElementById('publicEventDescription').textContent = event.extendedProps.description;
-    
+
                 const publicEventDetailsModal = new bootstrap.Modal(document.getElementById('publicEventDetailsModal'));
                 publicEventDetailsModal.show();
-    
+
                 // Set up delete button functionality
                 document.getElementById('deletePublicEventButton').onclick = function () {
                     deleteEvent(event, publicEventDetailsModal);
                 };
             }
-    
+
             // Populate Personal Event Modal
             function populatePersonalEventModal(event) {
                 document.getElementById('personalEventName').textContent = event.extendedProps.name;
                 document.getElementById('personalEventDate').textContent = event.start.toISOString().split('T')[0];
                 document.getElementById('personalEventTime').textContent = event.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                 document.getElementById('personalEventReason').textContent = event.extendedProps.reason;
-    
+
                 const personalEventDetailsModal = new bootstrap.Modal(document.getElementById('personalEventDetailsModal'));
                 personalEventDetailsModal.show();
-    
+
                 // Set up delete button functionality
                 document.getElementById('deletePersonalEventButton').onclick = function () {
                     deleteEvent(event, personalEventDetailsModal);
                 };
             }
-    
+
             // Open Equipment Request Details Modal
             function openRequestDetailsModal(event) {
                 document.getElementById("requestDetailsName").innerText = event.extendedProps.name;
                 document.getElementById("requestDetailsItem").innerText = event.extendedProps.item;
                 document.getElementById("requestDetailsPurpose").innerText = event.extendedProps.purpose;
                 document.getElementById("requestDetailsDate").innerText = event.start.toISOString().split('T')[0];
-    
+
                 const equipmentRequestDetailsModal = new bootstrap.Modal(document.getElementById('equipmentRequestDetailsModal'));
                 equipmentRequestDetailsModal.show();
-    
+
                 // Set up delete button functionality
                 document.getElementById("deleteEquipmentRequestButton").onclick = function () {
                     deleteEvent(event, equipmentRequestDetailsModal);
                 };
             }
-    
+
             // General function to delete an event
             function deleteEvent(event, modal) {
                 event.remove(); // Remove event from calendar
                 removeListItemByEvent(event); // Remove from the list
                 modal.hide(); // Hide modal
             }
-    
+
             // Public Event Form Submission
             document.getElementById("publicAppointmentForm").addEventListener("submit", function (event) {
                 event.preventDefault();
@@ -486,7 +492,7 @@
                 const date = document.getElementById("publicDate").value;
                 const description = document.getElementById("publicDescription").value || 'No description provided';
                 const category = document.getElementById("publicCategory").value; // general, college, shs
-    
+
                 // Define color mapping based on category
                 const colorMap = {
                     general: 'green',
@@ -494,7 +500,7 @@
                     shs: 'blue'
                 };
                 const color = colorMap[category] || 'gray'; // Default color if category is not recognized
-    
+
                 // Add event to calendar with the determined color
                 const newEvent = calendar.addEvent({
                     title: title,
@@ -506,13 +512,13 @@
                     },
                     color: color
                 });
-    
+
                 // Add to upcoming schedules list
                 addListItem(upcomingSchedulesList, `${title} - ${date}`, newEvent.id, date);
                 bootstrap.Modal.getInstance(document.getElementById('setPublicAppointmentModal')).hide(); // Hide modal
                 this.reset(); // Reset the form
             });
-    
+
             // Personal Appointment Form Submission
             document.getElementById("personalAppointmentForm").addEventListener("submit", function (event) {
                 event.preventDefault();
@@ -520,20 +526,20 @@
                 const date = document.getElementById("personalDate").value;
                 const time = document.getElementById("personalTime").value;
                 const reason = document.getElementById("personalReason").value;
-    
+
                 const formattedDateTime = `${date}T${time}`;
                 const newEvent = calendar.addEvent({
                     start: formattedDateTime,
                     extendedProps: { name, reason, category: 'personal' },
                     color: 'black'
                 });
-    
+
                 // Add to appointments list
                 addListItem(appointmentsList, `${name} - ${date} at ${time}`, newEvent.id, date);
                 bootstrap.Modal.getInstance(document.getElementById('setPersonalAppointmentModal')).hide(); // Hide modal
                 this.reset(); // Reset the form
             });
-    
+
             // Equipment Request Form Submission
             document.getElementById("equipmentRequestForm").addEventListener("submit", function (event) {
                 event.preventDefault();
@@ -541,7 +547,7 @@
                 const date = document.getElementById("requestDate").value;
                 const item = document.getElementById("requestedItem").value;
                 const purpose = document.getElementById("requestPurpose").value;
-    
+
                 // Add event to calendar
                 const newEvent = calendar.addEvent({
                     title: `Equipment Request: ${item}`,
@@ -549,7 +555,7 @@
                     extendedProps: { name, item, purpose, category: 'equipment' },
                     color: 'purple'
                 });
-    
+
                 // Add to requests list
                 addListItem(equipmentRequestsList, `${item} requested by ${name} on ${date}`, newEvent.id, date);
                 bootstrap.Modal.getInstance(document.getElementById('requestEquipmentModal')).hide(); // Hide modal

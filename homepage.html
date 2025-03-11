@@ -46,7 +46,7 @@
 
             <!-- Search Bar (Hidden on Small Screens) -->
             <form class="d-none d-md-flex me-auto">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <input type="text" id="searchInput" class="form-control" placeholder="Search">
             </form>
 
             <!-- Navbar Icons -->
@@ -174,7 +174,9 @@
                     <img src="images/Generic avatar.png" class="rounded-circle me-2" height="40" alt="Avatar">
                     <div>
                         <strong>SSG</strong> <span class="text-muted">/Facilitator</span><br>
-                        <small class="text-muted">Aug 01, 2024 at 11:59pm &middot; SHS</small>
+                        <small class="text-muted">Aug 01, 2024 at 11:59pm &middot;
+                            <span class="category-label" data-category="SHS">SHS</span>
+                        </small>
                     </div>
                 </div>
                 <p class="mt-2">Anunsyo: Tamang Kasuotan para sa Pagdidiriwang ng Buwan ng Wika na Gaganapin sa ika-30
@@ -223,8 +225,8 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" id="submitComment">Submit Comment</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary" id="submitComment">Comment</button>
                         </div>
                     </div>
                 </div>
@@ -236,7 +238,10 @@
                     <img src="images/Generic avatar.png" class="rounded-circle me-2" height="40" alt="Avatar">
                     <div>
                         <strong>Maki</strong> <span class="text-muted">/Facilitator</span><br>
-                        <small class="text-muted">Jan 01, 2024 at 11:59pm &middot; ALL</small>
+                        <small class="text-muted">Jan 01, 2024 at 11:59pm &middot;
+                            <span class="category-label" data-category="ALL">ALL</span>
+                        </small>
+
                     </div>
                 </div>
                 <p class="mt-2">Good Luck AMAers Lipa for your First Quarter Examination!</p>
@@ -291,11 +296,49 @@
                                 alt="Exam Reminder">
                         </div>
                         <!-- Comment Section -->
-                        <div class="comment-section flex-grow-1">
+                        <div class="modal-body">
                             <h5>Comments</h5>
-                            <input type="text" id="commentInput" class="comment-box" placeholder="Add a comment...">
-                            <button class="btn btn-primary btn-sm mt-2" onclick="addComment()">Post</button>
-                            <div class="comment-list mt-2" id="commentList"></div>
+                            <div class="comment-section"
+                                style="max-height: 250px; overflow-y: auto; border-top: 1px solid #ccc; padding-top: 10px;">
+
+                                <!-- Dummy Comment 1 -->
+                                <div class="comment d-flex align-items-center mb-2">
+                                    <img src="images/Generic avatar.png" class="rounded-circle me-2" height="30"
+                                        alt="User">
+                                    <div>
+                                        <strong>John Doe</strong>
+                                        <div class="comment-content bg-light p-2 rounded">This looks amazing!</div>
+                                    </div>
+                                </div>
+
+                                <!-- Dummy Comment 2 -->
+                                <div class="comment d-flex align-items-center mb-2">
+                                    <img src="images/Generic avatar.png" class="rounded-circle me-2" height="30"
+                                        alt="User">
+                                    <div>
+                                        <strong>Jane Smith</strong>
+                                        <div class="comment-content bg-light p-2 rounded">Love this picture! 😍</div>
+                                    </div>
+                                </div>
+
+                                <!-- Dummy Comment 3 -->
+                                <div class="comment d-flex align-items-center mb-2">
+                                    <img src="images/Generic avatar.png" class="rounded-circle me-2" height="30"
+                                        alt="User">
+                                    <div>
+                                        <strong>Michael Lee</strong>
+                                        <div class="comment-content bg-light p-2 rounded">Great job! Keep it up! 👍
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="comment-input d-flex align-items-center mt-3">
+                                <img src="images/Generic avatar.png" class="rounded-circle me-2" height="30" alt="User">
+                                <input type="text" id="commentInput" class="form-control"
+                                    placeholder="Write a comment...">
+                                <button class="btn btn-primary btn-sm ms-2" onclick="addComment()">Post</button>
+                            </div>
                         </div>
 
                     </div>
@@ -308,7 +351,9 @@
                     <img src="images/Generic avatar.png" class="rounded-circle me-2" height="40" alt="Avatar">
                     <div>
                         <strong>SSG</strong> <span class="text-muted">/Facilitator</span><br>
-                        <small class="text-muted">Aug 01, 2024 at 11:59pm &middot; SHS </small>
+                        <small class="text-muted">Aug 01, 2024 at 11:59pm &middot;
+                            <span class="category-label" data-category="SHS">SHS</span>
+                        </small>
                     </div>
                 </div>
                 <p class="mt-2">Anunsyo: Tamang Kasuotan para sa Pagdidiriwang ng Buwan ng Wika na Gaganapin sa ika-30
@@ -357,8 +402,8 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" id="submitComment">Submit Comment</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary" id="submitComment">Comment</button>
                         </div>
                     </div>
                 </div>
@@ -377,6 +422,8 @@
             const sortDropdown = document.querySelector(".sort-dropdown");
             const sortButton = sortDropdown.querySelector("button");
             const sortDropdownItems = sortDropdown.querySelectorAll(".dropdown-item");
+            const announcements = document.querySelectorAll(".announcement-card"); // Make sure each announcement has this class
+            const searchInput = document.getElementById("searchInput"); // Search bar input
 
             // Sidebar toggle functionality
             function handleSidebar() {
@@ -408,48 +455,84 @@
             dropdownItems.forEach(item => {
                 item.addEventListener("click", function (event) {
                     event.preventDefault();
-                    const selectedText = this.textContent;
-                    audienceButton.textContent = selectedText;
+                    audienceButton.textContent = this.textContent;
                 });
             });
 
             // Sort dropdown functionality
+            function sortAnnouncements(category) {
+                const selectedCategory = category.toUpperCase();
+
+                announcements.forEach(announcement => {
+                    const categoryLabel = announcement.getAttribute("data-category")?.toUpperCase();
+
+                    if (selectedCategory === "ALL" || categoryLabel === selectedCategory) {
+                        announcement.style.display = "block"; // Show matching announcements
+                    } else {
+                        announcement.style.display = "none"; // Hide non-matching announcements
+                    }
+                });
+
+                searchAnnouncements(); // Reapply search filter after sorting
+            }
+
             sortDropdownItems.forEach(item => {
                 item.addEventListener("click", function (event) {
                     event.preventDefault();
                     const selectedText = this.textContent.trim();
-                    sortButton.childNodes[0].nodeValue = selectedText + " "; // Keeps dropdown arrow intact
+                    sortButton.childNodes[0].nodeValue = selectedText + " "; // Update button text
+                    sortAnnouncements(selectedText);
                 });
             });
 
+            // Search functionality
+            function searchAnnouncements() {
+                const searchText = searchInput.value.trim().toLowerCase();
 
+                announcements.forEach(announcement => {
+                    const isVisible = announcement.style.display !== "none"; // Check if it's already visible
+                    const textContent = announcement.textContent.toLowerCase();
 
-            document.addEventListener("DOMContentLoaded", function () {
-                const heartIcons = document.querySelectorAll(".heart-icon");
-
-                heartIcons.forEach(heart => {
-                    heart.addEventListener("click", function () {
-                        this.classList.toggle("bi-heart");
-                        this.classList.toggle("bi-heart-fill");
-                        this.style.color = this.classList.contains("bi-heart-fill") ? "red" : "";
-                    });
-                });
-
-                function addComment() {
-                    let input = document.getElementById('commentInput');
-                    let commentText = input.value.trim();
-                    if (commentText) {
-                        let commentList = document.getElementById('commentList');
-                        let div = document.createElement('div');
-                        div.className = 'comment-item';
-                        div.innerHTML = `<span>${commentText}</span> 
-                            <button class="delete-comment" onclick="this.parentElement.remove()">X</button>`;
-                        commentList.appendChild(div);
-                        input.value = '';
+                    // Hide if it doesn't match search query
+                    if (isVisible && !textContent.includes(searchText)) {
+                        announcement.style.display = "none";
                     }
+                });
+            }
+
+            searchInput.addEventListener("input", searchAnnouncements);
+
+            // Heart icon functionality
+            document.querySelectorAll(".heart-icon").forEach(heart => {
+                heart.addEventListener("click", function () {
+                    this.classList.toggle("bi-heart");
+                    this.classList.toggle("bi-heart-fill");
+                    this.style.color = this.classList.contains("bi-heart-fill") ? "red" : "";
+                });
+            });
+
+            // Function to add a comment
+            document.getElementById("commentInput")?.addEventListener("keypress", function (event) {
+                if (event.key === "Enter") {
+                    addComment();
                 }
             });
+
+            function addComment() {
+                let input = document.getElementById("commentInput");
+                let commentText = input.value.trim();
+                if (commentText) {
+                    let commentList = document.getElementById("commentList");
+                    let div = document.createElement("div");
+                    div.className = "comment-item";
+                    div.innerHTML = `<span>${commentText}</span> 
+                <button class="delete-comment" onclick="this.parentElement.remove()">X</button>`;
+                    commentList.appendChild(div);
+                    input.value = "";
+                }
+            }
         });
+
     </script>
 
 </body>

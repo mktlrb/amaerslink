@@ -5,6 +5,7 @@ body {
     padding: 0;
     background-color: #f8f9fa;
     gap: 2px;
+    font-family: Raleway;
 }
 
 /* Navbar */
@@ -31,6 +32,7 @@ body {
     padding-top: 20px;
     padding-right: 20px;
     z-index: 1020;
+    font-family: Raleway;
 }
 
 #main-container {
@@ -520,7 +522,7 @@ body {
 
 /* Comment Section Styling */
 .comment-section {
-    max-height: 400px;
+    max-height: 300px;
     overflow-y: auto;
     border-left: 1px solid #ddd;
     padding-left: 15px;
