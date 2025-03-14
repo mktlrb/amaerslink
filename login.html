@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMAERS Login</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <h2>WELCOME AMAERS!</h2>
+            <p>LOG IN TO ACCESS THE PLATFORM</p>
+            <p>THIS IS AMAER’S LINK.<br>EXCLUSIVELY FOR AMA COMPUTER<br>COLLEGE LIPA CAMPUS ONLY.</p>
+        </div>
+        
+        <div class="right-panel">
+            <img src="/images/logo.png" alt="AMA Logo" class="logo">
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="USN">USN</label>
+                    <input type="text" id="USN" placeholder="Enter your USN" required>
+                    <span id="USN-error" class="error-message"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                    <span id="password-error" class="error-message"></span>
+                </div>
+                
+                <button type="submit" class="login-button">Sign In</button>
+                <div class="textlink">
+                    <a href="forgot.html">Forgot password?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- External JavaScript File -->
+    <script src="login.js"></script>
+</body>
+</html>
