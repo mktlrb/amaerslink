@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Homepage</title>
+    <title>Homepage</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
@@ -108,6 +108,11 @@
                     <button class="btn btn-white text-success">
                         <img src="images/gallery.png" height="20" class="me-1">
                         Photo/Video</button>
+
+                    <button class="btn btn-white text-success">
+                        <img src="images/Folder.png" height="20" class="me-1">
+                        Files</button>
+
                 </div>
             </div>
 
@@ -302,33 +307,41 @@
                                 style="max-height: 250px; overflow-y: auto; border-top: 1px solid #ccc; padding-top: 10px;">
 
                                 <!-- Dummy Comment 1 -->
-                                <div class="comment d-flex align-items-center mb-2">
-                                    <img src="images/Generic avatar.png" class="rounded-circle me-2" height="30"
-                                        alt="User">
-                                    <div>
-                                        <strong>John Doe</strong>
-                                        <div class="comment-content bg-light p-2 rounded">This looks amazing!</div>
+                                <div class="comment">
+                                    <strong>John Doe</strong>
+                                    <div class="comment-content">This looks amazing!</div>
+                                    <div class="buttons">
+                                        <button>Like</button>
+                                        <button onclick="toggleReplyBox('reply1')">Reply</button>
+                                    </div>
+                                    <div id="reply1" class="comment-box">
+                                        <input type="text" placeholder="Write a reply...">
                                     </div>
                                 </div>
 
                                 <!-- Dummy Comment 2 -->
-                                <div class="comment d-flex align-items-center mb-2">
-                                    <img src="images/Generic avatar.png" class="rounded-circle me-2" height="30"
-                                        alt="User">
-                                    <div>
-                                        <strong>Jane Smith</strong>
-                                        <div class="comment-content bg-light p-2 rounded">Love this picture! 😍</div>
+                                <div class="comment">
+                                    <strong>Jane Smith</strong>
+                                    <div class="comment-content">Love this picture! 😍</div>
+                                    <div class="buttons">
+                                        <button>Like</button>
+                                        <button onclick="toggleReplyBox('reply2')">Reply</button>
+                                    </div>
+                                    <div id="reply2" class="comment-box">
+                                        <input type="text" placeholder="Write a reply...">
                                     </div>
                                 </div>
 
                                 <!-- Dummy Comment 3 -->
-                                <div class="comment d-flex align-items-center mb-2">
-                                    <img src="images/Generic avatar.png" class="rounded-circle me-2" height="30"
-                                        alt="User">
-                                    <div>
-                                        <strong>Michael Lee</strong>
-                                        <div class="comment-content bg-light p-2 rounded">Great job! Keep it up! 👍
-                                        </div>
+                                <div class="comment">
+                                    <strong>Michael Lee</strong>
+                                    <div class="comment-content">Great job! Keep it up! 👍</div>
+                                    <div class="buttons">
+                                        <button>Like</button>
+                                        <button onclick="toggleReplyBox('reply3')">Reply</button>
+                                    </div>
+                                    <div id="reply3" class="comment-box">
+                                        <input type="text" placeholder="Write a reply...">
                                     </div>
                                 </div>
 
@@ -415,14 +428,19 @@
     <!-- Custom Script for Sidebar and Navbar Toggle -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            // Sidebar elements
             const sidebar = document.getElementById("sidebar");
             const menuToggle = document.getElementById("menuToggle");
+
+            // Dropdown elements
             const audienceButton = document.querySelector(".dropdown button");
             const dropdownItems = document.querySelectorAll(".dropdown-menu .dropdown-item");
             const sortDropdown = document.querySelector(".sort-dropdown");
             const sortButton = sortDropdown.querySelector("button");
             const sortDropdownItems = sortDropdown.querySelectorAll(".dropdown-item");
-            const announcements = document.querySelectorAll(".announcement-card"); // Make sure each announcement has this class
+
+            // Announcement & search elements
+            const announcements = document.querySelectorAll(".announcement-card"); // Each announcement card
             const searchInput = document.getElementById("searchInput"); // Search bar input
 
             // Sidebar toggle functionality
@@ -436,15 +454,18 @@
                 }
             }
 
+            // Initialize sidebar behavior based on window size
             handleSidebar();
             window.addEventListener("resize", handleSidebar);
 
+            // Toggle sidebar on menu button click
             menuToggle.addEventListener("click", function (event) {
-                event.stopPropagation();
+                event.stopPropagation(); // Prevents the event from bubbling up
                 sidebar.classList.toggle("collapsed");
                 sidebar.classList.toggle("show");
             });
 
+            // Hide sidebar when clicking outside of it
             document.addEventListener("click", function (event) {
                 if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
                     sidebar.classList.remove("show");
@@ -455,11 +476,11 @@
             dropdownItems.forEach(item => {
                 item.addEventListener("click", function (event) {
                     event.preventDefault();
-                    audienceButton.textContent = this.textContent;
+                    audienceButton.textContent = this.textContent; // Update button text
                 });
             });
 
-            // Sort dropdown functionality
+            // Function to sort announcements by category
             function sortAnnouncements(category) {
                 const selectedCategory = category.toUpperCase();
 
@@ -476,16 +497,17 @@
                 searchAnnouncements(); // Reapply search filter after sorting
             }
 
+            // Sort dropdown functionality
             sortDropdownItems.forEach(item => {
                 item.addEventListener("click", function (event) {
                     event.preventDefault();
                     const selectedText = this.textContent.trim();
                     sortButton.childNodes[0].nodeValue = selectedText + " "; // Update button text
-                    sortAnnouncements(selectedText);
+                    sortAnnouncements(selectedText); // Apply sorting
                 });
             });
 
-            // Search functionality
+            // Search functionality - filters announcements based on search input
             function searchAnnouncements() {
                 const searchText = searchInput.value.trim().toLowerCase();
 
@@ -500,9 +522,10 @@
                 });
             }
 
+            // Listen for input in the search bar
             searchInput.addEventListener("input", searchAnnouncements);
 
-            // Heart icon functionality
+            // Like button functionality (heart icon)
             document.querySelectorAll(".heart-icon").forEach(heart => {
                 heart.addEventListener("click", function () {
                     this.classList.toggle("bi-heart");
@@ -511,13 +534,14 @@
                 });
             });
 
-            // Function to add a comment
+            // Function to add a new comment when pressing "Enter"
             document.getElementById("commentInput")?.addEventListener("keypress", function (event) {
                 if (event.key === "Enter") {
                     addComment();
                 }
             });
 
+            // Function to add a comment dynamically
             function addComment() {
                 let input = document.getElementById("commentInput");
                 let commentText = input.value.trim();
@@ -526,14 +550,33 @@
                     let div = document.createElement("div");
                     div.className = "comment-item";
                     div.innerHTML = `<span>${commentText}</span> 
-                <button class="delete-comment" onclick="this.parentElement.remove()">X</button>`;
+                    <button class="delete-comment" onclick="this.parentElement.remove()">X</button>`;
                     commentList.appendChild(div);
-                    input.value = "";
+                    input.value = ""; // Clear input field after adding comment
                 }
             }
-        });
 
+            // Function to toggle reply box visibility
+            function toggleReplyBox(id) {
+                let replyBox = document.getElementById(id);
+                replyBox.style.display = replyBox.style.display === 'none' ? 'block' : 'none';
+            }
+
+            // Reply button functionality to toggle comment-box visibility
+            document.querySelectorAll('.reply-button').forEach(button => {
+                button.addEventListener('click', function () {
+                    let commentBox = this.closest('.comment').querySelector('.comment-box');
+                    if (commentBox.style.display === 'none' || commentBox.style.display === '') {
+                        commentBox.style.display = 'block';
+                    } else {
+                        commentBox.style.display = 'none';
+                    }
+                });
+            });
+
+        });
     </script>
+
 
 </body>
 
