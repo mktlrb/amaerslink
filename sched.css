@@ -1,0 +1,176 @@
+/* General Styles */
+body {
+    font-family: 'Raleway', sans-serif;
+    margin: auto;
+    padding: 0;
+    background-color: #f8f9fa;
+    gap: 2px;
+    overflow-x: hidden;
+}
+
+/* Navbar */
+/* Navbar */
+.navbar {
+    z-index: 1030;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background: white;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .logo {
+    height: 40px;
+    margin-left: auto;
+}
+
+.navbar-icons button {
+    background: none;
+    border: none;
+    padding: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.navbar-icons button img {
+    height: 28px;
+}
+
+.navbar-icons button:hover {
+    transform: scale(1.1);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    background-color: white;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    padding-top: 20px;
+    padding-right: 20px;
+    z-index: 1020;
+    font-family: Raleway;
+}
+
+/* Sidebar Navigation */
+.sidebar .nav-link {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    padding: 12px;
+}
+
+.sidebar .nav-link img {
+    margin-right: 12px;
+}
+
+.nav-link:hover {
+    background-color: #f1f1f1;
+    color: #007bff;
+}
+
+/* Main Container */
+#main-container {
+    margin: 0 auto;
+    padding: 15px;
+    max-width: 1000px;
+    width: 90%;
+    min-width: 250px;
+    transition: margin-left 0.3s ease;
+}
+
+
+/* Toggle Button */
+#menuToggle {
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    background-color: transparent;
+    border: 1px solid #333;
+    padding: 8px 14px;
+    border-radius: 5px;
+    margin-right: auto;
+    touch-action: manipulation;
+}
+
+#menuToggle:hover {
+    background-color: #ddd;
+    color: #000;
+}
+
+#menuToggle.active {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    #main-container {
+        width: 95%;
+        margin-left: 220px;
+    }
+}
+
+@media (max-width: 768px) {
+    #main-container {
+        margin-left: 0;
+    }
+
+    .sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    .navbar {
+        justify-content: flex-start;
+        padding-left: 10px;
+    }
+
+    #menuToggle {
+        margin-right: 10px;
+    }
+
+    .navbar .logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    #main-container {
+        width: 100%;
+        padding: 10px;
+    }
+    
+    .navbar {
+        padding: 0 10px;
+        height: 55px;
+    }
+    
+    .navbar .logo {
+        height: 35px;
+    }
+    
+    #menuToggle {
+        font-size: 22px;
+        padding: 6px 12px;
+    }
+    
+    .sidebar {
+        width: 100%;
+        max-width: 280px;
+    }
+}
+

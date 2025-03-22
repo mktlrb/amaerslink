@@ -1,3 +1,4 @@
+/* Global styles */
 * {
     margin: 0;
     padding: 0;
@@ -5,54 +6,199 @@
     font-family: 'Raleway', sans-serif;
 }
 
+/* Page styling */
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: linear-gradient(to right, #152576, #6a0317);
     height: 100vh;
-    background-color: #f4f4f4;
-}
-
-.container {
     display: flex;
-    width: 800px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-}
-
-.left-panel {
-    flex: 1;
-    background-color: maroon;
-    color: white;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+}
+
+/* Login Container */
+.login-container {
+    background: #fff;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 400px;
     text-align: center;
+    transition: 0.3s ease-in-out;
 }
 
-.left-panel p {
-    font-size: 15px;
-    font-weight: bold;
-    margin: 10px 0;
+.login-container:hover {
+    transform: translateY(-5px);
 }
 
-.right-panel {
-    flex: 1;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* Mobile-friendly spacing */
+@media (max-width: 768px) {
+    .login-container {
+        padding: 30px;
+        margin: 15px;
+    }
 }
 
+/* Logo */
 .logo {
-    width: 100px;
+    width: 90px;
     margin-bottom: 20px;
 }
 
+/* Welcome message */
+.welcomeamaers {
+    font-size: 26px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.logintoaccesstheplatform {
+    font-size: 12px;
+    color: #6c757d;
+    margin-bottom: 20px;
+}
+
+/* Input fields */
+.inputfield {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.inputfield label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #444;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.inputfield input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.inputfield input:focus {
+    border-color: #84041d;
+    outline: none;
+}
+
+/* Error message */
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Sign In button */
+.buttongroup button {
+    width: 100%;
+    background: #84041d;
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+.buttongroup button:hover {
+    background: #6a0317;
+}
+
+/* Forgot password link */
+.textlink {
+    margin-top: 15px;
+}
+
+.textlink a {
+    text-decoration: none;
+    color: #84041d;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.textlink a:hover {
+    text-decoration: underline;
+}
+
+/* Modern Container for Login */
+.container {
+    display: flex;
+    width: 900px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+}
+
+/* Left Panel */
+.left-panel {
+    flex: 1;
+    position: relative; /* Allows overlay positioning */
+    background: url('images/Untitled.png') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    text-align: center;
+    color: white;
+}
+
+/* Dark Overlay for Dimming Effect */
+.left-panel::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Adjust opacity (0.5 = 50% dim) */
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* Ensure Text Appears Above the Overlay */
+.left-panel * {
+    position: relative;
+    z-index: 2;
+}
+
+
+.left-panel p {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ddd;
+    margin: 10px 0;
+}
+
+.left-panel h2 {
+    font-weight: bold;
+    color: #ddd;
+    margin: 10px 0;
+}
+
+/* Right Panel */
+.right-panel {
+    flex: 1;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.right-panel .logo {
+    width: 100px;
+    margin-bottom: 25px;
+}
+
+/* Input Form */
 .form-group {
     width: 100%;
     margin-bottom: 15px;
@@ -66,41 +212,44 @@ body {
 
 .form-group input {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: border 0.3s;
 }
 
-.error-message {
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
-    display: none;
+.form-group input:focus {
+    border: 2px solid #84041d;
 }
 
+/* Login Button */
 .login-button {
     width: 100%;
-    padding: 10px;
-    background-color: maroon;
+    padding: 12px;
+    background: #84041d;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
 }
 
 .login-button:hover {
-    background-color: darkred;
+    background: #6a0317;
 }
 
+/* Text Link */
 .textlink {
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .textlink a {
-    color: maroon;
+    color: #84041d;
     text-decoration: none;
     font-size: 14px;
+    font-weight: bold;
 }
 
 .textlink a:hover {
