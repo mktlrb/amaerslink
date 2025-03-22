@@ -1,3 +1,11 @@
+<?php
+// Set the content type to HTML
+header("Content-Type: text/html; charset=UTF-8");
+
+// Start output buffering
+ob_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,29 +13,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap" rel="stylesheet">
 
-<!-- Custom CSS -->
-<link rel="stylesheet" href="homepage.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="homepage.css">
 
-<!-- Bootstrap JS (Ensure Bootstrap JS is included in your project) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Add Bootstrap Icons in the <head> -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- Add Bootstrap Icons in the <head> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
 </head>
 
@@ -40,7 +40,7 @@
             <button class="btn btn-outline-dark d-lg-none" id="menuToggle" aria-expanded="false">☰</button>
 
             <a class="navbar-brand ms-3" href="#">
-                <img src="images/logo  1.png" alt="Logo" height="40">
+                <img src="images/logo 1.png" alt="Logo" height="40">
             </a>
 
             <!-- Search Bar (Hidden on Small Screens) -->
@@ -54,8 +54,7 @@
                 <a href="homepage.html" class="btn">
                     <img src="images/Home.png" height="30" alt="Home">
                 </a>
-                <a href="profile.html"><img src="images/Generic avatar.png" class="rounded-circle" height="40"
-                        alt="Avatar"></a>
+                <a href="profile.html"><img src="images/Generic avatar.png" class="rounded-circle" height="40" alt="Avatar"></a>
             </div>
         </div>
     </nav>
@@ -74,20 +73,16 @@
                     <button class="nav-link text-dark"><img src="images/Home.png" height="30"> Home</button>
                 </li>
                 <li class="nav-item mb-2">
-                    <a href="notif.html" class="nav-link text-dark"><img src="images/Bell.png" height="30">
-                        Notification</a>
+                    <a href="notif.html" class="nav-link text-dark"><img src="images/Bell.png" height="30"> Notification</a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a href="sched.html" class="nav-link text-dark"><img src="images/Calendar.png" height="30">
-                        Schedules</a>
+                    <a href="sched.html" class="nav-link text-dark"><img src="images/Calendar.png" height="30"> Schedules</a>
                 </li>
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link text-danger"><img src="images/Log out.png" height="30"> Log
-                        Out</a>
+                    <a href="index.html" class="nav-link text-danger"><img src="images/Log out.png" height="30"> Log Out</a>
                 </li>
             </ul>
         </nav>
-
 
         <!-- Main Content -->
         <main id="main-container" class="container mt-5 pt-4">
@@ -99,8 +94,6 @@
                             style="font-size: 15px;" data-bs-toggle="modal" data-bs-target="#createPostModal"
                             readonly></textarea>
                     </div>
-
-
                 </div>
                 <hr>
                 <div class="d-flex justify-content-around">
@@ -111,7 +104,6 @@
                     <button class="btn btn-white text-success">
                         <img src="images/Folder.png" height="20" class="me-1">
                         Files</button>
-
                 </div>
             </div>
 
@@ -159,202 +151,16 @@
                 </div>
             </div>
 
-<div class="dropdown sort-dropdown mb-3" style="left: 10px; top: 5px">
-    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
-        style="width: 80px; font-size: 12px; padding: 4px; color: #8E0404; border-color: #8E0404;">
-        Sort
-    </button>
-    <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">ALL</a></li>
-        <li><a class="dropdown-item" href="#">SHS</a></li>
-        <li><a class="dropdown-item" href="#">COLLEGE</a></li>
-    </ul>
-</div>
-
-
-            <!-- Announcements -->
-            <div class="card p-3 mb-2">
-                <div class="d-flex align-items-center">
-                    <img src="images/Generic avatar.png" class="rounded-circle me-2" height="40" alt="Avatar">
-                    <div>
-                        <strong>SSG</strong> <span class="text-muted">/Facilitator</span><br>
-                        <small class="text-muted">Aug 01, 2024 at 11:59pm &middot;
-                            <span class="category-label" data-category="SHS">SHS</span>
-                        </small>
-                    </div>
-                </div>
-                <p class="mt-2">Anunsyo: Tamang Kasuotan para sa Pagdidiriwang ng Buwan ng Wika na Gaganapin sa ika-30
-                    ng Agosto Taong 2024.</p>
-                <div class="d-flex">
-                    <label class="ui-bookmark">
-                        <input type="checkbox" />
-                        <div class="bookmark" style="top: 5px; left: 5px;">
-                            <svg viewBox="0 0 16 16" style="margin-top:4px" class="bi bi-heart-fill" height="25"
-                                width="25" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
-                                    fill-rule="evenodd"></path>
-                            </svg>
-                        </div>
-                    </label>
-                    <button class="chatbox" data-bs-toggle="modal" data-bs-target="#commentModal">
-                        <i class="bi bi-chat-dots" style="font-size: 1.5rem; cursor: pointer; left: 10px;"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Comment Modal -->
-            <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="commentModalLabel">Add a Comment</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="d-flex align-items-center">
-                                <img src="images/Generic avatar.png" class="rounded-circle me-2" height="40"
-                                    alt="Avatar">
-                                <div>
-                                    <p class="mb-0"><strong>SSG</strong> <span class="text-muted">/Facilitator</span>
-                                    </p>
-                                    <small class="text-muted">Aug 01, 2024 at 11:59pm</small>
-                                </div>
-                            </div>
-                            <p class="mt-2">Anunsyo: Tamang Kasuotan para sa Pagdidiriwang ng Buwan ng Wika na Gaganapin
-                                sa ika-30 ng Agosto Taong 2024.</p>
-                            <hr>
-                            <textarea class="form-control" id="commentText" rows="3"
-                                placeholder="Write your comment here..."></textarea>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary" id="submitComment">Comment</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Exam Reminder -->
-            <div class="card p-3 mb-2">
-                <div class="d-flex align-items-center">
-                    <img src="images/Generic avatar.png" class="rounded-circle me-2" height="40" alt="Avatar">
-                    <div>
-                        <strong>Maki</strong> <span class="text-muted">/Facilitator</span><br>
-                        <small class="text-muted">Jan 01, 2024 at 11:59pm &middot;
-                            <span class="category-label" data-category="ALL">ALL</span>
-                        </small>
-
-                    </div>
-                </div>
-                <p class="mt-2">Good Luck AMAers Lipa for your First Quarter Examination!</p>
-
-                <!-- Clickable Smaller Image -->
-                <img src="images/sample.jpg" class="img-fluid rounded post-image" alt="Exam Reminder"
-                    data-bs-toggle="modal" data-bs-target="#imageModal">
-
-                <div class="d-flex mt-2">
-                    <label class="ui-bookmark">
-                        <input type="checkbox" />
-                        <div class="bookmark" style="top: 5px; left: 5px;">
-                            <svg viewBox="0 0 16 16" style="margin-top:4px" class="bi bi-heart-fill" height="25"
-                                width="25" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
-                                    fill-rule="evenodd"></path>
-                            </svg>
-                        </div>
-                    </label>
-
-                    <!-- Comment Button -->
-                    <button class="chatbox" data-bs-toggle="modal" data-bs-target="#imageModal">
-                        <i class="bi bi-chat-dots" style="font-size: 1.5rem; cursor: pointer;"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Modal for Full-Size Image and Comments -->
-            <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Post</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="d-flex align-items-center">
-                                <img src="images/Generic avatar.png" class="rounded-circle me-2" height="40"
-                                    alt="Avatar">
-                                <div>
-                                    <p class="mb-0" style="top: 1px;"><strong>Maki</strong> <span
-                                            class="text-muted">/Facilitator</span></p>
-                                    <small class="text-muted">Jan 01, 2024 at 11:59pm</small>
-                                </div>
-                            </div>
-                            <p class="mt-2">Good Luck AMAers Lipa for your First Quarter Examination!</p>
-                            <hr>
-                        </div>
-                        <div class="modal-body d-flex justify-content-center align-items-center">
-                            <!-- Full-Sized Image -->
-                            <img src="images/sample.jpg" class="modal-img rounded" style="width: 50%;"
-                                alt="Exam Reminder">
-                        </div>
-                        <!-- Comment Section -->
-                        <div class="modal-body">
-                            <h5>Comments</h5>
-                            <div class="comment-section"
-                                style="max-height: 250px; overflow-y: auto; border-top: 1px solid #ccc; padding-top: 10px;">
-
-                                <!-- Dummy Comment 1 -->
-                                <div class="comment">
-                                    <strong>John Doe</strong>
-                                    <div class="comment-content">This looks amazing!</div>
-                                    <div class="buttons">
-                                        <button>Like</button>
-                                        <button onclick="toggleReplyBox('reply1')">Reply</button>
-                                    </div>
-                                    <div id="reply1" class="comment-box">
-                                        <input type="text" placeholder="Write a reply...">
-                                    </div>
-                                </div>
-
-                                <!-- Dummy Comment 2 -->
-                                <div class="comment">
-                                    <strong>Jane Smith</strong>
-                                    <div class="comment-content">Love this picture! 😍</div>
-                                    <div class="buttons">
-                                        <button>Like</button>
-                                        <button onclick="toggleReplyBox('reply2')">Reply</button>
-                                    </div>
-                                    <div id="reply2" class="comment-box">
-                                        <input type="text" placeholder="Write a reply...">
-                                    </div>
-                                </div>
-
-                                <!-- Dummy Comment 3 -->
-                                <div class="comment">
-                                    <strong>Michael Lee</strong>
-                                    <div class="comment-content">Great job! Keep it up! 👍</div>
-                                    <div class="buttons">
-                                        <button>Like</button>
-                                        <button onclick="toggleReplyBox('reply3')">Reply</button>
-                                    </div>
-                                    <div id="reply3" class="comment-box">
-                                        <input type="text" placeholder="Write a reply...">
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="comment-input d-flex align-items-center mt-3">
-                                <img src="images/Generic avatar.png" class="rounded-circle me-2" height="30" alt="User">
-                                <input type="text" id="commentInput" class="form-control"
-                                    placeholder="Write a comment...">
-                                <button class="btn btn-primary btn-sm ms-2" onclick="addComment()">Post</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+            <div class="dropdown sort-dropdown mb-3" style="left: 10px; top: 5px">
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                    style="width: 80px; font-size: 12px; padding: 4px; color: #8E0404; border-color: #8E0404;">
+                    Sort
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">ALL</a></li>
+                    <li><a class="dropdown-item" href="#">SHS</a></li>
+                    <li><a class="dropdown-item" href="#">COLLEGE</a></li>
+                </ul>
             </div>
 
             <!-- Announcements -->
@@ -376,8 +182,7 @@
                         <div class="bookmark" style="top: 5px; left: 5px;">
                             <svg viewBox="0 0 16 16" style="margin-top:4px" class="bi bi-heart-fill" height="25"
                                 width="25" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
-                                    fill-rule="evenodd"></path>
+                                <path d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" fill-rule="evenodd"></path>
                             </svg>
                         </div>
                     </label>
@@ -402,12 +207,11 @@
                                     alt="Avatar">
                                 <div>
                                     <strong>SSG</strong> <span class="text-muted">/Facilitator</span><br>
-                                    <small class="text-muted">Aug 01, 2024 at 11:59pm &middot; SHS </small>
+                                    <small class="text-muted">Aug 01, 2024 at 11:59pm</small>
                                 </div>
                             </div>
                             <p class="mt-2">Anunsyo: Tamang Kasuotan para sa Pagdidiriwang ng Buwan ng Wika na Gaganapin
-                                sa ika-30
-                                ng Agosto Taong 2024.</p>
+                                sa ika-30 ng Agosto Taong 2024.</p>
                             <hr>
                             <textarea class="form-control" id="commentText" rows="3"
                                 placeholder="Write your comment here..."></textarea>
@@ -435,7 +239,8 @@
             const audienceButton = document.querySelector(".dropdown button");
             const dropdownItems = document.querySelectorAll(".dropdown-menu .dropdown-item");
             const sortDropdown = document.querySelector(".sort-dropdown");
-           
+            const sortButton = sortDropdown.querySelector("button");
+            const sortDropdownItems = sortDropdown.querySelectorAll(".dropdown-item");
 
             // Announcement & search elements
             const announcements = document.querySelectorAll(".announcement-card"); // Each announcement card
@@ -480,34 +285,30 @@
 
             // Function to sort announcements by category
             function sortAnnouncements(category) {
-    const selectedCategory = category.toUpperCase();
-    const announcements = document.querySelectorAll(".card"); // Assuming each announcement is in a card
+                const selectedCategory = category.toUpperCase();
 
-    announcements.forEach(announcement => {
-        const categoryLabel = announcement.querySelector(".category-label")?.getAttribute("data-category")?.toUpperCase();
+                announcements.forEach(announcement => {
+                    const categoryLabel = announcement.getAttribute("data-category")?.toUpperCase();
 
-        if (selectedCategory === "ALL" || categoryLabel === selectedCategory) {
-            announcement.style.display = "block"; // Show matching announcements
-        } else {
-            announcement.style.display = "none"; // Hide non-matching announcements
-        }
-    });
-
+                    if (selectedCategory === "ALL" || categoryLabel === selectedCategory) {
+                        announcement.style.display = "block"; // Show matching announcements
+                    } else {
+ announcement.style.display = "none"; // Hide non-matching announcements
+                    }
+                });
                 searchAnnouncements(); // Reapply search filter after sorting
             }
 
-// Sort dropdown functionality
-const sortDropdownItems = document.querySelectorAll(".sort-dropdown .dropdown-item");
-const sortButton = document.querySelector(".sort-dropdown button");
+            // Sort dropdown functionality
+            sortDropdownItems.forEach(item => {
+                item.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const selectedText = this.textContent.trim();
+                    sortButton.childNodes[0].nodeValue = selectedText + " "; // Update button text
+                    sortAnnouncements(selectedText); // Apply sorting
+                });
+            });
 
-sortDropdownItems.forEach(item => {
-    item.addEventListener("click", function (event) {
-        event.preventDefault();
-        const selectedText = this.textContent.trim();
-        sortButton.childNodes[0].nodeValue = selectedText + " "; // Update button text
-        sortAnnouncements(selectedText); // Apply sorting
-    });
-});
             // Search functionality - filters announcements based on search input
             function searchAnnouncements() {
                 const searchText = searchInput.value.trim().toLowerCase();
@@ -536,7 +337,7 @@ sortDropdownItems.forEach(item => {
             });
 
             // Function to add a new comment when pressing "Enter"
-            document.getElementById("commentInput")?.addEventListener("keypress", function (event) {
+            document.getElementById("commentText")?.addEventListener("keypress", function (event) {
                 if (event.key === "Enter") {
                     addComment();
                 }
@@ -544,7 +345,7 @@ sortDropdownItems.forEach(item => {
 
             // Function to add a comment dynamically
             function addComment() {
-                let input = document.getElementById("commentInput");
+                let input = document.getElementById("commentText");
                 let commentText = input.value.trim();
                 if (commentText) {
                     let commentList = document.getElementById("commentList");
@@ -578,7 +379,11 @@ sortDropdownItems.forEach(item => {
         });
     </script>
 
-
 </body>
 
 </html>
+
+<?php
+// Output the buffered content
+ob_end_flush();
+?>

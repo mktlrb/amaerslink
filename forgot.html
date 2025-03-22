@@ -1,9 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
+
+=======
+>>>>>>> 1ae70289cbbf6e1d9d6396af0f71881d8868c867
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forgot Password</title>
+<<<<<<< HEAD
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="forgot.css">
+
+
+    <style>
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="forgotpassword">
+
+=======
     
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
@@ -30,6 +57,7 @@
 
     <div class="forgotpassword">
         
+>>>>>>> 1ae70289cbbf6e1d9d6396af0f71881d8868c867
         <!-- Key Icon -->
         <img src="Key.png" alt="Key Icon" class="key"> <!-- Ensure the image is in the correct path -->
 
@@ -45,6 +73,26 @@
 
         <!-- Form -->
         <div class="formforgotpassword">
+<<<<<<< HEAD
+
+            <form id="forgotForm" onsubmit="return validateEmail(event);">
+                <!-- Email Input -->
+                <div class="inputfield">
+                    <label for="input2" class="label">Email</label>
+                    <input type="email" id="input2" class="input2" placeholder="Enter your email" required>
+                    <p id="error-message" class="error"></p>
+                </div>
+
+                <!-- Button Group -->
+                <div class="buttongroup">
+                    <a href="index.html">
+                        <button type="button" class="button2">Cancel</button>
+                    </a>
+                    <button type="submit" class="button4">Verify</button>
+                </div>
+
+            </form>
+=======
             
             <!-- Email Input -->
             <div class="inputfield">
@@ -59,10 +107,42 @@
                 </a>
                 <button class="button4" onclick="return validateEmail();">Reset Password</button>
             </div>
+>>>>>>> 1ae70289cbbf6e1d9d6396af0f71881d8868c867
 
         </div>
 
     </div>
 
+<<<<<<< HEAD
+    <script>
+        function validateEmail(event) {
+            event.preventDefault(); // Prevent form submission initially
+
+            const emailInput = document.getElementById('input2');
+            const errorMessage = document.getElementById('error-message');
+            const email = emailInput.value.trim();
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email regex
+
+            if (!emailPattern.test(email)) {
+                errorMessage.textContent = 'Please enter a valid email address.';
+                emailInput.style.border = '2px solid red';
+                emailInput.focus();
+                return false;
+            } else {
+                errorMessage.textContent = '';
+                emailInput.style.border = ''; // Reset border
+
+                // Redirect to verification page after successful validation
+                window.location.href = "verification.html";
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
+=======
 </body>
 </html>
+>>>>>>> 1ae70289cbbf6e1d9d6396af0f71881d8868c867

@@ -1,0 +1,190 @@
+/* General Styles */
+body {
+    font-family: 'Raleway', sans-serif;
+    margin: auto;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+#main-container {
+    margin: 0 auto;
+    padding: 10px;
+    max-width: 600px;
+    width: 60%;
+    min-width: 200px;
+}
+
+/* Adjustments for medium screens */
+@media (max-width: 992px) {
+    #main-container {
+        width: 75%;
+    }
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+    #main-container {
+        width: 90%;
+    }
+}
+
+/* Adjustments for extra small screens */
+@media (max-width: 480px) {
+    #main-container {
+        width: 80%;
+        padding: 10px;
+    }
+}
+
+/* Sidebar */
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: white;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1020;
+}
+
+/* Sidebar responsive behavior */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+    .sidebar.show {
+        transform: translateX(0);
+    }
+}
+
+/* Profile Section */
+.profile-section {
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    background-color: #6c757d;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+}
+
+.profile-avatar {
+    border-radius: 50%;
+    margin-right: 15px;
+    width: 80px;
+    height: 80px;
+}
+
+
+@media (max-width: 768px) {
+    .profile-avatar {
+        width: 60px;
+        height: 60px;
+    }
+    .profile-edit-btn {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-avatar {
+        width: 50px;
+        height: 50px;
+    }
+    .profile-edit-btn {
+        font-size: 12px;
+        padding: 5px 8px;
+    }
+}
+
+/* User Information */
+.user-info-card {
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    padding: 1.5rem;
+}
+
+.info-title {
+    font-weight: bold;
+}
+
+/* Update User Information */
+.update-info-card {
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    padding: 1.5rem;
+}
+
+.input-label {
+    font-weight: bold;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Base styles for buttons */
+.year-btn {
+    padding: 0.5rem 1rem; /* Padding for better touch targets */
+    font-size: 1rem; /* Consistent font size */
+    border: 1px solid #007bff; /* Border color */
+    border-radius: 0.25rem; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+}
+
+/* Hover effect */
+.year-btn:hover {
+    background-color: #007bff; /* Blue background on hover */
+    color: white; /* White text on hover */
+}
+
+/* homepage.css */
+
+/* Custom styles for the year buttons */
+.year-btn {
+    background-color: #f8f9fa; /* Light background color for unselected buttons */
+    color: #000; /* Text color for unselected buttons */
+}
+
+/* Selected button */
+.year-btn.btn-dark {
+    background-color: #8E0404; /* Your custom color */
+    color: #fff; /* White text when selected */
+}
+
+
+
+/* Center buttons horizontally and vertically within the row */
+.row {
+    display: flex;
+    justify-content: center;  /* Center horizontally */
+    align-items: center;      /* Center vertically */
+    gap: 15px;                /* Add spacing between buttons */
+}
+
+/* Custom styles for cancel and save buttons */
+.cancel-btn {
+    background-color: #f8f9fa;
+    color: #000;
+}
+
+.save-btn {
+    background-color: #8E0404; /* Your custom color */
+    color: #fff;
+}

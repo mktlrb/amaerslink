@@ -1,10 +1,86 @@
+<<<<<<< HEAD
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: #84041d;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+=======
 * {
+>>>>>>> 1ae70289cbbf6e1d9d6396af0f71881d8868c867
     margin: 0;
-    padding: 0;
+    padding: 20px; /* Helps on smaller screens */
     box-sizing: border-box;
     font-family: 'Raleway', sans-serif;
 }
 
+<<<<<<< HEAD
+.login-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Mobile-friendly spacing */
+@media (max-width: 768px) {
+    .login-container {
+        padding: 25px;
+        margin: 20px;
+    }
+}
+
+.logo {
+    width: 80px;
+    display: block;
+    margin: 0 auto 15px;
+}
+
+.welcomeamaers {
+    font-size: 24px;
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.logintoaccesstheplatform {
+    font-size: 10px;
+    text-align: center;
+    color: #6c757d;
+    margin-bottom: 20px;
+}
+
+.inputfield label {
+    font-weight: 600;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Sign In button - Updated color */
+.buttongroup button {
+    width: 100%;
+    background-color: #84041d;
+    border-color: #84041d;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.buttongroup button:hover {
+    background-color: #6a0317;
+    border-color: #6a0317;
+}
+
+/* Forgot password link - Updated color */
+.textlink {
+=======
 body {
     display: flex;
     justify-content: center;
@@ -31,9 +107,17 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px;
+>>>>>>> 1ae70289cbbf6e1d9d6396af0f71881d8868c867
     text-align: center;
 }
 
+<<<<<<< HEAD
+.textlink a {
+    text-decoration: none;
+    color: #84041d;
+}
+
+=======
 .left-panel p {
     font-size: 15px;
     font-weight: bold;
@@ -103,6 +187,7 @@ body {
     font-size: 14px;
 }
 
+>>>>>>> 1ae70289cbbf6e1d9d6396af0f71881d8868c867
 .textlink a:hover {
     text-decoration: underline;
 }

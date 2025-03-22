@@ -1,0 +1,111 @@
+/* General Styles */
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar */
+.navbar {
+    padding: 10px 20px;
+    transition: all 0.3s ease-in-out;
+    z-index: 1030;
+}
+
+.navbar-brand img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.navbar-brand img:hover {
+    transform: scale(1.1);
+}
+
+.navbar-icons button, .navbar-icons a {
+    background: none;
+    border: none;
+    margin-left: 15px;
+    transition: transform 0.3s;
+}
+
+.navbar-icons button:hover, .navbar-icons a:hover {
+    transform: scale(1.2);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    transition: all 0.3s ease-in-out;
+}
+
+.sidebar.collapsed {
+    width: 0;
+    overflow: hidden;
+    padding: 0;
+}
+
+.sidebar .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    transition: background 0.3s;
+    border-radius: 5px;
+}
+
+.sidebar .nav-link img {
+    margin-right: 10px;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #f1f1f1;
+}
+
+.sidebar .nav-link.text-danger:hover {
+    background-color: #ffe5e5;
+}
+
+/* Main Content */
+#main-container {
+    margin-left: 260px;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.sidebar.collapsed + #main-container {
+    margin-left: 20px;
+}
+
+/* Notification Cards */
+.card {
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.card-body img {
+    transition: transform 0.3s;
+}
+
+.card-body img:hover {
+    transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .sidebar {
+        position: fixed;
+        left: -250px;
+        transition: left 0.3s ease-in-out;
+    }
+    
+    .sidebar.show {
+        left: 0;
+    }
+    
+    #main-container {
+        margin-left: 20px;
+    }
+}
