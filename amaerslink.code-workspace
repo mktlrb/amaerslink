@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"name": "amaerslink",
+			"path": "."
+		},
+		{
+			"name": "admin panel",
+			"path": "../OneDrive/Desktop/fontend admin/admin panel"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "admin panel",
+		"liveServer.settings.port": 5501
+	}
+}
