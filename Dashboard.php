@@ -36,7 +36,7 @@ $facilitator_count = $conn->query("SELECT COUNT(*) AS total FROM users WHERE rol
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item"><a href="Dashboard.php" class="nav-link text-white"><i class="fas fa-tachometer-alt me-2"></i> Dashboard</a></li>
-                <li><a href="Addusers.php" class="nav-link text-white"><i class="fas fa-users me-2"></i> Users</a></li>
+                <li><a href="Users.php" class="nav-link text-white"><i class="fas fa-users me-2"></i> Users</a></li>
                 <li><a href="feedbacks.php" class="nav-link text-white"><i class="fas fa-comment-alt me-2"></i> Feedback <span class="badge bg-danger ms-2">13</span></a></li>
                 <li><a href="AdminLogin.php" class="nav-link text-white"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
             </ul>
@@ -56,7 +56,7 @@ $facilitator_count = $conn->query("SELECT COUNT(*) AS total FROM users WHERE rol
                 <div class="col-md-4">
                     <div class="card text-white bg-primary mb-3">
                         <div class="card-body">
-                            <h5 class="card-title"><i class="fas fa-user me-2"></i> Users</h5>
+                            <h5 class="card-title"><i class="fas fa-user me-2"></i> Students</h5>
                             <p class="card-text"><?php echo $user_count; ?> total</p>
                         </div>
                     </div>

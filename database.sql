@@ -95,3 +95,25 @@ CREATE TABLE messages (
     FOREIGN KEY (sender_id) REFERENCES users(id) ON DELETE CASCADE, -- Foreign key to link to the users table
     FOREIGN KEY (receiver_id) REFERENCES users(id) ON DELETE CASCADE -- Foreign key to link to the users table
 );
+
+/ for adduser /
+CREATE TABLE addusers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usn VARCHAR(50) UNIQUE NULL, -- Only applicable for students
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('admin', 'facilitator', 'student') NOT NULL,
+    student_type ENUM('SHS', 'College') NULL, -- Only applicable for students
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('admin', 'user', 'facilitator') NOT NULL
+);
+
+INSERT INTO users (username, password, role) VALUES ('admin', MD5('admin123'), 'admin');
