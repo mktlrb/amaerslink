@@ -1,0 +1,75 @@
+/* ======= General Styles ======= */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* ======= Navbar ======= */
+.navbar {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ======= Sidebar ======= */
+
+.d-flex.flex-column h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.d-flex.flex-column a {
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.d-flex.flex-column a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+/* ======= Main Content ======= */
+.container-fluid {
+    margin-left: 270px;
+    padding: 20px;
+    width: calc(100% - 270px);
+}
+
+/* ======= Dashboard Cards ======= */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* ======= Responsive Design ======= */
+@media (max-width: 1200px) {
+    .container-fluid {
+        margin-left: 260px;
+        width: calc(100% - 260px);
+    }
+}
+
+@media (max-width: 768px) {
+    .container-fluid {
+        margin-left: 0;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .d-flex.flex-column {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+}
