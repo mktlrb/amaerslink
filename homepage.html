@@ -5,30 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="homepage.css">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="homepage.css">
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap JS (Ensure Bootstrap JS is included in your project) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Bootstrap JS (Ensure Bootstrap JS is included in your project) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Add Bootstrap Icons in the <head> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
-    <!-- Add Bootstrap Icons in the <head> -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
 </head>
 
@@ -160,17 +159,17 @@
                 </div>
             </div>
 
-            <div class="dropdown sort-dropdown mb-3" style="left: 10px; top: 5px">
-                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
-                    style="width: 80px; font-size: 12px; padding: 4px; color: #8E0404; border-color: #8E0404;">
-                    Sort
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">ALL</a></li>
-                    <li><a class="dropdown-item" href="#">SHS</a></li>
-                    <li><a class="dropdown-item" href="#">COLLEGE</a></li>
-                </ul>
-            </div>
+<div class="dropdown sort-dropdown mb-3" style="left: 10px; top: 5px">
+    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+        style="width: 80px; font-size: 12px; padding: 4px; color: #8E0404; border-color: #8E0404;">
+        Sort
+    </button>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">ALL</a></li>
+        <li><a class="dropdown-item" href="#">SHS</a></li>
+        <li><a class="dropdown-item" href="#">COLLEGE</a></li>
+    </ul>
+</div>
 
 
             <!-- Announcements -->
@@ -436,8 +435,7 @@
             const audienceButton = document.querySelector(".dropdown button");
             const dropdownItems = document.querySelectorAll(".dropdown-menu .dropdown-item");
             const sortDropdown = document.querySelector(".sort-dropdown");
-            const sortButton = sortDropdown.querySelector("button");
-            const sortDropdownItems = sortDropdown.querySelectorAll(".dropdown-item");
+           
 
             // Announcement & search elements
             const announcements = document.querySelectorAll(".announcement-card"); // Each announcement card
@@ -482,31 +480,34 @@
 
             // Function to sort announcements by category
             function sortAnnouncements(category) {
-                const selectedCategory = category.toUpperCase();
+    const selectedCategory = category.toUpperCase();
+    const announcements = document.querySelectorAll(".card"); // Assuming each announcement is in a card
 
-                announcements.forEach(announcement => {
-                    const categoryLabel = announcement.getAttribute("data-category")?.toUpperCase();
+    announcements.forEach(announcement => {
+        const categoryLabel = announcement.querySelector(".category-label")?.getAttribute("data-category")?.toUpperCase();
 
-                    if (selectedCategory === "ALL" || categoryLabel === selectedCategory) {
-                        announcement.style.display = "block"; // Show matching announcements
-                    } else {
-                        announcement.style.display = "none"; // Hide non-matching announcements
-                    }
-                });
+        if (selectedCategory === "ALL" || categoryLabel === selectedCategory) {
+            announcement.style.display = "block"; // Show matching announcements
+        } else {
+            announcement.style.display = "none"; // Hide non-matching announcements
+        }
+    });
 
                 searchAnnouncements(); // Reapply search filter after sorting
             }
 
-            // Sort dropdown functionality
-            sortDropdownItems.forEach(item => {
-                item.addEventListener("click", function (event) {
-                    event.preventDefault();
-                    const selectedText = this.textContent.trim();
-                    sortButton.childNodes[0].nodeValue = selectedText + " "; // Update button text
-                    sortAnnouncements(selectedText); // Apply sorting
-                });
-            });
+// Sort dropdown functionality
+const sortDropdownItems = document.querySelectorAll(".sort-dropdown .dropdown-item");
+const sortButton = document.querySelector(".sort-dropdown button");
 
+sortDropdownItems.forEach(item => {
+    item.addEventListener("click", function (event) {
+        event.preventDefault();
+        const selectedText = this.textContent.trim();
+        sortButton.childNodes[0].nodeValue = selectedText + " "; // Update button text
+        sortAnnouncements(selectedText); // Apply sorting
+    });
+});
             // Search functionality - filters announcements based on search input
             function searchAnnouncements() {
                 const searchText = searchInput.value.trim().toLowerCase();
