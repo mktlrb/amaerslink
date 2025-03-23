@@ -1,108 +1,129 @@
 <?php
 session_start();
-include 'db.php'; // Include the database connection
+include 'db.php';
 
-// Check if the user is already logged in
-if (isset($_SESSION["adminuser"])) {
-    header("Location: Dashboard.php"); // Redirect to Dashboard if logged in
-    exit();
-}
-
-// Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Sanitize and trim inputs to avoid XSS and extra spaces
-    $username = htmlspecialchars(trim($_POST["username"]));
-    $password = $_POST["password"];
+    $username = trim($_POST["username"]);
+    $password = trim($_POST["password"]);
 
-    // Validate that username and password are not empty
-    if (empty($username) || empty($password)) {
-        $error_message = "Both fields are required.";
-    } else {
-        // Prepare the SQL query to fetch the admin by username
-        $sql = "SELECT * FROM admin WHERE username = ?";  // Correct table name 'admin'
+    // Prepare and execute query
+    $sql = "SELECT * FROM users WHERE username = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-        if ($stmt = $conn->prepare($sql)) {
-            // Bind the username parameter to the prepared statement
-            $stmt->bind_param("s", $username);
-            $stmt->execute();
-            $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
 
-            // Check if an admin with that username exists
-            if ($result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-
-                // Verify the password using password_verify()
-                if (password_verify($password, $row['admin_password'])) { // Correct column name 'admin_password'
-                    // Start the session and store admin info
-                    $_SESSION["adminuser"] = $username;
-                    $_SESSION["role"] = $row['admin_role']; // Correct column name 'admin_role'
-
-                    // Regenerate session ID to avoid session fixation attacks
-                    session_regenerate_id(true);
-
-                    // Redirect to the dashboard based on the role
-                    if ($_SESSION["role"] == 'superadminuser') {
-                        header("Location: Dashboard.php"); // Redirect to SuperAdmin dashboard
-                    } else {
-                        header("Location: Dashboard.php"); // Redirect to Admin dashboard
-                    }
-                    exit();
-                } else {
-                    // Incorrect password
-                    $error_message = "Invalid password. Please try again.";
-                }
-            } else {
-                // Username doesn't exist
-                $error_message = "Invalid username. Please try again.";
-            }
-        } else {
-            // Handle the case if the query preparation fails
-            $error_message = "An error occurred while processing your request.";
+        // Verify password
+        if (password_verify($password, $user['password'])) {
+            session_regenerate_id(true); // Prevent session fixation attacks
+            $_SESSION["users"] = $user['username']; // Store username in session
+            header("Location: Dashboard.php");
+            exit();
         }
     }
+
+    $_SESSION["error"] = "Incorrect username or password!";
+    header("Location: AdminLogin.php");
+    exit();
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="AdminLogin.css">
 </head>
-
 <body>
     <div class="login-container">
-        <h2>Admin Login</h2>
+        <h2><i class="fas fa-user-shield"></i> Admin Login</h2>
 
-        <!-- Display error message if login failed -->
-        <?php if (isset($error_message)): ?>
-            <div class="alert alert-danger" role="alert">
-                <?php echo $error_message; ?>
+        <?php if (isset($_SESSION["error"])): ?>
+            <div class="alert alert-danger">
+                <?php 
+                echo htmlspecialchars($_SESSION["error"]); 
+                unset($_SESSION["error"]);
+                ?>
             </div>
         <?php endif; ?>
 
-        <!-- Login Form -->
-        <form method="POST">
-            <div class="input-group mb-3">
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                <input type="text" name="username" class="form-control" placeholder="Username" required>
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                <input type="password" name="password" class="form-control" placeholder="Password" required>
-            </div>
-            <button type="submit" class="btn btn-login">Login</button>
-        </form>
+        <form method="POST" action="AdminLogin.php" autocomplete="off">
+        <div class="input-group mb-3">
+            <span class="input-group-text"><i class="fas fa-user"></i></span>
+            <input type="text" name="username" id="username" class="form-control" placeholder="Username" required oninput="validateUsername()" autocomplete="off">
+        </div>
+        <small id="usernameError" class="text-danger"></small> <!-- Error message -->
+
+        <div class="input-group mb-3">
+            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+            <input type="password" name="password" id="password" class="form-control" placeholder="Password" required autocomplete="off">
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Login</button>
+    </form>
     </div>
 
-    <!-- Optional: Include Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <script>
+    // Automatically remove error message after 3 seconds
+    setTimeout(function() {
+        let alertBox = document.querySelector(".alert");
+        if (alertBox) {
+            alertBox.style.transition = "opacity 0.1s";
+            alertBox.style.opacity = "0";
+            setTimeout(() => alertBox.remove(), 100);
+        }
+    }, 1000);
 
+    function validateUsername() {
+        let usernameInput = document.getElementById("username");
+        let errorMessage = document.getElementById("usernameError");
+        let usernameValue = usernameInput.value;
+
+        // Regular expression to check if username contains any number
+        if (/\d/.test(usernameValue)) {
+            errorMessage.textContent = "Username should not contain numbers!";
+            usernameInput.classList.add("is-invalid"); // Bootstrap red border
+        } else {
+            errorMessage.textContent = "";
+            usernameInput.classList.remove("is-invalid");
+        }
+    }
+
+    // Auto-hide error message after 3 seconds
+    setTimeout(function() {
+        let alertBox = document.querySelector(".alert");
+        if (alertBox) {
+            alertBox.style.transition = "opacity 0.5s";
+            alertBox.style.opacity = "0";
+            setTimeout(() => alertBox.remove(), 500);
+        }
+    }, 3000);
+
+        // Clear input fields when page loads
+        window.onload = function() {
+        document.getElementById("username").value = "";
+        document.getElementById("password").value = "";
+    };
+
+    window.onload = function() {
+        // Gumamit ng timeout para ma-reset ang fields matapos ma-load ang page
+        setTimeout(() => {
+            document.getElementById("username").value = "";
+            document.getElementById("password").value = "";
+        }, 100); // Delay para hindi agad mapalitan ng auto-fill ng browser
+
+        // Subukan din burahin ang auto-fill ng browser
+        document.getElementById("username").setAttribute("autocomplete", "new-username");
+        document.getElementById("password").setAttribute("autocomplete", "new-password");
+    };
+</script>
+
+</body>
 </html>
