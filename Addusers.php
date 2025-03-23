@@ -37,7 +37,7 @@ $facilitator_count = $conn->query("SELECT COUNT(*) AS total FROM users WHERE rol
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item"><a href="Dashboard.php" class="nav-link text-white"><i class="fas fa-tachometer-alt me-2"></i> Dashboard</a></li>
                 <li><a href="Addusers.php" class="nav-link text-white"><i class="fas fa-users me-2"></i> Students</a></li>
-                <li><a href="Feedbacks.php" class="nav-link text-white"><i class="fas fa-comment-alt me-2"></i> Feedback</a></li>
+                <li><a href="Feedback.php" class="nav-link text-white"><i class="fas fa-comment-alt me-2"></i> Feedback</a></li>
                 <li><a href="AdminLogin.php" class="nav-link text-white"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
             </ul>
         </div>

@@ -9,3 +9,12 @@ CREATE TABLE IF NOT EXISTS users (
 
 INSERT INTO users (username, password, role) VALUES 
 ('admin', MD5('admin123'), 'admin');
+
+
+CREATE TABLE feedbacks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    feedback TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
