@@ -257,6 +257,14 @@ tr:nth-child(even) {
     font-size: 16px;
 }
 =======
+<<<<<<< HEAD
+<<<<<<< HEAD
+/* General Styling */
+body {
+    font-family: 'Raleway', sans-serif;
+=======
+=======
+>>>>>>> 68d0decf812e762e96c6f5166f8480b4504bf096
 
 :root {
     --clr-primary: #7380ec;
@@ -284,212 +292,139 @@ tr:nth-child(even) {
 }
 
 *{
+<<<<<<< HEAD
+>>>>>>> 0c0e7dec8846dc2288b079c03f353e4104d17b0f
+=======
+=======
+/* General Styling */
+body {
+    font-family: 'Raleway', sans-serif;
+>>>>>>> d6359cfc957ee8e675dba48add4fd1bc41d7789f
+>>>>>>> 68d0decf812e762e96c6f5166f8480b4504bf096
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    border: 0;
-    list-style: none;
-    appearance: none;
+    background-color: #f8f9fa;
 }
 
-body{
-    background: linear-gradient(45deg, #90c8f1, #6f6cf5);
-    font-family: 'Poppins', sans-serif;
-    width: 100vw;
+/* Sidebar Styling */
+.sidebar {
+    background-color: #8e0404 !important;
+    width: 250px;
     height: 100vh;
-    font-size: 0.88rem;
-    user-select: none;
-    overflow-x: hidden;
-    background: var(--clr-color-background);
-}
-
-
-.nameboard{
-    display: grid;
-    width: 99%;
-    gap: 1.8rem;
-    grid-template-columns: 14rem auto 14rem;
-    margin: 0 auto;
-}
-
-a{
-    color: var(--clr-dark);
-}
-h1{
-    font-weight: 800;
-    font-size: 1.8rem;
-}
-h2{
-
-    font-size: 1.4rem;
-}
-h3{
-    font-size: 0.87rem;
-}
-h4{
-    font-size: 0.8;
-}
-h5{
-    font-size: 0.77rem;
-}
-
-small{
-    font-size: 0.8rem;
-}
-.profile-photo img{
-    width: 2.8rem;
-    height: 2.8rem;
-    border-radius: 50%;
-    overflow: hidden;
-
-}
-
-p{
-    color:var(--clr-dark-variant);
-}
-b{
-    color:var(--clr-dark);
-}
-.primary{
-    color:var(--clr-primary);
-}
-.success{
-
-    color:var(--clr-success);
-}
-.danger{
-    color:var(--clr-white);
-}
-.warning{
-    color: var(--clr-warnig);
-}
-
-aside{
-    height: 100vh;
-}
-aside .top{
-    background-color: #6194B3;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 1rem;
-    height: 10vh;
-}
-aside .logo{
-    display: flex;
-    gap: 1rem; 
-    color: #d9d9fa;
-}
-
-aside .top div.close{
-    display: none;
-}
-
-aside .sidebar{
-    background-color: #012E45;
-    border-radius: 5px;
+    position: fixed;
+    padding-top: 20px;
+    color: white;
     display: flex;
     flex-direction: column;
-    height: 85vh;
-    position: relative;
-    top: 1rem;
-}
-
-aside .h3{
-    font-weight: 400;
-}
-
-aside .sidebar a{
-    display: flex;
-    color:var(--clr-white);
-    margin-left: 2rem;
-    gap: 1rem;
     align-items: center;
-    height: 4.2rem;
-    transition:all .1s ease-in;
 }
 
-.danger .sidebar a span{
-    font-size: 1.6rem;
-    transition: all .1s ease-in;
+.sidebar h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
-aside .sidebar a:last-child{
-    position: absolute;
-    bottom: 5rem;
-    width: 50%;
+.sidebar .nav {
+    width: 100%;
 }
 
-aside .sidebar a.active{
-    background: var(--clr-light);
-    color: var(--clr-primary);
-    margin-left: 0;
-    border-left: 5px solid var(--clr-primary);  
+.sidebar .nav-link {
+    width: 100%;
+    text-align: left;
+    padding: 12px 20px;
+    font-size: 16px;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
 }
 
-aside .sidebar a.active::before{
-    content: '';
-    width: 6px;
-    height: 100%;
-    background-color: var(--clr-primary);
+.sidebar .nav-link i {
+    margin-right: 10px;
 }
 
-aside .sidebar a:hover{
-    color: var(--clr-primary);
+.sidebar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
-aside .sidebar a:hover span{
-    margin-left: 0.5rem;
-    transition: .5 ease;
+/* Top Bar Styling */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+    background-color: white;
+    position: fixed;
+    width: calc(100% - 250px);
+    left: 250px;
+    top: 0;
+    z-index: 1000;
 }
 
-aside .sidebar a span.msg_count{
-    background: var(--clr-danger);
-    color: var(--clr-white);
-    padding: 2px 5px;
-    font-size: 11px;
-    border-radius: var(--border-radius-1);
+/* Profile Section Styling */
+.profile {
+    display: flex;
+    align-items: center;
 }
 
-/* Pie */
-
-main {
-    margin-top: 1.4rem;
-    width: auto;
+.profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
-/* styles.css */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f8f8;
+/* Dashboard Cards Styling */
+.container-fluid {
+    margin-left: 260px;
+    padding: 20px;
+}
+
+.row {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    align-items: stretch;
 }
 
-.table-container {
-    width: 60%;
-    background: white;
-    border-radius: 8px;
-    padding: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.table-header {
+.card {
+    min-height: 150px; /* Ensure consistent height */
     display: flex;
-    justify-content: flex-end;
-    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for aesthetics */
+    border-radius: 10px; /* Smooth edges */
+}
+
+.card h5 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 16px;
     font-weight: bold;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+    .top-bar {
+        width: calc(100% - 200px);
+        left: 200px;
+    }
 }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 4ca4d7709e6639a904e42fc10e126df4b4db8d6c
+=======
+=======
+>>>>>>> 68d0decf812e762e96c6f5166f8480b4504bf096
 th, td {
     text-align: left;
     padding: 10px;
@@ -515,3 +450,10 @@ tr:nth-child(even) {
     font-size: 16px;
 }
 >>>>>>> f0db1e8da7d6c2d8ad4d8d1d6abf8035c91a39ab
+<<<<<<< HEAD
+>>>>>>> 0c0e7dec8846dc2288b079c03f353e4104d17b0f
+=======
+=======
+>>>>>>> 4ca4d7709e6639a904e42fc10e126df4b4db8d6c
+>>>>>>> d6359cfc957ee8e675dba48add4fd1bc41d7789f
+>>>>>>> 68d0decf812e762e96c6f5166f8480b4504bf096
