@@ -8,8 +8,13 @@ if (!isset($_SESSION["users"])) {
 include 'db.php';
 
 // Fetch user, admin, and facilitator counts
+<<<<<<< HEAD:Users.php
+$user_count = $conn->query("SELECT COUNT(*) AS total FROM users WHERE role = 'student'")->fetch_assoc()["total"];
+$admin_count = $conn->query("SELECT COUNT(*) AS total FROM users WHERE role = 'admin'")->fetch_assoc()["total"];
+=======
 $user_count = $conn->query("SELECT COUNT(*) AS total FROM users WHERE role = 'users'")->fetch_assoc()["total"];
 $admin_count = $conn->query("SELECT COUNT(*) AS total FROM users WHERE role = 'users'")->fetch_assoc()["total"];
+>>>>>>> 152abee31f8cb26c62e08f5c85278c135b05c352:Addusers.php
 $facilitator_count = $conn->query("SELECT COUNT(*) AS total FROM users WHERE role = 'facilitator'")->fetch_assoc()["total"];
 ?>
 

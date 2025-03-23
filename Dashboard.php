@@ -35,18 +35,37 @@ $facilitator_count = getUserCount('facilitator', $conn);
     <link rel="stylesheet" href="Dashboard.css">
 </head>
 <body>
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white sidebar">
+=======
     <div class="d-flex">
         <!-- Sidebar -->
         <div class="sidebar">
+>>>>>>> 152abee31f8cb26c62e08f5c85278c135b05c352
             <h2>Admin<span class="text-danger">Panel</span></h2>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item"><a href="Dashboard.php" class="nav-link text-white"><i class="fas fa-tachometer-alt me-2"></i> Dashboard</a></li>
+<<<<<<< HEAD
+                <li><a href="Users.php" class="nav-link text-white"><i class="fas fa-users me-2"></i> Users</a></li>
+                <li><a href="feedbacks.php" class="nav-link text-white"><i class="fas fa-comment-alt me-2"></i> Feedback <span class="badge bg-danger ms-2">13</span></a></li>
+                <li><a href="AdminLogin.php" class="nav-link text-white"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+            </ul>
+        </div>
+=======
+    <div class="login-container">
+        <h2>Admin Login</h2>
+>>>>>>> 2a6a2c42d68577ee6a28184e73df12bf6cd132eb
+=======
                 <li><a href="Addusers.php" class="nav-link text-white"><i class="fas fa-users me-2"></i> Students</a></li>
                 <li><a href="Feedback.php" class="nav-link text-white"><i class="fas fa-comment-alt me-2"></i> Feedback</a></li>
                 <li><a href="AdminLogin.php" class="nav-link text-white"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
             </ul>
         </div>
+>>>>>>> 152abee31f8cb26c62e08f5c85278c135b05c352
 
         <!-- Main Content -->
         <div class="container-fluid" style="margin-left: 260px;">
@@ -57,6 +76,16 @@ $facilitator_count = getUserCount('facilitator', $conn);
                 </div>
             </div>
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+            <!-- Dashboard Cards -->
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card text-white bg-primary mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-user me-2"></i> Students</h5>
+                            <p class="card-text"><?php echo $user_count; ?> total</p>
+=======
             <!-- Dashboard Cards -->
             <div class="row mt-5 g-4">
                 <div class="col-md-4">
@@ -64,18 +93,42 @@ $facilitator_count = getUserCount('facilitator', $conn);
                         <div class="card-body text-center d-flex flex-column justify-content-center">
                             <h5 class="card-title">Students</h5>
                             <p class="card-text">Total: <?php echo $user_count; ?></p>
+>>>>>>> 152abee31f8cb26c62e08f5c85278c135b05c352
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
+<<<<<<< HEAD
+                    <div class="card text-white bg-success mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-user-shield me-2"></i> Admins</h5>
+                            <p class="card-text"><?php echo $admin_count; ?> total</p>
+=======
                     <div class="card text-white bg-success h-100">
                         <div class="card-body text-center d-flex flex-column justify-content-center">
                             <h5 class="card-title">Admins</h5>
                             <p class="card-text">Total: <?php echo $admin_count; ?></p>
+>>>>>>> 152abee31f8cb26c62e08f5c85278c135b05c352
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
+<<<<<<< HEAD
+                    <div class="card text-white bg-warning mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-chalkboard-teacher me-2"></i> Facilitators</h5>
+                            <p class="card-text"><?php echo $facilitator_count; ?> total</p>
+                        </div>
+                    </div>
+                </div>
+=======
+        <!-- Login Form -->
+        <form method="POST">
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <input type="text" name="username" class="form-control" placeholder="Username" required>
+>>>>>>> 2a6a2c42d68577ee6a28184e73df12bf6cd132eb
+=======
                     <div class="card text-white bg-warning h-100">
                         <div class="card-body text-center d-flex flex-column justify-content-center">
                             <h5 class="card-title">Facilitators</h5>
@@ -83,6 +136,7 @@ $facilitator_count = getUserCount('facilitator', $conn);
                         </div>
                     </div>
                 </div>
+>>>>>>> 152abee31f8cb26c62e08f5c85278c135b05c352
             </div>
 
 
