@@ -1,14 +1,17 @@
+/* General Styles */
 body {
     font-family: 'Raleway', sans-serif;
     background: linear-gradient(to right, #2c3e50, #8e0404);
     display: flex;
     justify-content: center;
+    font-style: bold;
     align-items: center;
     height: 100vh;
     margin: 0;
     padding: 20px;
 }
 
+/* Login Container */
 .login-container {
     background: white;
     padding: 30px;
@@ -26,9 +29,11 @@ body {
     font-weight: bold;
 }
 
+/* Input Group */
 .input-group {
     display: flex;
     align-items: center;
+    margin-bottom: 15px;
 }
 
 .input-group-text {
@@ -54,22 +59,33 @@ body {
     outline: none;
 }
 
-.btn-login {
-    background-color: #8e0404;
-    color: white;
-    width: 100%;
+/* Login Button */
+.btn-primary {
+    background-color: #800000; /* Maroon */
+    border-color: #800000; /* Maroon */
+}
+
+.btn-primary:hover {
+    background-color: #660000; /* Darker Maroon */
+    border-color: #660000;
+}
+
+.btn-primary:focus, 
+.btn-primary:active {
+    background-color: #990000; /* Slightly lighter maroon */
+    border-color: #990000;
+    box-shadow: 0 0 5px rgba(128, 0, 0, 0.5);
+}
+
+
+/* Alert Styling */
+.alert {
+    margin-bottom: 15px;
     padding: 12px;
-    font-size: 16px;
-    border: none;
     border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
 }
 
-.btn-login:hover {
-    background-color: #a80505;
-}
-
+/* Responsive Styles */
 @media (max-width: 480px) {
     .login-container {
         padding: 20px;
