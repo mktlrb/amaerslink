@@ -52,6 +52,13 @@ $facilitator_count = getUserCount('facilitator', $conn);
 <<<<<<< HEAD
                 <li><a href="Users.php" class="nav-link text-white"><i class="fas fa-users me-2"></i> Users</a></li>
                 <li><a href="feedbacks.php" class="nav-link text-white"><i class="fas fa-comment-alt me-2"></i> Feedback <span class="badge bg-danger ms-2">13</span></a></li>
+<<<<<<< HEAD
+=======
+=======
+                <li><a href="Addusers.php" class="nav-link text-white"><i class="fas fa-users me-2"></i> Students</a></li>
+                <li><a href="Feedback.php" class="nav-link text-white"><i class="fas fa-comment-alt me-2"></i> Feedback</a></li>
+>>>>>>> d6359cfc957ee8e675dba48add4fd1bc41d7789f
+>>>>>>> 68d0decf812e762e96c6f5166f8480b4504bf096
                 <li><a href="AdminLogin.php" class="nav-link text-white"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
             </ul>
         </div>
@@ -81,19 +88,30 @@ $facilitator_count = getUserCount('facilitator', $conn);
             <!-- Dashboard Cards -->
             <div class="row mt-4">
                 <div class="col-md-4">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 68d0decf812e762e96c6f5166f8480b4504bf096
                     <div class="card text-white bg-primary mb-3">
                         <div class="card-body">
                             <h5 class="card-title"><i class="fas fa-user me-2"></i> Students</h5>
                             <p class="card-text"><?php echo $user_count; ?> total</p>
 =======
+<<<<<<< HEAD
             <!-- Dashboard Cards -->
             <div class="row mt-5 g-4">
                 <div class="col-md-4">
+=======
+>>>>>>> 68d0decf812e762e96c6f5166f8480b4504bf096
                     <div class="card text-white bg-primary h-100">
                         <div class="card-body text-center d-flex flex-column justify-content-center">
                             <h5 class="card-title">Students</h5>
                             <p class="card-text">Total: <?php echo $user_count; ?></p>
+<<<<<<< HEAD
 >>>>>>> 152abee31f8cb26c62e08f5c85278c135b05c352
+=======
+>>>>>>> d6359cfc957ee8e675dba48add4fd1bc41d7789f
+>>>>>>> 68d0decf812e762e96c6f5166f8480b4504bf096
                         </div>
                     </div>
                 </div>

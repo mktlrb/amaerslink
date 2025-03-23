@@ -24,6 +24,10 @@ CREATE TABLE comments (
     FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE, -- Foreign key to link to the posts table
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE -- Foreign key to link to the users table
 );
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 68d0decf812e762e96c6f5166f8480b4504bf096
 
 -- Likes table to store likes on posts
 CREATE TABLE likes (
@@ -89,6 +93,7 @@ CREATE TABLE users (
 
 INSERT INTO users (username, password, role) VALUES ('admin', MD5('admin123'), 'admin');
 =======
+<<<<<<< HEAD
 Hashed Password: $2y$10$okKpvcIi8l2JcrA0yNy2R.Y.8GWI5PhKxPylyIAwMahFDzDUh80A6
 >>>>>>> 2a6a2c42d68577ee6a28184e73df12bf6cd132eb
 =======
@@ -107,3 +112,6 @@ CREATE TABLE feedbacks (
 =======
 >>>>>>> 152abee31f8cb26c62e08f5c85278c135b05c352
 >>>>>>> 0c0e7dec8846dc2288b079c03f353e4104d17b0f
+=======
+>>>>>>> d6359cfc957ee8e675dba48add4fd1bc41d7789f
+>>>>>>> 68d0decf812e762e96c6f5166f8480b4504bf096

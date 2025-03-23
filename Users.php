@@ -14,7 +14,11 @@ $admin_count = $conn->query("SELECT COUNT(*) AS total FROM users WHERE role = 'a
 =======
 $user_count = $conn->query("SELECT COUNT(*) AS total FROM users WHERE role = 'users'")->fetch_assoc()["total"];
 $admin_count = $conn->query("SELECT COUNT(*) AS total FROM users WHERE role = 'users'")->fetch_assoc()["total"];
+<<<<<<< HEAD
 >>>>>>> 152abee31f8cb26c62e08f5c85278c135b05c352:Addusers.php
+=======
+>>>>>>> d6359cfc957ee8e675dba48add4fd1bc41d7789f:Addusers.php
+>>>>>>> 68d0decf812e762e96c6f5166f8480b4504bf096
 $facilitator_count = $conn->query("SELECT COUNT(*) AS total FROM users WHERE role = 'facilitator'")->fetch_assoc()["total"];
 ?>
 
