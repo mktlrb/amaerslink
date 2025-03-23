@@ -1,48 +1,21 @@
--- Create the main database for the application
-CREATE DATABASE amaers;
-
--- Use the newly created database
-USE amaers;
-
--- Users table to store user information
-CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier for each user
-    usn VARCHAR(50) NOT NULL UNIQUE,    -- Unique username for the user
-    email VARCHAR(255) NOT NULL UNIQUE, -- Unique email address for the user
-    password_hash VARCHAR(255) NOT NULL, -- Hashed password for security
-    profile_picture VARCHAR(255),        -- URL or path to the user's profile picture
-    role ENUM('user', 'admin') DEFAULT 'user', -- User role (default is 'user')
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp for when the user was created
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- Timestamp for when the user was last updated
+CREATE TABLE admin (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    admin_password VARCHAR(255) NOT NULL,
+    admin_role VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Password Resets table to manage password reset requests
-CREATE TABLE password_resets (
-    id INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier for each password reset request
-    email VARCHAR(255) NOT NULL,       -- Email of the user requesting the reset
-    token VARCHAR(255) NOT NULL,       -- Unique token for the password reset
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp for when the reset request was created
-    FOREIGN KEY (email) REFERENCES users(email) ON DELETE CASCADE -- Foreign key to link to the users table
-);
+-- Insert admin user with hashed password
+INSERT INTO admin (username, admin_password, admin_role) 
+VALUES ('admin', '$2y$10$Zxw7E7fLh9A0J.kl5hRf.u1xaAqI1RkB5QNOk2EguVkct9GjBoq.i', 'admin');
 
--- Categories table to categorize posts
-CREATE TABLE categories (
-    id INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier for each category
-    name VARCHAR(50) NOT NULL UNIQUE    -- Name of the category
-);
+-- Insert superadmin user with hashed password
+INSERT INTO admin (username, admin_password, admin_role) 
+VALUES ('superadmin', '$2y$10$QqO2dYgQyHCcTVxuCGzHMOkkV8v6RhLB3yxQxF3tJ4buBzn5b5H3q', 'superadmin');
 
--- Posts table to store user-generated content
-CREATE TABLE posts (
-    id INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier for each post
-    user_id INT NOT NULL,               -- ID of the user who created the post
-    title VARCHAR(255) NOT NULL,        -- Title of the post
-    body TEXT NOT NULL,                 -- Main content of the post
-    category_id INT,                    -- ID of the category for the post
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp for when the post was created
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE, -- Foreign key to link to the users table
-    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL -- Foreign key to link to the categories table
-);
 
+<<<<<<< HEAD
 -- Comments table to store comments on posts
 CREATE TABLE comments (
     id INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier for each comment
@@ -117,3 +90,6 @@ CREATE TABLE users (
 );
 
 INSERT INTO users (username, password, role) VALUES ('admin', MD5('admin123'), 'admin');
+=======
+Hashed Password: $2y$10$okKpvcIi8l2JcrA0yNy2R.Y.8GWI5PhKxPylyIAwMahFDzDUh80A6
+>>>>>>> 2a6a2c42d68577ee6a28184e73df12bf6cd132eb
