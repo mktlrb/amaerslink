@@ -1,18 +1,20 @@
-CREATE TABLE admin (
+CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(255) NOT NULL UNIQUE,
-    admin_password VARCHAR(255) NOT NULL,
-    admin_role VARCHAR(50) NOT NULL,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL, -- Store hashed passwords
+    role ENUM('users', 'user', 'facilitator') NOT NULL DEFAULT 'user',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Insert admin user with hashed password
-INSERT INTO admin (username, admin_password, admin_role) 
-VALUES ('admin', '$2y$10$Zxw7E7fLh9A0J.kl5hRf.u1xaAqI1RkB5QNOk2EguVkct9GjBoq.i', 'admin');
 
--- Insert superadmin user with hashed password
-INSERT INTO admin (username, admin_password, admin_role) 
-VALUES ('superadmin', '$2y$10$QqO2dYgQyHCcTVxuCGzHMOkkV8v6RhLB3yxQxF3tJ4buBzn5b5H3q', 'superadmin');
+INSERT INTO users (username, password, role) VALUES 
+('admin', MD5('admin123'), 'admin');
 
 
-Hashed Password: $2y$10$okKpvcIi8l2JcrA0yNy2R.Y.8GWI5PhKxPylyIAwMahFDzDUh80A6
+CREATE TABLE feedbacks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    feedback TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
