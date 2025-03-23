@@ -1,95 +1,128 @@
-/* ======= General Styles ======= */
-/* ======= General Styles ======= */
+/* General Styles */
 body {
-    font-family: 'Raleway', sans-serif; /* Apply Raleway font */
-    background-color: #f4f4f4;
+    font-family: 'Raleway', sans-serif;
+    background-color: #f8f9fa;
     margin: 0;
     padding: 0;
 }
 
-/* Ensure all elements use the font */
-h1, h2, h3, h4, h5, h6, p, a, button, input, textarea, select, table {
-    font-family: 'Raleway', sans-serif !important;
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: #343a40;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
-
-/* ======= Navbar ======= */
-.navbar {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
 }
 
-/* ======= Sidebar ======= */
-
-.d-flex.flex-column h2 {
-    font-size: 24px;
-    font-weight: bold;
+.sidebar ul {
+    list-style: none;
+    padding: 0;
 }
 
-.d-flex.flex-column a {
-    font-size: 18px;
-    font-weight: 500;
+.sidebar .nav-link {
+    color: #adb5bd;
     padding: 10px;
-    display: flex;
-    align-items: center;
     transition: 0.3s;
+    display: block;
+    text-decoration: none;
 }
 
-.d-flex.flex-column a:hover {
-    background: rgba(255, 255, 255, 0.2);
+.sidebar .nav-link:hover {
+    background: #495057;
+    color: white;
     border-radius: 5px;
 }
 
-/* ======= Main Content ======= */
+/* Main Content */
 .container-fluid {
-    margin-left: 270px;
+    margin-left: 260px;
     padding: 20px;
-    width: calc(100% - 270px);
+    transition: margin-left 0.3s ease-in-out;
 }
 
-/* ======= Dashboard Cards ======= */
-.card {
-    border: none;
+/* Top Bar */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile span {
+    font-weight: bold;
+    color: #343a40;
+}
+
+/* Buttons */
+.btn-outline-primary:hover {
+    background: #007bff;
+    color: rgb(141, 43, 43);
+}
+
+.btn-outline-secondary:hover {
+    background: #6c757d;
+    color: white;
+}
+
+/* Search Input */
+#searchInput {
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    width: 100%;
+    max-width: 300px;
+}
+
+/* Modal Styles */
+.modal-content {
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+.modal-header {
+    background: #343a40;
+    color: white;
+    border-radius: 10px 10px 0 0;
 }
 
-/* ======= Responsive Design ======= */
-@media (max-width: 1200px) {
-    .container-fluid {
-        margin-left: 260px;
-        width: calc(100% - 260px);
-    }
+.btn-primary, .btn-secondary, .btn-success {
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
 }
 
-@media (max-width: 768px) {
-    .container-fluid {
-        margin-left: 0;
-        width: 100%;
-        padding: 10px;
-    }
-
-    .d-flex.flex-column {
-        width: 100%;
-        height: auto;
-        position: relative;
-    }
-}
-
-/* Style the FullCalendar 'Today' button */
+/* FullCalendar Customization */
 .fc .fc-today-button {
     background-color: gray !important;
     border-color: gray !important;
     color: white !important;
 }
+
 .fc .fc-today-button:hover {
     background-color: darkgray !important;
     border-color: darkgray !important;
 }
 
-
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container-fluid {
+        margin-left: 0;
+        width: 100%;
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+}

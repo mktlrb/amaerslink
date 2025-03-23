@@ -146,7 +146,11 @@ body {
     background: url('images/Untitled.png') center/cover no-repeat;
 =======
     background: url('images/amalipa.png') center/cover no-repeat;
+<<<<<<< HEAD
 >>>>>>> f0db1e8da7d6c2d8ad4d8d1d6abf8035c91a39ab
+=======
+>>>>>>> 4ca4d7709e6639a904e42fc10e126df4b4db8d6c
+>>>>>>> d6359cfc957ee8e675dba48add4fd1bc41d7789f
     display: flex;
     flex-direction: column;
     justify-content: center;

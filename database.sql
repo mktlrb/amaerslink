@@ -1,58 +1,24 @@
--- Create the main database for the application
-CREATE DATABASE amaers;
-
--- Use the newly created database
-USE amaers;
-
--- Users table to store user information
-CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier for each user
-    usn VARCHAR(50) NOT NULL UNIQUE,    -- Unique username for the user
-    email VARCHAR(255) NOT NULL UNIQUE, -- Unique email address for the user
-    password_hash VARCHAR(255) NOT NULL, -- Hashed password for security
-    profile_picture VARCHAR(255),        -- URL or path to the user's profile picture
-    role ENUM('user', 'admin') DEFAULT 'user', -- User role (default is 'user')
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp for when the user was created
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- Timestamp for when the user was last updated
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL, -- Store hashed passwords
+    role ENUM('users', 'user', 'facilitator') NOT NULL DEFAULT 'user',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Password Resets table to manage password reset requests
-CREATE TABLE password_resets (
-    id INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier for each password reset request
-    email VARCHAR(255) NOT NULL,       -- Email of the user requesting the reset
-    token VARCHAR(255) NOT NULL,       -- Unique token for the password reset
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp for when the reset request was created
-    FOREIGN KEY (email) REFERENCES users(email) ON DELETE CASCADE -- Foreign key to link to the users table
-);
 
--- Categories table to categorize posts
-CREATE TABLE categories (
-    id INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier for each category
-    name VARCHAR(50) NOT NULL UNIQUE    -- Name of the category
-);
+INSERT INTO users (username, password, role) VALUES 
+('admin', MD5('admin123'), 'admin');
 
--- Posts table to store user-generated content
-CREATE TABLE posts (
-    id INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier for each post
-    user_id INT NOT NULL,               -- ID of the user who created the post
-    title VARCHAR(255) NOT NULL,        -- Title of the post
-    body TEXT NOT NULL,                 -- Main content of the post
-    category_id INT,                    -- ID of the category for the post
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp for when the post was created
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE, -- Foreign key to link to the users table
-    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL -- Foreign key to link to the categories table
-);
 
--- Comments table to store comments on posts
-CREATE TABLE comments (
-    id INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier for each comment
-    post_id INT NOT NULL,               -- ID of the post being commented on
-    user_id INT NOT NULL,               -- ID of the user who made the comment
-    body TEXT NOT NULL,                 -- Content of the comment
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp for when the comment was created
-    FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE, -- Foreign key to link to the posts table
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE -- Foreign key to link to the users table
+CREATE TABLE feedbacks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    feedback TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+<<<<<<< HEAD
 
 -- Likes table to store likes on posts
 CREATE TABLE likes (
@@ -117,3 +83,5 @@ CREATE TABLE users (
 );
 
 INSERT INTO users (username, password, role) VALUES ('admin', MD5('admin123'), 'admin');
+=======
+>>>>>>> d6359cfc957ee8e675dba48add4fd1bc41d7789f

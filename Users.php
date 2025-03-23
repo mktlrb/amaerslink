@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION["admin"])) {
+if (!isset($_SESSION["users"])) {
     header("Location: AdminLogin.php");
     exit();
 }
@@ -8,8 +8,13 @@ if (!isset($_SESSION["admin"])) {
 include 'db.php';
 
 // Fetch user, admin, and facilitator counts
+<<<<<<< HEAD:Users.php
 $user_count = $conn->query("SELECT COUNT(*) AS total FROM users WHERE role = 'student'")->fetch_assoc()["total"];
 $admin_count = $conn->query("SELECT COUNT(*) AS total FROM users WHERE role = 'admin'")->fetch_assoc()["total"];
+=======
+$user_count = $conn->query("SELECT COUNT(*) AS total FROM users WHERE role = 'users'")->fetch_assoc()["total"];
+$admin_count = $conn->query("SELECT COUNT(*) AS total FROM users WHERE role = 'users'")->fetch_assoc()["total"];
+>>>>>>> d6359cfc957ee8e675dba48add4fd1bc41d7789f:Addusers.php
 $facilitator_count = $conn->query("SELECT COUNT(*) AS total FROM users WHERE role = 'facilitator'")->fetch_assoc()["total"];
 ?>
 
@@ -36,8 +41,8 @@ $facilitator_count = $conn->query("SELECT COUNT(*) AS total FROM users WHERE rol
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item"><a href="Dashboard.php" class="nav-link text-white"><i class="fas fa-tachometer-alt me-2"></i> Dashboard</a></li>
-                <li><a href="Addusers.php" class="nav-link text-white"><i class="fas fa-users me-2"></i> Users</a></li>
-                <li><a href="feedbacks.php" class="nav-link text-white"><i class="fas fa-comment-alt me-2"></i> Feedback <span class="badge bg-danger ms-2">13</span></a></li>
+                <li><a href="Addusers.php" class="nav-link text-white"><i class="fas fa-users me-2"></i> Students</a></li>
+                <li><a href="Feedback.php" class="nav-link text-white"><i class="fas fa-comment-alt me-2"></i> Feedback</a></li>
                 <li><a href="AdminLogin.php" class="nav-link text-white"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
             </ul>
         </div>
@@ -47,7 +52,7 @@ $facilitator_count = $conn->query("SELECT COUNT(*) AS total FROM users WHERE rol
             <div class="top-bar">
                 <h1>Users Management</h1>
                 <div class="profile">
-                    <span><?php echo $_SESSION["admin"]; ?></span>
+                    <span><?php echo $_SESSION["users"]; ?></span>
                 </div>
             </div>
             <div class="d-flex justify-content-between align-items-center my-3">
