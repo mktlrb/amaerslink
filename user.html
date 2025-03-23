@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -348,3 +349,433 @@ function saveUserChanges() {
         </script>
     </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="usercss.css">
+    <script src="userjava.js" defer></script>
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+        }
+
+        .sidebar {
+            background-color: #8e0404 !important;
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="d-flex">
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white sidebar">
+            <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <h2>Admin<span class="text-danger">Panel</span></h2>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="Dashboard.html" class="nav-link text-white">
+                        <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="user.html" class="nav-link text-white">
+                        <i class="fas fa-users me-2"></i> Users
+                    </a>
+                </li>
+                <li>
+                    <a href="feedbacks.html" class="nav-link text-white">
+                        <i class="fas fa-comment-alt me-2"></i> Feedback <span class="badge bg-danger ms-2">13</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link text-white">
+                        <i class="fas fa-sign-out-alt me-2"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="container-fluid" style="margin-left: 260px;">
+            <div class="top-bar">
+                <h1>Users Management</h1>
+                <div class="profile">
+                    <span>Avin Ace Villafuerte</span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center my-3">
+                <input type="text" class="form-control w-25" placeholder="Search User" id="searchInput">
+                <div class="d-flex">
+                    <button class="btn btn-outline-primary me-2" onclick="openAddUserModal()">+ Add User</button>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="sortDropdown"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Sort
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="sortUsers('usn')">Sort by USN</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="sortUsers('name')">Sort by User Name</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="table-responsive">
+                <table class="table table-hover" id="userTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th><input type="checkbox"></th>
+                            <th>USN</th>
+                            <th>User Name</th>
+                            <th>Email</th>
+                            <th>Roles</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userTableBody">
+                        <tr>
+                            <div id="editUserModal" class="modal fade" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Edit User</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <label>USN:</label>
+                                            <input type="text" class="form-control mb-2" id="editUSN" readonly>
+
+                                            <label>User Name:</label>
+                                            <input type="text" class="form-control mb-2" id="editUserName">
+
+                                            <label>Email:</label>
+                                            <input type="email" class="form-control mb-2" id="editUserEmail">
+
+                                            <label>Password:</label>
+                                            <input type="password" class="form-control mb-2" id="editUserPassword">
+
+                                            <label for="editUserGender">Gender:</label>
+                                            <select class="form-control mb-2" id="editUserGender">
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+
+                                            <label for="editUserRoles">Roles:</label>
+                                            <select class="form-control mb-2" id="editUserRoles"
+                                                onchange="toggleEditSubCategory()">
+                                                <option value="" disabled selected>Select Role</option>
+                                                <option value="Admin">Admin</option>
+                                                <option value="Facilitators">Facilitators</option>
+                                                <option value="Students">Students</option>
+                                            </select>
+
+                                            <!-- Sub-category dropdown for Students (Hidden by default) -->
+                                            <div id="editStudentSubCategoryContainer" style="display: none;">
+                                                <label for="editStudentSubCategory">Select Student Level:</label>
+                                                <select class="form-control mb-2" id="editStudentSubCategory">
+                                                    <option value="" disabled selected>Select Level</option>
+                                                    <option value="SHS">SHS</option>
+                                                    <option value="College">College</option>
+                                                </select>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="saveUserChanges()">Save</button>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <td><input type="checkbox"></td>
+                                <td>210832314</td>
+                                <td>Ramon Ridwan</td>
+                                <td>RamonRidwan@Example.com</td>
+                                <td><span class="badge bg-secondary">Admin</span></td>
+                                <td>
+                                    <button class="btn btn-outline-dark btn-sm" onclick="openEditUserModal(this)"><i
+                                            class="fas fa-pencil-alt"></i></button>
+                                    <button class="btn btn-outline-danger btn-sm" onclick="deleteUser(this)"><i
+                                            class="fas fa-trash-alt"></i></button>
+                                </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="addUserModal" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add New User</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <label>USN:</label>
+                        <input type="text" class="form-control mb-2" id="newUSN">
+
+                        <label>User Name:</label>
+                        <input type="text" class="form-control mb-2" id="newUserName">
+
+                        <label>Email:</label>
+                        <input type="email" class="form-control mb-2" id="newUserEmail">
+
+                        <label>Password:</label>
+                        <input type="password" class="form-control mb-2" id="newUserPassword">
+
+                        <label for="newUserGender">Gender:</label>
+                        <select class="form-control mb-2" id="newUserGender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+
+                        <label for="newUserRoles">Roles:</label>
+                        <select class="form-control mb-2" id="newUserRoles" onchange="toggleStudentSubCategory()">
+                            <option value="" disabled selected>Select Role</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Facilitators">Facilitators</option>
+                            <option value="Students">Students</option>
+                        </select>
+
+                        <!-- Sub-category dropdown for Students (Hidden by default) -->
+                        <div id="studentSubCategoryContainer" style="display: none;">
+                            <label for="studentSubCategory">Select Student Level:</label>
+                            <select class="form-control mb-2" id="studentSubCategory">
+                                <option value="" disabled selected>Select Level</option>
+                                <option value="SHS">SHS</option>
+                                <option value="College">College</option>
+                            </select>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" onclick="addUser()">Add User</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+</html>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function openAddUserModal() {
+        new bootstrap.Modal(document.getElementById("addUserModal")).show();
+    }
+
+    function addUser() {
+    let usn = document.getElementById("newUSN").value;
+    let name = document.getElementById("newUserName").value;
+    let email = document.getElementById("newUserEmail").value;
+    let roles = document.getElementById("newUserRoles").value;
+    let studentLevel = document.getElementById("studentSubCategory").value;
+
+    if (!usn || !name || !email || !roles) {
+        alert("Please fill in all fields.");
+        return;
+    }
+
+    // Display the student level only if the role is "Students"
+    let displayRole = roles;
+    if (roles === "Students" && studentLevel) {
+        displayRole += ` - ${studentLevel}`;
+    }
+
+    let tableBody = document.getElementById("userTableBody");
+    let row = document.createElement("tr");
+    row.innerHTML = `
+                    <td><input type="checkbox"></td>
+                    <td>${usn}</td>
+                    <td>${name}</td>
+                    <td>${email}</td>
+                    <td><span class="badge bg-secondary">${displayRole}</span></td>
+                    <td>
+                        <button class="btn btn-outline-dark btn-sm" onclick="openEditUserModal(this)">
+                            <i class="fas fa-pencil-alt"></i>
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm" onclick="deleteUser(this)">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </td>`;
+
+    tableBody.appendChild(row);
+
+    // Close the modal
+    bootstrap.Modal.getInstance(document.getElementById("addUserModal")).hide();
+
+    // Clear input fields
+    document.getElementById("newUSN").value = "";
+    document.getElementById("newUserName").value = "";
+    document.getElementById("newUserEmail").value = "";
+    document.getElementById("newUserRoles").value = "";
+    document.getElementById("studentSubCategory").value = "";
+    document.getElementById("studentSubCategoryContainer").style.display = "none";
+}
+
+    function deleteUser(button) {
+        button.closest("tr").remove();
+    }
+
+    // ✅ SORT FUNCTION (Alphabetical Order by User Name)
+    function sortUsers(criteria) {
+        let tableBody = document.getElementById("userTableBody");
+        let rows = Array.from(tableBody.rows);
+
+        let columnIndex = criteria === "usn" ? 1 : 2; // USN is column 1, Name is column 2
+
+        rows.sort((a, b) => {
+            let valA = a.cells[columnIndex].innerText.trim();
+            let valB = b.cells[columnIndex].innerText.trim();
+
+            return criteria === "usn"
+                ? parseInt(valA, 10) - parseInt(valB, 10) // Numeric sort for USN
+                : valA.localeCompare(valB); // Alphabetical sort for Name
+        });
+
+        // Clear and re-append sorted rows
+        tableBody.innerHTML = "";
+        rows.forEach(row => tableBody.appendChild(row));
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        let userName = "AdminUser"; // Replace this with a value fetched from your backend
+        document.getElementById("userName").innerText = userName;
+    });
+
+
+    // ✅ SEARCH FUNCTION (Filters based on User Name)
+    function searchUser() {
+        let input = document.getElementById("searchInput").value.toLowerCase();
+        let rows = document.querySelectorAll("#userTableBody tr");
+
+        rows.forEach(row => {
+            let usn = row.cells[1].innerText.toLowerCase(); // USN Column
+            let name = row.cells[2].innerText.toLowerCase(); // User Name Column
+
+            // Check if input matches either USN or Name
+            row.style.display = (usn.includes(input) || name.includes(input)) ? "" : "none";
+        });
+    }
+
+    // Attach search function to input field
+    document.getElementById("searchInput").addEventListener("keyup", searchUser);
+
+
+
+    let currentEditRow;
+
+    function openEditUserModal(button) {
+        // Get the row being edited
+        currentEditRow = button.closest("tr");
+
+        // Fetch existing user details from the table
+        let usn = currentEditRow.cells[1].innerText;
+        let name = currentEditRow.cells[2].innerText;
+        let email = currentEditRow.cells[3].innerText;
+        let roles = currentEditRow.cells[4].innerText.trim();
+
+        // Fill modal fields with current values
+        document.getElementById("editUSN").value = usn;
+        document.getElementById("editUserName").value = name;
+        document.getElementById("editUserEmail").value = email;
+        document.getElementById("editUserRoles").value = roles;
+
+        // Show the modal
+        new bootstrap.Modal(document.getElementById("editUserModal")).show();
+    }
+    function toggleEditSubCategory() {
+        let role = document.getElementById("editUserRoles").value;
+        let subCategoryContainer = document.getElementById("editStudentSubCategoryContainer");
+
+        if (role === "Students") {
+            subCategoryContainer.style.display = "block";
+        } else {
+            subCategoryContainer.style.display = "none";
+            document.getElementById("editStudentSubCategory").value = ""; // Reset selection
+        }
+    }
+
+    // Auto-show subcategory when editing existing users
+    window.onload = function () {
+        let selectedRole = document.getElementById("editUserRoles").value;
+        if (selectedRole === "Students") {
+            document.getElementById("editStudentSubCategoryContainer").style.display = "block";
+        }
+    };
+
+    function saveUserChanges() {
+        if (!currentEditRow) return;
+
+        // Get new values from the modal inputs
+        let name = document.getElementById("editUserName").value;
+        let email = document.getElementById("editUserEmail").value;
+        let roles = document.getElementById("editUserRoles").value;
+        let studentLevel = document.getElementById("editStudentSubCategory").value;
+
+        // If role is "Students", include the selected student level
+        let displayRole = roles;
+        if (roles === "Students" && studentLevel) {
+            displayRole += ` - ${studentLevel}`;
+        }
+
+        // Update table row with new data
+        currentEditRow.cells[2].innerText = name;
+        currentEditRow.cells[3].innerText = email;
+        currentEditRow.cells[4].innerHTML = `<span class="badge bg-secondary">${displayRole}</span>`;
+
+        // Close the modal
+        bootstrap.Modal.getInstance(document.getElementById("editUserModal")).hide();
+
+
+    }
+    function toggleStudentSubCategory() {
+        let role = document.getElementById("newUserRoles").value;
+        let subCategoryContainer = document.getElementById("studentSubCategoryContainer");
+
+        if (role === "Students") {
+            subCategoryContainer.style.display = "block";
+        } else {
+            subCategoryContainer.style.display = "none";
+            document.getElementById("studentSubCategory").value = ""; // Reset selection when hidden
+        }
+    }
+
+
+    function deleteUser(button) {
+        button.closest("tr").remove();
+    }
+</script>
+</body>
+
+</html>
+>>>>>>> 4ca4d7709e6639a904e42fc10e126df4b4db8d6c

@@ -1,0 +1,102 @@
+/* General Styles */
+body {
+    font-family: 'Raleway', sans-serif;
+    background: linear-gradient(to right, #2c3e50, #8e0404);
+    display: flex;
+    justify-content: center;
+    font-style: bold;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Login Container */
+.login-container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+    color: #8e0404;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Input Group */
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.input-group-text {
+    background: #fff;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+    padding: 14px 12px;
+    color: #8e0404;
+}
+
+.form-control {
+    border-radius: 0 5px 5px 0;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.form-control:focus {
+    border-color: #8e0404;
+    box-shadow: 0 0 5px rgba(142, 4, 4, 0.5);
+    outline: none;
+}
+
+/* Login Button */
+.btn-primary {
+    background-color: #800000; /* Maroon */
+    border-color: #800000; /* Maroon */
+}
+
+.btn-primary:hover {
+    background-color: #660000; /* Darker Maroon */
+    border-color: #660000;
+}
+
+.btn-primary:focus, 
+.btn-primary:active {
+    background-color: #990000; /* Slightly lighter maroon */
+    border-color: #990000;
+    box-shadow: 0 0 5px rgba(128, 0, 0, 0.5);
+}
+
+
+/* Alert Styling */
+.alert {
+    margin-bottom: 15px;
+    padding: 12px;
+    border-radius: 5px;
+}
+
+/* Responsive Styles */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 20px;
+    }
+
+    .login-container h2 {
+        font-size: 20px;
+    }
+
+    .btn-login {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
