@@ -1,14 +1,64 @@
 <?php
 session_start();
 include "config.php"; // Database connection
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php'; // Load PHPMailer
+
+// Check if the user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php"); // Redirect to login page if not logged in
+    exit();
+}
 
 // Fetch notifications from the database
 $user_id = $_SESSION['user_id']; // Assuming user ID is stored in session
 $query = "SELECT * FROM notifications WHERE user_id = ? ORDER BY created_at DESC";
 $stmt = $conn->prepare($query);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
+
+if ($stmt) {
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Send email notifications for each notification
+    while ($row = $result->fetch_assoc()) {
+        // Prepare to send email
+        $mail = new PHPMailer(true); // Enable exceptions
+
+        try {
+            // SMTP configuration
+            $mail->isSMTP();
+            $mail->Host = 'smtp.example.com'; // Your SMTP server
+            $mail->SMTPAuth = true;
+            $mail->Username = 'your_email@example.com'; // SMTP username
+            $mail->Password = 'your_password'; // SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+
+            // Recipients
+            $mail->setFrom('from@example.com', 'Your App Name');
+            $mail->addAddress('recipient@example.com', 'Recipient Name'); // Add a recipient
+
+            // Content
+            $mail->isHTML(true);
+            $mail->Subject = 'New Notification';
+            $mail->Body    = 'You have a new notification: <strong>' . htmlspecialchars($row['message']) . '</strong>';
+            $mail->AltBody = 'You have a new notification: ' . htmlspecialchars($row['message']);
+
+            // Send the email
+            $mail->send();
+            echo 'Notification email has been sent to ' . htmlspecialchars($row['recipient_email']);
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
+    }
+} else {
+    // Handle query preparation error
+    echo "Error preparing statement: " . $conn->error;
+    exit();
+}
 ?>
 
 <!DOCTYPE html>

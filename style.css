@@ -142,7 +142,11 @@ body {
 .left-panel {
     flex: 1;
     position: relative; /* Allows overlay positioning */
+<<<<<<< HEAD
     background: url('images/Untitled.png') center/cover no-repeat;
+=======
+    background: url('images/amalipa.png') center/cover no-repeat;
+>>>>>>> 2a6a2c42d68577ee6a28184e73df12bf6cd132eb
     display: flex;
     flex-direction: column;
     justify-content: center;
